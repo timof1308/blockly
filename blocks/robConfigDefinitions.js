@@ -386,6 +386,7 @@ confBlocks.lcdi2c = {};
 confBlocks.lcdi2c.arduino = {
     title : 'LCDI2C',
     sensor : false,
+    inputs : [ [ 'ADDRESS', '0x27' ] ],
     fixedPorts : [ [ 'GND', 'GND' ], [ 'VCC', '5V' ], [ 'SDA', 'A4' ], [ 'SCL', 'A5' ] ]
 };
 

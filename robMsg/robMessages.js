@@ -1431,3 +1431,4 @@ Blockly.Msg.MODE_DATE = 'date';
 Blockly.Msg.MODE_TIME = 'time';
 Blockly.Msg.SENSOR_UNIT_METER = 'm';
 Blockly.Msg.SENSOR_UNIT_SPEED = 'km/h';
+Blockly.Msg.ADDRESS = 'address';

@@ -1314,5 +1314,6 @@
 	"MOTIONKIT_SINGLE_TOOLTIP": "Setzt den/die ausgewählten MotionKit Motor/Motoren auf die entsprechende Richtung.",
 	"MOTIONKIT_DUAL_TOOLTIP": "Setzt den jeweiligen MotionKit Motor auf die entsprechende Richtung.",
 	"MATH_SINGLE_OP_SQUARE": "Quadrat",
-	"MATH_SINGLE_TOOLTIP_SQUARE": "Ist die Zahl multipliziert mit sich selbst."
+	"MATH_SINGLE_TOOLTIP_SQUARE": "Ist die Zahl multipliziert mit sich selbst.",
+    "ADDRESS": "Adresse"
 }
