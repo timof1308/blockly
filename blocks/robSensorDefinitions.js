@@ -187,6 +187,28 @@ sensors.colour.nxt = {
     }, ],
     standardPort : '3'
 };
+sensors.colour.orb = {
+    title : 'COLOUR',
+    ports : 'CONFIGURATION',
+    modes : [ {
+        name : 'COLOUR',
+        type : 'Colour',
+        value : '#b30006'
+    }, {
+        name : 'LIGHT',
+        type : 'Number',
+        unit : 'PERCENT',
+        value : 50
+    }, {
+        name : 'AMBIENTLIGHT',
+        type : 'Number',
+        unit : 'PERCENT',
+        value : 50
+    }, {
+        name : 'RGB',
+        type : 'Array_Number'
+    } ],
+};
 
 sensors.compass = {};
 sensors.compass.botnroll = {
@@ -222,7 +244,6 @@ sensors.compass.ev3 = {
     ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     standardPort : '1'
 };
-
 sensors.compass.sensebox = {
     title : 'COMPASS',
     modes : [ {
@@ -239,6 +260,19 @@ sensors.compass.sensebox = {
         unit : 'DEGREE'
     } ],
     ports : 'CONFIGURATION'
+};
+sensors.compass.orb = {
+    title : 'COMPASS',
+    ports : 'CONFIGURATION',
+    modes : [ {
+        name : 'ANGLE',
+        type : 'Number',
+        unit : 'DEGREE'
+    }, {
+        name : 'COMPASS',
+        type : 'Number',
+        unit : 'DEGREE'
+    } ],
 };
 
 sensors.colourtcs3472 = {};
@@ -348,7 +382,6 @@ sensors.encoder.ev3 = {
     ports : [ [ 'A', 'A' ], [ 'B', 'B' ], [ 'C', 'C' ], [ 'D', 'D' ] ],
     standardPort : 'B'
 };
-
 sensors.encoder.nxt = {
     title : 'ENCODER',
     modes : [ {
@@ -514,7 +547,6 @@ sensors.gyro.ev3 = {
     ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     standardPort : '2'
 };
-
 sensors.gyro.wedo = {
     title : 'GYRO',
     modes : [ {
@@ -526,7 +558,23 @@ sensors.gyro.wedo = {
             [ 'SLOT_TILTED_NO', 'NO' ], [ 'SLOT_TILTED_ANY', 'ANY' ] ],
     ports : 'CONFIGURATION'
 };
-
+sensors.gyro.orb = {
+    title : 'GYRO',
+    ports : 'CONFIGURATION',
+    modes : [ {
+        name : 'ANGLE',
+        type : 'Number',
+        unit : 'DEGREE',
+        op : 'NUM_REV',
+        value : 90
+    }, {
+        name : 'RATE',
+        type : 'Number',
+        unit : 'OMEGA',
+        op : 'NUM_REV',
+        value : 90
+    } ],
+};
 sensors.gyro.sensebox = {
     title : 'GYRO',
     modes : [ {
@@ -702,7 +750,6 @@ sensors.infrared.ev3 = {
         type : 'Array_Number'
     } ]
 };
-
 sensors.infrared.wedo = {
     title : 'INFRARED',
     ports : 'CONFIGURATION',
@@ -713,7 +760,6 @@ sensors.infrared.wedo = {
         value : 10
     } ]
 };
-
 sensors.infrared.edison = {
 	title : 'INFRARED',
     ports : [ [ 'LEFT', 'LEFT' ], [ 'RIGHT', 'RIGHT' ], [ 'SLOT_FRONT', 'FRONT' ] ],
@@ -721,6 +767,18 @@ sensors.infrared.edison = {
 		name : 'OBSTACLE',
 		type : 'Boolean'
 	} ]
+};
+sensors.infrared.orb = {
+    title : 'INFRARED',
+    ports : 'CONFIGURATION',
+    modes : [ {
+        name : 'DISTANCE',
+        type : 'Number',
+        unit : 'CM'
+    }, {
+        name : 'PRESENCE',
+        type : 'Array_Number'
+    } ],
 };
 
 sensors.irseeker = {};
@@ -737,7 +795,6 @@ sensors.irseeker.ev3 = {
         unit : 'DEGREE'
     } ]
 };
-
 sensors.irseeker.edison = {
 	title : 'IRSEEKER',
 	modes : [ {
@@ -806,7 +863,6 @@ sensors.key.nxt = {
     ports : [ [ 'SENSOR_KEY_ENTER', 'ENTER' ], [ 'SENSOR_KEY_LEFT', 'LEFT' ], [ 'SENSOR_KEY_RIGHT', 'RIGHT' ] ]
 };
 sensors.key.sensebox = sensors.key.arduino;
-
 sensors.key.wedo = {
     title : 'KEY',
     modes : [ {
@@ -1100,7 +1156,8 @@ sensors.sound.ev3 = {
     ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     standardPort : '2'
 };
-
+sensors.sound.mbot = sensors.sound.ev3;
+sensors.sound.nxt = sensors.sound.ev3;
 sensors.sound.sensebox = {
     title : 'SOUND',
     modes : [ {
@@ -1112,9 +1169,6 @@ sensors.sound.sensebox = {
     } ],
     ports : 'CONFIGURATION'
 };
-
-sensors.sound.nxt = sensors.sound.ev3;
-sensors.sound.mbot = sensors.sound.ev3;
 sensors.sound.edison = {
 	title : 'SOUND',
 	modes : [ {
@@ -1199,7 +1253,6 @@ sensors.timer.calliope = sensors.timer.botnroll;
 sensors.timer.nxt = sensors.timer.botnroll;
 sensors.timer.microbit = sensors.timer.botnroll;
 sensors.timer.wedo = sensors.timer.botnroll;
-
 sensors.timer.ev3 = {
     title : 'TIMER',
     modes : [ {
@@ -1214,8 +1267,8 @@ sensors.timer.ev3 = {
 sensors.timer.arduino = sensors.timer.ev3;
 sensors.timer.festobionic = sensors.timer.ev3;
 sensors.timer.mbot = sensors.timer.ev3;
+sensors.timer.orb = sensors.timer.ev3;
 sensors.timer.sensebox = sensors.timer.ev3;
-
 
 sensors.touch = {};
 sensors.touch.ev3 = {
@@ -1228,8 +1281,8 @@ sensors.touch.ev3 = {
     } ],
     standardPort : '1'
 };
-sensors.touch.nxt = sensors.touch.ev3;
 sensors.touch.mbot = sensors.touch.ev3;
+sensors.touch.nxt = sensors.touch.ev3;
 sensors.touch.nao = {
     title : 'TOUCH',
     modes : [ {
@@ -1248,7 +1301,15 @@ sensors.touch.nao = {
         slots : [ [ 'LEFT', 'LEFT' ], [ 'RIGHT', 'RIGHT' ] ]
     } ]
 };
-
+sensors.touch.orb = {
+    title : 'TOUCH',
+    ports : 'CONFIGURATION',
+    modes : [ {
+        name : 'PRESSED',
+        type : 'Boolean',
+        question : true
+    } ],
+};
 sensors.touch.vorwerk = {
     title : 'TOUCH',
     modes : [ {
@@ -1329,6 +1390,18 @@ sensors.ultrasonic.nxt = {
         unit : 'CM'
     } ],
     standardPort : '4'
+};
+sensors.ultrasonic.orb = {
+    title : 'ULTRASONIC',
+    ports : 'CONFIGURATION',
+    modes : [ {
+        name : 'DISTANCE',
+        type : 'Number',
+        unit : 'CM'
+    }, {
+        name : 'PRESENCE',
+        type : 'Boolean'
+    } ],
 };
 sensors.ultrasonic.vorwerk = {
     title : 'ULTRASONIC',
@@ -1479,6 +1552,7 @@ sensorsAll.sensebox = [ sensors.key.sensebox, sensors.light.sensebox, sensors.po
 sensors.humidity.sensebox, sensors.temperature.sensebox, sensors.lightveml.sensebox, sensors.accelerometer.sensebox, sensors.particle.sensebox, sensors.gps.sensebox,
         sensors.timer.sensebox, sensors.environmental.sensebox ];
 sensorsAll.edison = [ sensors.key.edison, sensors.infrared.edison, sensors.irseeker.edison, sensors.light.edison, sensors.sound.edison ];        
+sensorsAll.orb = [ sensors.ultrasonic.orb, sensors.gyro.orb, sensors.touch.orb, sensors.timer.orb, sensors.colour.orb, sensors.infrared.orb, sensors.compass.orb ];
 
 function initSensors() {
     for ( var sensor in sensors) {

@@ -1179,6 +1179,7 @@
 	"ACTION_MOTOR": "Motor",
 	"CONNECTOR": "Anschluss",
 	"BRICKNAME_WEDO": "WeDo",
+	"BRICKNAME_ORB": "ORB",
 	"STEPS_PER_REVOLUTION": "Schritte pro Umdrehung",
 	"STEP_MOTOR": "Schrittmotor",
 	"ACTION_SERIAL_PRINT_TOOLTIP": "Zeige Daten auf dem Serial Monitor. Im USB Programm findest du den Serial Monitor oben, unter Anzeige.",

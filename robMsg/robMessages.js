@@ -1317,6 +1317,7 @@ Blockly.Msg.SLOT_TILTED_NO = 'not';
 Blockly.Msg.SLOT_TILTED_ANY = 'any';
 Blockly.Msg.CONNECTOR = 'hub';
 Blockly.Msg.BRICKNAME_WEDO = 'WeDo';
+Blockly.Msg.BRICKNAME_ORB = 'ORB';
 Blockly.Msg.STEPS_PER_REVOLUTION = 'steps per revolution';
 Blockly.Msg.ROTATIONS_PER_MINUTE = 'rpm';
 Blockly.Msg.ACTION_SERIAL_PRINT = 'show on Serial Monitor';
