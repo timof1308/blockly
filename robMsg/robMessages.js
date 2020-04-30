@@ -554,6 +554,7 @@ Blockly.Msg.CONFIGURATION_ERROR_MOTOR_MISSING = 'Motor is missing on the given p
 Blockly.Msg.CONFIGURATION_ERROR_MOTOR_LEFT_UNREGULATED = 'Left motor is not regulated!';
 Blockly.Msg.CONFIGURATION_ERROR_MOTOR_RIGHT_UNREGULATED = 'Right motor is not regulated!';
 Blockly.Msg.CONFIGURATION_ERROR_OTHER_NOT_SUPPORTED = 'Other power consumer does not support this type of block!';
+Blockly.Msg.CONFIGURATION_ERROR_OVERLAPPING_PORTS = 'Another component is already using the same port!';
 
 Blockly.Msg.DATATABLE_PROGRAM_NAME = 'Program name';
 Blockly.Msg.DATATABLE_CREATED_BY = 'Creator';
@@ -1029,7 +1030,7 @@ Blockly.Msg.GET_CODE_TOOLTIP = 'Returns the value of the solderable code pad in 
 
 Blockly.Msg.MOTOR_SPEED_0 = 'Motor Speed is 0!';
 Blockly.Msg.VARIABLE_USED_BEFORE_DECLARATION = 'The variable is used before declaration.';
-Blockly.Msg.ORA_PROGRAM_INVALID_STATEMETNS = 'There are errors in your program. Please check the messages';
+Blockly.Msg.ORA_PROGRAM_INVALID_STATEMETNS = 'There are errors in your program or configuration. Please check the messages.';
 Blockly.Msg.TIMEOUT = 'timeout';
 Blockly.Msg.SLEEP = 'sleep';
 
