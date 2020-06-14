@@ -575,6 +575,7 @@ Blockly.Blocks['robSensors_generic_all'] = {
             this.sensorPort_ = option;
         };
         this.updateShape_ = function(option) {
+            console.log(option);
             this.sensorType_ = option;
             // remove all dynamic fields
             var input = this.getInput('ROW');

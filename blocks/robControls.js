@@ -124,12 +124,12 @@ Blockly.Blocks['robControls_start'] = {
             vd.render();
             var value = vd.getInput('VALUE');
             switch (this.workspace.device) {
-                case 'edison':
-                    var block = this.workspace.newBlock('math_integer');
-                    break;
-                default:
-                    var block = this.workspace.newBlock('math_number');
-                    break;
+            case 'edison':
+                var block = this.workspace.newBlock('math_integer');
+                break;
+            default:
+                var block = this.workspace.newBlock('math_number');
+                break;
             }
             block.initSvg();
             block.render();
@@ -511,7 +511,6 @@ Blockly.Blocks['robControls_wait_for'] = {
             var lc = this.workspace.newBlock('logic_compare');
             lc.initSvg();
             lc.render();
-            lc.updateShape('BOOL');
             var connection = this.getInput('WAIT' + this.waitCount_).connection;
             connection.connect(lc.outputConnection);
 
@@ -527,14 +526,10 @@ Blockly.Blocks['robControls_wait_for'] = {
             }
             s.initSvg();
             s.render();
+            lc.updateShape(s.outputConnection.check_[0] || 'BOOL');
             connection = lc.getInput('A').connection;
             connection.connect(s.outputConnection);
-
-            var v = this.workspace.newBlock('logic_boolean');
-            v.initSvg();
-            v.render();
-            connection = lc.getInput('B').connection;
-            connection.connect(v.outputConnection);
+            s.updateShape_(s.sensorType_);
         } else if (num == -1) {
             var target = this.getInputTargetBlock('DO' + this.waitCount_);
             if (target) {
