@@ -64,8 +64,7 @@ Blockly.Blocks['robSensors_timer_reset'] = {
     init : function() {
         this.setColour(Blockly.CAT_SENSOR_RGB);
         var sensorNum;
-        if (this.workspace.device === 'nxt' || this.workspace.device === 'botnroll' || this.workspace.device === 'bob3' || this.workspace.device === 'sensebox'
-                || this.workspace.device === 'wedo') {
+        if (this.workspace.device === 'nxt' || this.workspace.device === 'botnroll' || this.workspace.device === 'bob3' || this.workspace.device === 'wedo') {
             sensorNum = new Blockly.FieldDropdown([ [ Blockly.Msg.SENSOR_TIMER + ' 1', '1' ] ]);
         } else {
             sensorNum = new Blockly.FieldDropdown([ [ Blockly.Msg.SENSOR_TIMER + ' 1', '1' ], [ Blockly.Msg.SENSOR_TIMER + ' 2', '2' ],
@@ -124,12 +123,10 @@ Blockly.Blocks['mbedSensors_timer_reset'] = {
 
 Blockly.Blocks['edisonSensors_sensor_reset'] = {
     /**
-     * Resets various sensors for the Edison robot by calling their read() methods:
-     *   - clap detector
-     *   - keypad
-     *   - obstacle detector ("infrared sensor")
-     *   - r/c code receiver & ir message receiver ("ir seeker")
-     *
+     * Resets various sensors for the Edison robot by calling their read()
+     * methods: - clap detector - keypad - obstacle detector ("infrared sensor") -
+     * r/c code receiver & ir message receiver ("ir seeker")
+     * 
      * @constructs edisonSensors_sensor_reset
      * @this.Blockly.Block
      * @returns immediately
@@ -138,11 +135,8 @@ Blockly.Blocks['edisonSensors_sensor_reset'] = {
     init : function() {
         this.setColour(Blockly.CAT_SENSOR_RGB);
         var sensorType;
-        sensorType = new Blockly.FieldDropdown([
-            [ Blockly.Msg.SENSOR_INFRARED, 'OBSTACLEDETECTOR' ],
-            [ Blockly.Msg.SENSOR_KEYPAD, 'KEYPAD' ],
-            [ Blockly.Msg.SENSOR_SOUND, 'SOUND' ],
-            [ Blockly.Msg.SENSOR_IRSEEKER_EDISON, 'RCCODE' ] ]);
+        sensorType = new Blockly.FieldDropdown([ [ Blockly.Msg.SENSOR_INFRARED, 'OBSTACLEDETECTOR' ], [ Blockly.Msg.SENSOR_KEYPAD, 'KEYPAD' ],
+                [ Blockly.Msg.SENSOR_SOUND, 'SOUND' ], [ Blockly.Msg.SENSOR_IRSEEKER_EDISON, 'RCCODE' ] ]);
         this.appendDummyInput().appendField(Blockly.Msg.SENSOR_RESET).appendField(sensorType, 'SENSOR').appendField(Blockly.Msg.SENSOR_RESET_II);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -608,7 +602,7 @@ Blockly.Blocks['robSensors_generic_all'] = {
             }
             // add ports again
             if (this.mutPorts[index] == 'NO') {
-                if (this.ports[index].ports === 'CONFIGURATION' || (sensors[index] && sensors[index].ports === 'CONFIGURATION')) {
+                if (this.ports[index].ports === 'CONFIGURATION' || (this.sensors[index] && this.sensors[index].ports === 'CONFIGURATION')) {
                     var portsList = [];
                     var sensorTitle = this.sensorType_.split(/_(.+)/)[0];
                     // special case for get sample analog/digital out

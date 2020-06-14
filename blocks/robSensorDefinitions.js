@@ -1218,11 +1218,7 @@ sensors.timer.bob3 = sensors.timer.botnroll;
 sensors.timer.calliope = sensors.timer.botnroll;
 sensors.timer.nxt = sensors.timer.botnroll;
 sensors.timer.microbit = sensors.timer.botnroll;
-sensors.timer.arduino = sensors.timer.botnroll;
-sensors.timer.mbot = sensors.timer.arduino;
 sensors.timer.wedo = sensors.timer.botnroll;
-sensors.timer.sensebox = sensors.timer.botnroll;
-sensors.timer.festobionic = sensors.timer.botnroll;
 
 sensors.timer.ev3 = {
     title : 'TIMER',
@@ -1235,6 +1231,11 @@ sensors.timer.ev3 = {
     } ],
     ports : [ [ ' 1', '1' ], [ ' 2', '2' ], [ ' 3', '3' ], [ ' 4', '4' ], [ ' 5', '5' ] ]
 };
+sensors.timer.arduino = sensors.timer.ev3;
+sensors.timer.festobionic = sensors.timer.ev3;
+sensors.timer.mbot = sensors.timer.ev3;
+sensors.timer.sensebox = sensors.timer.ev3;
+
 
 sensors.touch = {};
 sensors.touch.ev3 = {
