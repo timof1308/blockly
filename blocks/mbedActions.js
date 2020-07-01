@@ -28,16 +28,18 @@ Blockly.Blocks['mbedActions_motor_on'] = {
      */
 
     init : function() {
-        var ports = [ [ 'Port A', 'A' ], [ 'Port B', 'B' ], [ 'Port A + B', 'AB' ], [ Blockly.Msg.CB_LEFT, '0' ], [ Blockly.Msg.CB_RIGHT, '2' ],
-                [ Blockly.Msg.CB_BOTH, '3' ] ];
         this.setColour(Blockly.CAT_ACTION_RGB);
-        var motorPort = new Blockly.FieldDropdown(ports);
-        this.appendValueInput('POWER').appendField(Blockly.Msg.MOTOR).appendField(motorPort, 'MOTORPORT').appendField(Blockly.Msg.ON).appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
+        this.dropDownPorts = getConfigPorts('motor');
+        this.dependConfig = {
+            'type' : 'motor',
+            'dropDown' : this.dropDownPorts
+        };
+        this.appendValueInput('POWER').appendField(Blockly.Msg.MOTOR).appendField(this.dropDownPorts, 'MOTORPORT').appendField(Blockly.Msg.ON).appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         var thisBlock = this;
         this.setTooltip(function() {
-            var motorPort = parseInt(thisBlock.getFieldValue('MOTORPORT'));
+            var motorPort = parseInt(thisBlock.getFieldValue('MOTORPORT')); // TODO
             if (motorPort === 0 || motorPort === 2 || motorPort === 3) {
                 return Blockly.Msg['MOTOR_ON_TOOLTIP_' + thisBlock.workspace.device.toUpperCase() + "_CB"] || Blockly.Msg.MOTOR_ON_TOOLTIP;
             } else {
@@ -49,6 +51,7 @@ Blockly.Blocks['mbedActions_motor_on'] = {
 
 Blockly.Blocks['mbedActions_motors_on'] = {
     /**
+     * 
      * Turn both motor on with specific power.
      * 
      * @constructs mbedActions_motors_on
@@ -60,47 +63,37 @@ Blockly.Blocks['mbedActions_motors_on'] = {
      */
 
     init : function() {
-        var motorFirst = new Blockly.FieldDropdown([ [ 'Port A', 'A' ], [ Blockly.Msg.CB_LEFT, 'LEFT' ] ]);
-        var motorSecond = new Blockly.FieldDropdown([ [ 'Port B', 'B' ], [ Blockly.Msg.CB_RIGHT, 'RIGHT' ] ]);
         this.setColour(Blockly.CAT_ACTION_RGB);
-        this.appendValueInput('POWER_A').appendField(Blockly.Msg.MOTOR).appendField(motorFirst, 'A').appendField(Blockly.Msg.ON).appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
-        this.appendValueInput('POWER_B').setAlign(Blockly.ALIGN_RIGHT).appendField(motorSecond, 'B').appendField(Blockly.Msg.ON).appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
+        this.dropDownPortsA = getConfigPorts('motor');
+        this.dropDownPortsB = getConfigPorts('motor');
+        this.dependConfigA = {
+            'type' : 'motor',
+            'dropDown' : this.dropDownPortsA
+        };
+        this.dependConfigB = {
+            'type' : 'motor',
+            'dropDown' : this.dropDownPortsB
+        };
+        this.appendValueInput('POWER_A').appendField(Blockly.Msg.MOTOR).appendField(this.dropDownPortsA, 'A').appendField(Blockly.Msg.ON).appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
+        this.appendValueInput('POWER_B').setAlign(Blockly.ALIGN_RIGHT).appendField(this.dropDownPortsB, 'B').appendField(Blockly.Msg.ON).appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         var thisBlock = this;
         this.setTooltip(function() {
-            if (thisBlock.getFieldValue('A') === "LEFT") {
+            if (thisBlock.getFieldValue('A') === "LEFT") { // TODO
                 return Blockly.Msg['MOTORS_ON_TOOLTIP_' + thisBlock.workspace.device.toUpperCase() + "_CB"] || Blockly.Msg.MOTOR_ON_TOOLTIP;
             } else {
                 return Blockly.Msg['MOTORS_ON_TOOLTIP_' + thisBlock.workspace.device.toUpperCase()] || Blockly.Msg.MOTOR_ON_TOOLTIP;
             }
         });
-    },
-    onchange : function(event) {
-        if (!this.workspace || Blockly.Block.dragMode_ == 2) {
-            // Block has been deleted or is in move
-            return;
-        }
-        if (event.name === "A") {
-            if (event.newValue === "A") {
-                this.getField('B').setValue("B");
-            } else {
-                this.getField('B').setValue("RIGHT");
-            }
-        }
-        if (event.name === "B") {
-            if (event.newValue === "B") {
-                this.getField('A').setValue("A");
-            } else {
-                this.getField('A').setValue("LEFT");
-            }
-        }
     }
 };
 
 
 Blockly.Blocks['mbedActions_single_motor_on'] = {
     /**
+     * @deprecated replaced with mbedActions_motor_on with introduction of configuration
+     * 
      * Turn single motor on with specific power.
      * 
      * @constructs mbedActions_single_motor_on
@@ -122,6 +115,8 @@ Blockly.Blocks['mbedActions_single_motor_on'] = {
 
 Blockly.Blocks['mbedActions_single_motor_stop'] = {
     /**
+     * @deprecated replaced with mbedActions_motor_stop with introduction of configuration
+     * 
      * Stop this motor.
      * 
      * @constructs mbedActions_single_motor_stop
@@ -156,10 +151,13 @@ Blockly.Blocks['mbedActions_motor_stop'] = {
      */
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        var ports = [ [ 'Port A', 'A' ], [ 'Port B', 'B' ], [ 'Port A + B', 'AB' ], [ Blockly.Msg.CB_LEFT, '0' ], [ Blockly.Msg.CB_RIGHT, '2' ],
-                [ Blockly.Msg.CB_BOTH, '3' ] ];
-        var motorPort = new Blockly.FieldDropdown(ports);
-        this.appendDummyInput().appendField(Blockly.Msg.MOTOR_STOP).appendField(Blockly.Msg.MOTOR).appendField(motorPort, 'MOTORPORT');
+        this.dropDownPorts = getConfigPorts('motor');
+        this.dependConfig = {
+            'type' : 'motor',
+            'dropDown' : this.dropDownPorts
+        };
+        var mode = new Blockly.FieldDropdown([ [ Blockly.Msg.MOTOR_FLOAT, 'FLOAT' ], [ Blockly.Msg.MOTOR_BRAKE, 'NONFLOAT' ], [ Blockly.Msg.SLEEP, 'SLEEP' ] ]);
+        this.appendDummyInput().appendField(Blockly.Msg.MOTOR_STOP).appendField(Blockly.Msg.MOTOR).appendField(this.dropDownPorts, 'MOTORPORT').appendField(mode, 'MODE');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.MOTOR_STOP_TOOLTIP);
@@ -168,6 +166,7 @@ Blockly.Blocks['mbedActions_motor_stop'] = {
 
 Blockly.Blocks['mbedActions_motors_stop'] = {
     /**
+     * 
      * Stop both motors.
      * 
      * @constructs robActions_motor_stop
@@ -177,10 +176,10 @@ Blockly.Blocks['mbedActions_motors_stop'] = {
      */
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        this.appendDummyInput().appendField(Blockly.Msg.MOTOR_STOP).appendField(Blockly.Msg.MOTOR_PORT + " A + B");
+        this.appendDummyInput().appendField(Blockly.Msg.MOTOR_STOP);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
-        this.setTooltip(Blockly.Msg.MOTORS_STOP_TOOLTIP);
+        this.setTooltip(Blockly.Msg.MOTORDIFF_STOP_TOOLTIP);
     }
 };
 
@@ -339,7 +338,12 @@ Blockly.Blocks['mbedActions_display_setPixel'] = {
 Blockly.Blocks['mbedActions_ledBar_set'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        this.appendValueInput('X').setCheck('Number').appendField(Blockly.Msg.SET + ' ' + Blockly.Msg.LEDBAR).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.X);
+        this.dropDownPorts = getConfigPorts('ledbar');
+        this.dependConfig = {
+            'type' : 'ledbar',
+            'dropDown' : this.dropDownPorts
+        };
+        this.appendValueInput('X').setCheck('Number').appendField(Blockly.Msg.SET + ' ' + Blockly.Msg.LEDBAR).appendField(this.dropDownPorts).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.X);
         this.appendValueInput('BRIGHTNESS').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_PIXEL_BRIGHTNESS);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -378,7 +382,12 @@ Blockly.Blocks['mBotActions_display_setBrightness'] = Blockly.Blocks.mbedActions
 Blockly.Blocks['mbedActions_fourDigitDisplay_show'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        this.appendValueInput('VALUE').appendField(Blockly.Msg.DISPLAY_SHOW + " " + Blockly.Msg.FOURDIGITDISPLAY).appendField(Blockly.Msg.VARIABLES_TYPE_NUMBER).setCheck('Number');
+        this.dropDownPorts = getConfigPorts('fourdigitdisplay');
+        this.dependConfig = {
+            'type' : 'fourdigitdisplay',
+            'dropDown' : this.dropDownPorts
+        };
+        this.appendValueInput('VALUE').appendField(Blockly.Msg.DISPLAY_SHOW + " " + Blockly.Msg.FOURDIGITDISPLAY).appendField(this.dropDownPorts).appendField(Blockly.Msg.VARIABLES_TYPE_NUMBER).setCheck('Number');
         this.appendValueInput('POSITION').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.FROM_POSITION).setCheck('Number');
         this.appendValueInput('COLON').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.COLON).setCheck('Boolean');
         this.setPreviousStatement(true);
@@ -390,7 +399,12 @@ Blockly.Blocks['mbedActions_fourDigitDisplay_show'] = {
 Blockly.Blocks['mbedActions_fourDigitDisplay_clear'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        this.appendDummyInput().appendField(Blockly.Msg.CLEAR).appendField(Blockly.Msg.FOURDIGITDISPLAY);
+        this.dropDownPorts = getConfigPorts('fourdigitdisplay');
+        this.dependConfig = {
+            'type' : 'fourdigitdisplay',
+            'dropDown' : this.dropDownPorts
+        };
+        this.appendDummyInput().appendField(Blockly.Msg.CLEAR).appendField(Blockly.Msg.FOURDIGITDISPLAY).appendField(this.dropDownPorts);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.FOURDIGITDISPLAY_CLEAR_TOOLTIP);
@@ -414,7 +428,12 @@ Blockly.Blocks['mbedActions_play_tone'] = {
     init : function() {
         // this.setHelpUrl(Blockly.Msg.PLAY_TONE_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
-        this.appendValueInput('FREQUENCE').appendField(Blockly.Msg.PLAY).appendField(Blockly.Msg.PLAY_FREQUENZ).setCheck('Number');
+        this.dropDownPorts = getConfigPorts('buzzer');
+        this.dependConfig = {
+            'type' : 'buzzer',
+            'dropDown' : this.dropDownPorts
+        };
+        this.appendValueInput('FREQUENCE').appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts).appendField(Blockly.Msg.PLAY_FREQUENZ).setCheck('Number');
         this.appendValueInput('DURATION').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.PLAY_DURATION);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -441,38 +460,15 @@ Blockly.Blocks['mbedActions_play_note'] = {
     init : function() {
         // this.setHelpUrl(Blockly.Msg.PLAY_TONE_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
+        this.dropDownPorts = getConfigPorts('buzzer');
+        this.dependConfig = {
+            'type' : 'buzzer',
+            'dropDown' : this.dropDownPorts
+        };
         var frequence = new Blockly.FieldNote('261.626');
         var duration = new Blockly.FieldDropdown([ [ Blockly.Msg.PLAY_WHOLE, '2000' ], [ Blockly.Msg.PLAY_HALF, '1000' ], [ Blockly.Msg.PLAY_QUARTER, '500' ],
                 [ Blockly.Msg.PLAY_EIGHTH, '250' ], [ Blockly.Msg.PLAY_SIXTEENTH, '125' ] ]);
-        if (this.workspace.device === 'wedo') {
-            this.action = 'BUZZER';
-            var portList = [];
-            var container = Blockly.Workspace.getByContainer("bricklyDiv");
-            if (container) {
-                var blocks = Blockly.Workspace.getByContainer("bricklyDiv").getAllBlocks();
-                for (var x = 0; x < blocks.length; x++) {
-                    var func = blocks[x].getConfigDecl;
-                    if (func) {
-                        var config = func.call(blocks[x]);
-                        if (config.type === 'buzzer') {
-                            portList.push([ config.name, config.name ]);
-                        }
-                    }
-                }
-            }
-            if (portList.length === 0) {
-                portList.push([ Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT'),
-                        (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
-            }
-            var ports = new Blockly.FieldDropdown(portList);
-            this.dependConfig = {
-                'type' : 'buzzer',
-                'dropDown' : ports
-            };
-            this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(ports, 'ACTORPORT').appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
-        } else {
-            this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
-        }
+        this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts).appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setBlocking(true);
@@ -540,10 +536,15 @@ Blockly.Blocks['mbedActions_leds_on'] = {
     init : function() {
 
         this.setColour(Blockly.CAT_ACTION_RGB);
+        this.dropDownPorts = getConfigPorts('rgbled');
+        this.dependConfig = {
+            'type' : 'rgbled',
+            'dropDown' : this.dropDownPorts
+        };
         var ports = new Blockly.FieldDropdown([ [ Blockly.Msg.PORT_INTERNAL, '0' ], [ Blockly.Msg.CB_LEFT + " " + Blockly.Msg.SLOT_FRONT, '1' ],
                 [ Blockly.Msg.CB_RIGHT + " " + Blockly.Msg.SLOT_FRONT, '4' ], [ Blockly.Msg.CB_LEFT + " " + Blockly.Msg.SLOT_REAR, '2' ],
                 [ Blockly.Msg.CB_RIGHT + " " + Blockly.Msg.SLOT_REAR, '3' ], [ Blockly.Msg.CB_ALL, '5' ] ]);
-        this.appendValueInput('COLOR').appendField(Blockly.Msg.LED_ON).appendField(ports, 'ACTORPORT').appendField(Blockly.Msg.BRICKLIGHT_COLOR).setCheck('Colour');
+        this.appendValueInput('COLOR').appendField(Blockly.Msg.LED_ON).appendField(this.dropDownPorts, 'ACTORPORT').appendField(Blockly.Msg.BRICKLIGHT_COLOR).setCheck('Colour');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.LED_ON_TOOLTIP);
@@ -569,104 +570,61 @@ Blockly.Blocks['mbedActions_leds_off'] = {
      */
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        var ports = new Blockly.FieldDropdown([ [ Blockly.Msg.PORT_INTERNAL, '0' ], [ Blockly.Msg.CB_LEFT + " " + Blockly.Msg.SLOT_FRONT, '1' ],
-                [ Blockly.Msg.CB_RIGHT + " " + Blockly.Msg.SLOT_FRONT, '4' ], [ Blockly.Msg.CB_LEFT + " " + Blockly.Msg.SLOT_REAR, '2' ],
-                [ Blockly.Msg.CB_RIGHT + " " + Blockly.Msg.SLOT_REAR, '3' ], [ Blockly.Msg.CB_ALL, '5' ] ]);
-        this.appendDummyInput().appendField(Blockly.Msg.LED_OFF).appendField(ports, 'ACTORPORT');
+        this.dropDownPorts = getConfigPorts('rgbled');
+        this.dependConfig = {
+            'type' : 'rgbled',
+            'dropDown' : this.dropDownPorts
+        };
+        this.appendDummyInput().appendField(Blockly.Msg.LED_OFF).appendField(this.dropDownPorts, 'ACTORPORT');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.LED_OFF_TOOLTIP);
     }
 };
 
+// adapted from previous mbedActions_write_to_pin and robActions_write_pin from robActions.js
 Blockly.Blocks['mbedActions_write_to_pin'] = {
-    /**
-     * Sends to choosen pin value.
-     * 
-     * @constructs mbedActions_write_to_pin
-     * @this.Blockly.Block
-     * @param {String/dropdown}
-     *            VALUETYPE - analog, digital
-     * @param {String/dropdown}
-     *            PIN - 0-3
-     * @param {Number}
-     *            VALUE
-     * @returns immediately
-     * @memberof Block
-     */
-
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        var valueType = new Blockly.FieldDropdown([ [ Blockly.Msg.ANALOG, 'ANALOG' ], [ Blockly.Msg.DIGITAL, 'DIGITAL' ] ], function(option) {
+        this.dropDownPorts = getConfigPorts('digitalin');
+        var that = this;
+        var valueType = new Blockly.FieldDropdown([ [ Blockly.Msg.DIGITAL, 'DIGITAL' ], [ Blockly.Msg.ANALOG, 'ANALOG' ] ], function(option) {
             if (option && this.sourceBlock_.getFieldValue('VALUETYPE') !== option) {
-                this.sourceBlock_.updatePins_(option);
+                that.updatePins_(option);
             }
         });
-        this.appendValueInput('VALUE').appendField(Blockly.Msg.PIN_WRITE).appendField(valueType, 'VALUETYPE').appendField(Blockly.Msg.VALUE_TO + ' '
-                + Blockly.Msg.SENSOR_PIN).appendField(new Blockly.FieldDropdown([ [ "dummy", '0' ] ]), 'PIN').setCheck('Number');
-        this.protocol_ = 'ANALOG';
+        this.protocol_ = 'DIGITAL';        
+        this.dependConfig = {
+            'type' : this.protocol_,
+            'dropDown' : this.dropDownPorts
+        };
+        this.appendValueInput('VALUE').appendField(Blockly.Msg.PIN_WRITE).appendField(valueType, 'VALUETYPE').appendField(Blockly.Msg.VALUE_TO + ' ' + Blockly.Msg.SENSOR_PIN).appendField(this.dropDownPorts, 'PIN').setCheck('Number');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.WRITE_TO_PIN_TOOLTIP);
         this.updatePins_(this.protocol_);
     },
-    /**
-     * Create XML to represent whether the sensor type has changed.
-     * 
-     * @return {Element} XML storage element.
-     * @this Blockly.Block
-     */
     mutationToDom : function() {
         var container = document.createElement('mutation');
         container.setAttribute('protocol', this.protocol_);
         return container;
     },
-    /**
-     * Parse XML to restore the sensor type.
-     * 
-     * @param {!Element}
-     *            xmlElement XML storage element.
-     * @this Blockly.Block
-     */
     domToMutation : function(xmlElement) {
         var input = xmlElement.getAttribute('protocol');
         this.protocol_ = input;
         this.updatePins_(this.protocol_);
     },
-    updatePins_ : function(protocol) {
-        this.protocol_ = protocol;
-        if (this.workspace.device === 'microbit') {
-            if (protocol === 'ANALOG') {
-                var pins = [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '10', '10' ] ];
-                var pinField = this.getField("PIN");
-                pinField.menuGenerator_ = pins;
-            } else if (protocol === 'DIGITAL') {
-                var pins = [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '5', '5' ], [ '6', '6' ], [ '7', '7' ], [ '8', '8' ],
-                        [ '9', '9' ], [ '10', '10' ], [ '11', '11' ], [ '12', '12' ], [ '13', '13' ], [ '14', '14' ], [ '15', '15' ], [ '16', '16' ],
-                        [ '19', '19' ], [ '20', '20' ] ];
-                var pinField = this.getField("PIN");
-                pinField.menuGenerator_ = pins;
-            }
-            pinField.setValue("0");
-            pinField.setText('0');
-        } else {
-            if (protocol === 'ANALOG') {
-                var pins = [ [ 'P1', '1' ], [ 'P2', '2' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ], [ 'C06', 'C06' ], [ 'C16', 'C16' ],
-                        [ 'C17', 'C17' ] ];
-                var pinField = this.getField("PIN");
-                pinField.menuGenerator_ = pins;
-                pinField.setValue("1");
-                pinField.setText('P1');
-            } else if (protocol === 'DIGITAL') {
-                var pins = [ [ 'P0', '0' ], [ 'P1', '1' ], [ 'P2', '2' ], [ 'P3', '3' ], [ 'A0', '4' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ],
-                        [ 'C06', 'C06' ], [ 'C07', 'C07' ], [ 'C08', 'C08' ], [ 'C09', 'C09' ], [ 'C10', 'C10' ], [ 'C11', 'C11' ], [ 'C12', 'C12' ],
-                        [ 'C16', 'C16' ], [ 'C17', 'C17' ], [ 'C18', 'C18' ], [ 'C19', 'C19' ] ];
-                var pinField = this.getField("PIN");
-                pinField.menuGenerator_ = pins;
-                pinField.setValue("0");
-                pinField.setText('P0');
-            }
+    updatePins_ : function(option) {
+    	this.protocol_ = option;
+        var configBlockName = option.toLowerCase() + 'in';
+        var dropDownPorts = getConfigPorts(configBlockName);
+        this.dependConfig.type = configBlockName;
+        this.dropDownPorts.menuGenerator_ = dropDownPorts.menuGenerator_;
+        this.dropDownPorts.arrow_ && this.dropDownPorts.arrow_.replaceChild(document.createTextNode(' '), this.dropDownPorts.arrow_.childNodes[0]);
+        if (this.dropDownPorts.arrow_ && this.dropDownPorts.menuGenerator_.length > 1) {
+            this.dropDownPorts.arrow_.replaceChild(document.createTextNode(' ' + Blockly.FieldDropdown.ARROW_CHAR), this.dropDownPorts.arrow_.childNodes[0]);
         }
+        this.dropDownPorts.setValue(this.dropDownPorts.menuGenerator_[0][0]);
     }
 };
 
@@ -688,11 +646,13 @@ Blockly.Blocks['mbedActions_pin_set_pull'] = {
         this.setColour(Blockly.CAT_ACTION_RGB);
         var pull = new Blockly.FieldDropdown(
                 [ [ Blockly.Msg.PIN_PULL_UP, 'UP' ], [ Blockly.Msg.PIN_PULL_DOWN, 'DOWN' ], [ Blockly.Msg.PIN_PULL_NONE, 'NONE' ] ]);
-        var pins = new Blockly.FieldDropdown([ [ 'P0', '0' ], [ 'P1', '1' ], [ 'P2', '2' ], [ 'P3', '3' ], [ 'A0', '4' ], [ 'A1', '5' ], [ 'C04', 'C04' ],
-                [ 'C05', 'C05' ], [ 'C06', 'C06' ], [ 'C07', 'C07' ], [ 'C08', 'C08' ], [ 'C09', 'C09' ], [ 'C10', 'C10' ], [ 'C11', 'C11' ], [ 'C12', 'C12' ],
-                [ 'C16', 'C16' ], [ 'C17', 'C17' ], [ 'C18', 'C18' ], [ 'C19', 'C19' ] ]);
+        this.dropDownPorts = getConfigPorts('digitalin');
+        this.dependConfig = {
+            'type' : 'digitalin',
+            'dropDown' : this.dropDownPorts
+        };
         this.appendDummyInput().appendField(Blockly.Msg.SET + ' ' + Blockly.Msg.PIN_PULL).appendField(pull, 'PIN_PULL').appendField(Blockly.Msg.ON + ' '
-                + Blockly.Msg.SENSOR_PIN).appendField(pins, 'PIN_PORT'); // shouldnt be called PIN, would need a
+                + Blockly.Msg.SENSOR_PIN).appendField(this.dropDownPorts, 'PIN_PORT'); // shouldnt be called PIN, would need a
         // special clause in xml.js like
         // mbedActions_write_to_pin
         this.setPreviousStatement(true);
@@ -726,10 +686,13 @@ Blockly.Blocks['mbedActions_switch_led_matrix'] = {
 Blockly.Blocks['mbedActions_servo_set'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        var pins = new Blockly.FieldDropdown([ [ 'P1', '1' ], [ 'P2', '2' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ], [ 'C06', 'C06' ], [ 'C16', 'C16' ],
-                [ 'C17', 'C17' ] ]);
-        this.appendValueInput('VALUE').appendField(Blockly.Msg.SET + " " + Blockly.Msg.ACTION_SERVO).appendField(pins, 'PIN_PORT').appendField(Blockly.Msg.TO + ' °').setCheck('Number');
-        this.protocol_ = 'ANALOG';
+        this.dropDownPorts = getConfigPorts('servo');
+        this.dependConfig = {
+            'type' : 'servo',
+            'dropDown' : this.dropDownPorts
+        };
+        this.appendValueInput('VALUE').appendField(Blockly.Msg.SET + " " + Blockly.Msg.ACTION_SERVO).appendField(this.dropDownPorts, 'PIN_PORT').appendField(Blockly.Msg.TO + ' °').setCheck('Number');
+        //this.protocol_ = 'ANALOG';
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.MOTOR_ON_FOR_TOOLTIP_SERVO);

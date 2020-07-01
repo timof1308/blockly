@@ -49,7 +49,8 @@ sensors.accelerometer.calliope = {
         op : 'NUM_REV',
         value : 0
     } ],
-    ports : [ [ 'x', 'X' ], [ 'y', 'Y' ], [ 'z', 'Z' ], [ 'STRENGTH', 'STRENGTH' ] ]
+    slots : [ [ 'x', 'X' ], [ 'y', 'Y' ], [ 'z', 'Z' ], [ 'STRENGTH', 'STRENGTH' ] ],
+    ports : 'CONFIGURATION'
 };
 sensors.accelerometer.microbit = sensors.accelerometer.calliope;
 
@@ -195,8 +196,16 @@ sensors.compass.botnroll = {
         unit : 'DEGREE'
     } ]
 };
-sensors.compass.calliope = sensors.compass.botnroll;
-sensors.compass.microbit = sensors.compass.botnroll;
+sensors.compass.calliope = {
+    title : 'COMPASS',
+    modes : [ {
+        name : 'ANGLE',
+        type : 'Number',
+        unit : 'DEGREE'
+    } ],
+    ports: 'CONFIGURATION'
+};
+sensors.compass.microbit = sensors.compass.calliope;
 sensors.compass.ev3 = {
     title : 'COMPASS',
     modes : [ {
@@ -460,7 +469,8 @@ sensors.gyro.calliope = {
         op : 'NUM_REV',
         value : 90
     } ],
-    ports : [ [ 'x', 'X' ], [ 'y', 'Y' ] ]
+    slots : [ [ 'x', 'X' ], [ 'y', 'Y' ] ],
+    ports : 'CONFIGURATION'
 };
 sensors.gyro.nao = sensors.gyro.calliope;
 
@@ -611,7 +621,7 @@ sensors.humidity.calliope = {
         type : 'Number',
         unit : 'DEGREE'
     } ],
-    ports : [ [ 'A1', '5' ] ]
+    ports : 'CONFIGURATION'
 };
 
 sensors.infrared = {};
@@ -658,7 +668,7 @@ sensors.infrared.calliope = {
         name : 'LINE',
         type : 'Boolean'
     } ],
-    ports : [ [ 'CB_LEFT', '2' ], [ 'CB_RIGHT', '1' ] ],
+    ports : 'CONFIGURATION',
 };
 
 sensors.infrared.mbot = {
@@ -765,9 +775,9 @@ sensors.key.calliope = {
         type : 'Boolean',
         question : true
     } ],
-    ports : [ [ 'A', 'A' ], [ 'B', 'B' ] ]
+    ports : 'CONFIGURATION'
 };
-
+sensors.key.microbit = sensors.key.calliope;
 sensors.key.ev3 = {
     title : 'KEY',
     modes : [ {
@@ -787,7 +797,6 @@ sensors.key.nxt = {
     } ],
     ports : [ [ 'SENSOR_KEY_ENTER', 'ENTER' ], [ 'SENSOR_KEY_LEFT', 'LEFT' ], [ 'SENSOR_KEY_RIGHT', 'RIGHT' ] ]
 };
-sensors.key.microbit = sensors.key.calliope;
 sensors.key.sensebox = sensors.key.arduino;
 
 sensors.key.wedo = {
@@ -811,16 +820,6 @@ sensors.key.edison = {
 };
 
 sensors.light = {};
-sensors.light.botnroll = {
-    title : 'LIGHT',
-    modes : [ {
-        name : 'LIGHT',
-        type : 'Number',
-        unit : 'PERCENT'
-    } ],
-    ports : [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '5', '5' ], [ '6', '6' ], [ '7', '7' ] ]
-};
-
 sensors.light.arduino = {
     title : 'LIGHT',
     modes : [ {
@@ -830,20 +829,26 @@ sensors.light.arduino = {
     } ],
     ports : 'CONFIGURATION'
 };
-
 sensors.light.sensebox = sensors.light.arduino;
-
+sensors.light.botnroll = {
+    title : 'LIGHT',
+    modes : [ {
+        name : 'LIGHT',
+        type : 'Number',
+        unit : 'PERCENT'
+    } ],
+    ports : [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '5', '5' ], [ '6', '6' ], [ '7', '7' ] ]
+};
 sensors.light.calliope = {
     title : 'LIGHT',
     modes : [ {
         name : 'VALUE',
         type : 'Number',
         unit : 'PERCENT'
-    } ]
+    } ],
+    ports : 'CONFIGURATION'
 };
-
 sensors.light.microbit = sensors.light.calliope;
-
 sensors.light.nxt = {
     title : 'LIGHT',
     modes : [ {
@@ -860,7 +865,6 @@ sensors.light.nxt = {
     ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     standardPort : '3'
 };
-
 sensors.light.mbot = {
     title : 'LIGHT',
     modes : [ {
@@ -871,7 +875,6 @@ sensors.light.mbot = {
     } ],
     ports : [ [ 'PORT_INTERNAL', '6' ], [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ]
 };
-
 sensors.light.edison = {
 	title : 'LIGHT',
 	modes : [ {
@@ -952,8 +955,26 @@ sensors.out.arduino = {
     } ],
     ports : 'CONFIGURATION'
 };
-
 sensors.out.sensebox = sensors.out.arduino;
+sensors.pin = {};
+sensors.pin.calliope = {
+    title : 'PIN',
+    modes : [ {
+                name : 'ANALOG',
+                type : 'Number'
+            }, {
+                name : 'DIGITAL',
+                type : 'Number'
+            }, {
+                name : 'PULSEHIGH',
+                type : 'Number'
+            }, {
+                name : 'PULSELOW',
+                type : 'Number'
+            } ],
+    ports : 'CONFIGURATION'
+};
+sensors.pin.microbit = sensors.pin.calliope;
 
 sensors.potentiometer = {};
 sensors.potentiometer.arduino = {
@@ -977,64 +998,6 @@ sensors.potentiometer.mbot = {
     } ],
     ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     standardPort : '4'
-};
-
-sensors.pin = {};
-sensors.pin.calliope = {
-    title : 'PIN',
-    modes : [
-            {
-                name : 'ANALOG',
-                type : 'Number',
-                ports : [ [ 'P1', '1' ], [ 'P2', '2' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ], [ 'C06', 'C06' ], [ 'C16', 'C16' ], [ 'C17', 'C17' ] ]
-            },
-            {
-                name : 'DIGITAL',
-                type : 'Number',
-                ports : [ [ 'P0', '0' ], [ 'P1', '1' ], [ 'P2', '2' ], [ 'P3', '3' ], [ 'A0', '4' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ],
-                        [ 'C06', 'C06' ], [ 'C07', 'C07' ], [ 'C08', 'C08' ], [ 'C09', 'C09' ], [ 'C10', 'C10' ], [ 'C11', 'C11' ], [ 'C12', 'C12' ],
-                        [ 'C16', 'C16' ], [ 'C17', 'C17' ], [ 'C18', 'C18' ], [ 'C19', 'C19' ] ]
-            },
-            {
-                name : 'PULSEHIGH',
-                type : 'Number',
-                ports : [ [ 'P0', '0' ], [ 'P1', '1' ], [ 'P2', '2' ], [ 'P3', '3' ], [ 'A0', '4' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ],
-                        [ 'C06', 'C06' ], [ 'C07', 'C07' ], [ 'C08', 'C08' ], [ 'C09', 'C09' ], [ 'C10', 'C10' ], [ 'C11', 'C11' ], [ 'C12', 'C12' ],
-                        [ 'C16', 'C16' ], [ 'C17', 'C17' ], [ 'C18', 'C18' ], [ 'C19', 'C19' ] ]
-            },
-            {
-                name : 'PULSELOW',
-                type : 'Number',
-                ports : [ [ 'P0', '0' ], [ 'P1', '1' ], [ 'P2', '2' ], [ 'P3', '3' ], [ 'A0', '4' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ],
-                        [ 'C06', 'C06' ], [ 'C07', 'C07' ], [ 'C08', 'C08' ], [ 'C09', 'C09' ], [ 'C10', 'C10' ], [ 'C11', 'C11' ], [ 'C12', 'C12' ],
-                        [ 'C16', 'C16' ], [ 'C17', 'C17' ], [ 'C18', 'C18' ], [ 'C19', 'C19' ] ]
-            } ]
-};
-sensors.pin.microbit = {
-    title : 'PIN',
-    modes : [ {
-        name : 'ANALOG',
-        type : 'Number',
-        ports : [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '10', '10' ] ]
-    }, {
-        name : 'DIGITAL',
-        type : 'Number',
-        ports : [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '5', '5' ], [ '6', '6' ], [ '7', '7' ], [ '8', '8' ],
-                [ '9', '9' ], [ '10', '10' ], [ '11', '11' ], [ '12', '12' ], [ '13', '13' ], [ '14', '14' ], [ '15', '15' ], [ '16', '16' ],
-                [ '19', '19' ], [ '20', '20' ] ]
-    }, {
-        name : 'PULSEHIGH',
-        type : 'Number',
-        ports : [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '5', '5' ], [ '6', '6' ], [ '7', '7' ], [ '8', '8' ],
-                [ '9', '9' ], [ '10', '10' ], [ '11', '11' ], [ '12', '12' ], [ '13', '13' ], [ '14', '14' ], [ '15', '15' ], [ '16', '16' ],
-                [ '19', '19' ], [ '20', '20' ] ]
-    }, {
-        name : 'PULSELOW',
-        type : 'Number',
-        ports : [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '5', '5' ], [ '6', '6' ], [ '7', '7' ], [ '8', '8' ],
-                [ '9', '9' ], [ '10', '10' ], [ '11', '11' ], [ '12', '12' ], [ '13', '13' ], [ '14', '14' ], [ '15', '15' ], [ '16', '16' ],
-                [ '19', '19' ], [ '20', '20' ] ]
-    } ]
 };
 
 sensors.pintouch = {};
@@ -1112,7 +1075,8 @@ sensors.sound.calliope = {
         unit : 'PERCENT',
         op : 'NUM_REV',
         value : 50
-    } ]
+    } ],
+    ports : 'CONFIGURATION'
 };
 sensors.sound.ev3 = {
     title : 'SOUND',
@@ -1150,6 +1114,16 @@ sensors.sound.edison = {
 };
 
 sensors.temperature = {};
+sensors.temperature.arduino = {
+    title : 'TEMPERATURE',
+    modes : [ {
+        name : 'VALUE',
+        type : 'Number',
+        unit : 'DEGREE',
+        value : 20
+    } ],
+    ports : 'CONFIGURATION'
+};
 sensors.temperature.bob3 = {
     title : 'TEMPERATURE',
     modes : [ {
@@ -1159,7 +1133,17 @@ sensors.temperature.bob3 = {
         value : 20
     } ]
 };
-
+sensors.temperature.calliope = {
+    title : 'TEMPERATURE',
+    modes : [ {
+        name : 'VALUE',
+        type : 'Number',
+        unit : 'DEGREE',
+        value : 20
+    } ],
+    ports: 'CONFIGURATION'
+};
+sensors.temperature.microbit = sensors.temperature.calliope;
 sensors.temperature.mbot = {
     title : 'TEMPERATURE',
     modes : [ {
@@ -1171,18 +1155,6 @@ sensors.temperature.mbot = {
     ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     standardPort : '3'
 };
-
-sensors.temperature.arduino = {
-    title : 'TEMPERATURE',
-    modes : [ {
-        name : 'VALUE',
-        type : 'Number',
-        unit : 'DEGREE',
-        value : 20
-    } ],
-    ports : 'CONFIGURATION'
-};
-
 sensors.temperature.sensebox = {
     title : 'TEMPERATURE',
     modes : [ {
@@ -1198,9 +1170,6 @@ sensors.temperature.sensebox = {
     } ],
     ports : 'CONFIGURATION'
 };
-
-sensors.temperature.calliope = sensors.temperature.bob3;
-sensors.temperature.microbit = sensors.temperature.bob3;
 
 sensors.timer = {};
 sensors.timer.botnroll = {
@@ -1281,7 +1250,6 @@ sensors.touch.vorwerk = {
 };
 
 sensors.ultrasonic = {};
-
 sensors.ultrasonic.arduino = {
     title : 'ULTRASONIC',
     modes : [ {
@@ -1291,7 +1259,7 @@ sensors.ultrasonic.arduino = {
     } ],
     ports : 'CONFIGURATION'
 };
-
+sensors.ultrasonic.sensebox = sensors.ultrasonic.arduino;
 sensors.ultrasonic.botnroll = {
     title : 'ULTRASONIC',
     ports : [ [ 'LEFT', '0' ], [ 'CENTER', '1' ], [ 'RIGHT', '2' ], [ 'SENSOR_SONAR', '3' ] ],
@@ -1301,7 +1269,6 @@ sensors.ultrasonic.botnroll = {
         unit : 'CM'
     } ]
 };
-
 sensors.ultrasonic.calliope = {
     title : 'ULTRASONIC',
     modes : [ {
@@ -1309,11 +1276,8 @@ sensors.ultrasonic.calliope = {
         type : 'Number',
         unit : 'CM'
     } ],
-    ports : [ [ 'A1', '1' ], [ 'Calli:bot', '2' ] ]
+    ports : 'CONFIGURATION'
 };
-
-sensors.ultrasonic.sensebox = sensors.ultrasonic.arduino;
-
 sensors.ultrasonic.ev3 = {
     title : 'ULTRASONIC',
     ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
@@ -1327,17 +1291,6 @@ sensors.ultrasonic.ev3 = {
     } ],
     standardPort : '4'
 };
-
-sensors.ultrasonic.nxt = {
-    title : 'ULTRASONIC',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    modes : [ {
-        name : 'DISTANCE',
-        type : 'Number',
-        unit : 'CM'
-    } ],
-    standardPort : '4'
-};
 sensors.ultrasonic.mbot = {
     title : 'ULTRASONIC',
     ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
@@ -1348,7 +1301,6 @@ sensors.ultrasonic.mbot = {
     } ],
     standardPort : '3'
 };
-
 sensors.ultrasonic.nao = {
     title : 'ULTRASONIC',
     modes : [ {
@@ -1357,7 +1309,16 @@ sensors.ultrasonic.nao = {
         unit : 'CM'
     } ]
 };
-
+sensors.ultrasonic.nxt = {
+    title : 'ULTRASONIC',
+    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
+    modes : [ {
+        name : 'DISTANCE',
+        type : 'Number',
+        unit : 'CM'
+    } ],
+    standardPort : '4'
+};
 sensors.ultrasonic.vorwerk = {
     title : 'ULTRASONIC',
     modes : [ {

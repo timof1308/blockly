@@ -905,15 +905,11 @@ Blockly.Blocks['robActions_brickLight_on'] = {
         }
         if (this.workspace.device === 'arduino' || this.workspace.device === 'calliope' || this.workspace.device === 'sensebox' || this.workspace.device === 'festobionic') {
             var dropDownPorts;
-            if (this.workspace.device === 'calliope') {
-                dropDownPorts = new Blockly.FieldDropdown([ [ Blockly.Msg.CB_LEFT, '1' ], [ Blockly.Msg.CB_RIGHT, '2' ], [ Blockly.Msg.CB_BOTH, '3' ] ]);
-            } else {
-                dropDownPorts = getConfigPorts('led');
-                this.dependConfig = {
-                    'type' : 'led',
-                    'dropDown' : dropDownPorts
-                };
-            }
+            dropDownPorts = getConfigPorts('led');
+            this.dependConfig = {
+                'type' : 'led',
+                'dropDown' : dropDownPorts
+            };
             this.appendDummyInput().appendField(Blockly.Msg.LED_ON).setAlign(Blockly.ALIGN_RIGHT).appendField(dropDownPorts, 'ACTORPORT').appendField(dropdownLightState, 'SWITCH_BLINK');
         } else if (this.workspace.device === 'botnroll') {
             this.appendDummyInput().appendField(Blockly.Msg.BRICKLIGHT).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.MOD).appendField(dropdownLightState, 'SWITCH_BLINK');

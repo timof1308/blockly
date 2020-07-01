@@ -115,7 +115,12 @@ Blockly.Blocks['robConf_generic'] = {
 
         if (confBlock.pins) {
             for (var i = 0; i < portList.length; i++) {
-                pins = new Blockly.FieldDropdown(confBlock.pins.call(this, this.workspace.subDevice));
+                // If no pins for the device are available check the subdevices pins
+                var dropDownContent = confBlock.pins.call(this, this.workspace.device);
+                if (dropDownContent === undefined) {
+                    dropDownContent = confBlock.pins.call(this, this.workspace.subDevice);
+                }
+                pins = new Blockly.FieldDropdown(dropDownContent);
                 if (confBlock.standardPins) {
                     pins.setValue(confBlock.standardPins[i]);
                 }

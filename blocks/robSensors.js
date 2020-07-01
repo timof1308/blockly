@@ -209,8 +209,8 @@ Blockly.Blocks['robSensors_generic'] = {
             ports = new Blockly.FieldDropdown(portsList);
         } else if (sensor.ports === 'CONFIGURATION') {
             var sensorTitle = sensor.title;
-            if (sensorTitle === 'OUT') {
-                sensorTitle = sensor.modes[0].name + sensorTitle;
+            if (sensorTitle === 'OUT' || sensorTitle === 'PIN') {
+                sensorTitle = sensor.modes[0].name + 'OUT';
             }
             ports = getConfigPorts(sensorTitle.toLowerCase());
             this.dependConfig = {
@@ -310,8 +310,9 @@ Blockly.Blocks['robSensors_generic'] = {
                             }
                             input.appendField(new Blockly.FieldDropdown(portsList), 'SENSORPORT').appendField(new Blockly.FieldHidden(), 'SLOT');
                         }
-                        // this is a special case for arduino 
-                        if (sensor.title === 'OUT') {
+                        // this is a special case for arduino and calliope
+                        if (sensor.title === 'OUT' || sensorTitle === 'PIN') {
+                            if (option === 'PULSEHIGH' || option === 'PULSELOW') option = 'DIGITAL'; // workaround for calliope pulses
                             var configBlockName = option.toLowerCase() + 'out';
                             var dropDownPorts = getConfigPorts(configBlockName);
                             var fieldSensorPort = thisBlock.getField('SENSORPORT');
@@ -409,8 +410,10 @@ Blockly.Blocks['robSensors_generic_all'] = {
                         var container = Blockly.Workspace.getByContainer("bricklyDiv");
                         if (container) {
                             var sensorTitle = sensors[i].title;
-                            if (sensorTitle === 'OUT') {
-                                sensorTitle = sensors[i].modes[0].name + sensorTitle;
+                            if (sensorTitle === 'OUT' || sensorTitle === 'PIN') {
+                                var modeName = sensors[i].modes[j].name
+                                if (modeName === 'PULSEHIGH' || modeName === 'PULSELOW') modeName = 'DIGITAL'; // workaround for calliope pulses
+                                sensorTitle = modeName + 'OUT';
                             }
                             var blocks = Blockly.Workspace.getByContainer("bricklyDiv").getAllBlocks();
                             for (var x = 0; x < blocks.length; x++) {
@@ -607,7 +610,7 @@ Blockly.Blocks['robSensors_generic_all'] = {
                     var portsList = [];
                     var sensorTitle = this.sensorType_.split(/_(.+)/)[0];
                     // special case for get sample analog/digital out
-                    if (sensorTitle === 'OUT') {
+                    if (sensorTitle === 'OUT' || sensorTitle === 'PIN') {
                         sensorTitle = this.sensorType_.split(/_(.+)/)[1] + sensorTitle;
                     }
                     var container = Blockly.Workspace.getByContainer("bricklyDiv");

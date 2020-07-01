@@ -69,6 +69,17 @@ Blockly.Blocks.robConfigDefinitions['pinsDigital'].sensebox = function() {
 Blockly.Blocks.robConfigDefinitions['pinsDigital'].festobionic = function() {
     return createPins(1, 4);
 };
+Blockly.Blocks.robConfigDefinitions['pinsDigital'].calliope = function() {
+    var array = [ [ 'P0', '0' ], [ 'P1', '1' ], [ 'P2', '2' ], [ 'P3', '3' ], [ 'A0', '4' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ],
+    [ 'C06', 'C06' ], [ 'C07', 'C07' ], [ 'C08', 'C08' ], [ 'C09', 'C09' ], [ 'C10', 'C10' ], [ 'C11', 'C11' ], [ 'C12', 'C12' ],
+    [ 'C16', 'C16' ], [ 'C17', 'C17' ], [ 'C18', 'C18' ], [ 'C19', 'C19' ] ]
+    return array;
+};
+Blockly.Blocks.robConfigDefinitions['pinsDigital'].microbit = function() {
+    var array = createPins(0, 16);
+    array = array.concat(createPins(19, 20));
+    return array;
+};
 
 Blockly.Blocks.robConfigDefinitions['pinsAnalog'] = {};
 Blockly.Blocks.robConfigDefinitions['pinsAnalog'].uno = function() {
@@ -87,6 +98,16 @@ Blockly.Blocks.robConfigDefinitions['pinsAnalog'].sensebox = function() {
     var array = createPins(1, 2, "A");
     array = array.concat(createPins(3, 4, "B"));
     array = array.concat(createPins(5, 6, "C"));
+    return array;
+};
+Blockly.Blocks.robConfigDefinitions['pinsAnalog'].calliope = function() {
+    var array = [ [ 'P1', '1' ], [ 'P2', '2' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ], [ 'C06', 'C06' ], [ 'C16', 'C16' ],
+    [ 'C17', 'C17' ] ];
+    return array;
+};
+Blockly.Blocks.robConfigDefinitions['pinsAnalog'].microbit = function() {
+    var array = createPins(0, 4);
+    array = array.concat(createPins(10, 10));
     return array;
 };
 
@@ -120,6 +141,16 @@ Blockly.Blocks.robConfigDefinitions['pinsAnalogWrite'].sensebox = function() {
     array = array.concat(createPins(5, 6, "C"));
     return array;
 };
+Blockly.Blocks.robConfigDefinitions['pinsAnalogWrite'].calliope = function() {
+    var array = [ [ 'P1', '1' ], [ 'P2', '2' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ], [ 'C06', 'C06' ], [ 'C16', 'C16' ],
+    [ 'C17', 'C17' ] ];
+    return array;
+};
+Blockly.Blocks.robConfigDefinitions['pinsAnalogWrite'].microbit = function() {
+    var array = createPins(0, 4);
+    array = array.concat(createPins(10, 10));
+    return array;
+};
 
 Blockly.Blocks.robConfigDefinitions['pins_wedo'] = function() {
     return createPins(1, 2);
@@ -136,7 +167,14 @@ confBlocks.ultrasonic.arduino = {
     standardPins : [ '7', '6' ],
     fixedPorts : [ [ 'GND', 'GND' ], [ 'VCC', '5V' ] ]
 };
-
+confBlocks.ultrasonic.calliope = {
+    title : 'ULTRASONIC',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [['A1', '1'], ['Calli:bot', '2']];
+    },
+    sensor : true
+};
 confBlocks.ultrasonic.sensebox = {
     title : 'ULTRASONIC',
     ports : [ [ 'trig', 'TRIG' ], [ 'echo', 'ECHO' ] ],
@@ -159,7 +197,12 @@ confBlocks.light.arduino = {
     standardPins : [ 'A0' ],
     fixedPorts : [ [ 'VCC', '5V' ] ]
 };
-
+confBlocks.light.calliope = {
+    title: 'LIGHT',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    sensor : true
+};
+confBlocks.light.microbit = confBlocks.light.calliope;
 confBlocks.light.sensebox = {
     title : 'LIGHT',
     ports : [ [ 'output', 'OUTPUT' ] ],
@@ -182,6 +225,12 @@ confBlocks.lightveml.sensebox = {
 };
 
 confBlocks.accelerometer = {};
+confBlocks.accelerometer.calliope = {
+    title : 'ACCELEROMETER',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    sensor : true
+};
+confBlocks.accelerometer.microbit = confBlocks.accelerometer.calliope;
 confBlocks.accelerometer.sensebox = {
     title : 'ACCELEROMETER',
     sensor : true
@@ -189,6 +238,12 @@ confBlocks.accelerometer.sensebox = {
 confBlocks.accelerometer.arduino = confBlocks.accelerometer.sensebox;
 
 confBlocks.compass = {};
+confBlocks.compass.calliope = {
+    title: 'COMPASS',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    sensor : true
+};
+confBlocks.compass.microbit = confBlocks.compass.calliope;
 confBlocks.compass.sensebox = {
     title : 'COMPASS',
     sensor : true
@@ -237,7 +292,14 @@ confBlocks.infrared.wedo = {
     pins : Blockly.Blocks.robConfigDefinitions['pins_wedo'],
     sensor : true
 };
-
+confBlocks.infrared.calliope = {
+    title : 'INFRARED',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [ [ Blockly.Msg.CB_LEFT, '2' ], [ Blockly.Msg.CB_RIGHT, '1' ] ];
+    },
+    sensor : true
+};
 confBlocks.infrared.arduino = {
     title : 'INFRARED',
     ports : [ [ 'output', 'OUTPUT' ] ],
@@ -260,7 +322,12 @@ confBlocks.temperature.arduino = {
     standardPins : [ 'A0' ],
     fixedPorts : [ [ 'GND', 'GND' ], [ 'VCC', '5V' ] ]
 };
-
+confBlocks.temperature.calliope = {
+    title: 'TEMPERATURE',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    sensor : true
+};
+confBlocks.temperature.microbit = confBlocks.temperature.calliope;
 confBlocks.temperature.sensebox = {
     title : 'TEMPERATURE',
     ports : [ [ 'I2C', 'I2C' ] ],
@@ -281,7 +348,14 @@ confBlocks.humidity.arduino = {
     standardPins : [ '2' ],
     fixedPorts : [ [ 'GND', 'GND' ], [ 'VCC', '5V' ] ]
 };
-
+confBlocks.humidity.calliope = {
+    title : 'HUMIDITY',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [ [ 'A1', '5' ] ];
+    },
+    sensor : true
+};
 confBlocks.humidity.sensebox = {
     title : 'HUMIDITY',
     ports : [ [ 'I2C', 'I2C' ] ],
@@ -325,9 +399,17 @@ confBlocks.key.arduino = {
     standardPins : [ '2' ],
     fixedPorts : [ [ 'VCC', '5V' ] ]
 };
-
+confBlocks.key.calliope = {
+    title: 'KEY',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function() {
+        return [ [ 'A', 'A' ], [ 'B', 'B' ] ];
+    },
+    sensor : true,
+    standardPins : [ 'A' ],
+};
+confBlocks.key.microbit = confBlocks.key.calliope;
 confBlocks.key.sensebox = confBlocks.key.arduino;
-
 confBlocks.key.wedo = {
     title : 'KEY',
     bricks : true,
@@ -406,11 +488,23 @@ confBlocks.led.arduino = {
     title : 'LED',
     ports : [ [ 'input', 'INPUT' ] ],
     pins : function(a) {
-        return Blockly.Blocks.robConfigDefinitions['pinsDigital'][a]().concat([[Blockly.Msg.PORT_INTERNAL, 'LED_BUILTIN']]); // add internal LED to available LEDs
+        var pins = Blockly.Blocks.robConfigDefinitions['pinsDigital'][a];
+        if (pins !== undefined) {
+            pins = pins().concat([[Blockly.Msg.PORT_INTERNAL, 'LED_BUILTIN']]); // add internal LED to available LEDs
+        }
+        return pins;
     },
     sensor : false,
     standardPins : [ 'LED_BUILTIN' ],
     fixedPorts : [ [ 'GND', 'GND' ] ]
+};
+confBlocks.led.calliope = {
+    title : 'LED',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [ [ Blockly.Msg.CB_LEFT, '1' ], [ Blockly.Msg.CB_RIGHT, '2' ], [ Blockly.Msg.CB_BOTH, '3' ] ];
+    },
+    sensor : false
 };
 confBlocks.led.festobionic = {
     title : 'LED',
@@ -455,7 +549,12 @@ confBlocks.buzzer.arduino = {
     standardPins : [ '5' ],
     fixedPorts : [ [ 'GND', 'GND' ] ]
 };
-
+confBlocks.buzzer.calliope = {
+    title : 'BUZZER',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    sensor : false
+};
+confBlocks.buzzer.microbit = confBlocks.buzzer.calliope;
 confBlocks.buzzer.sensebox = {
     title : 'BUZZER',
     ports : [ [ '+', '+' ] ],
@@ -466,7 +565,6 @@ confBlocks.buzzer.sensebox = {
     standardPins : [ '1' ],
     fixedPorts : [ [ 'GND', 'GND' ] ]
 };
-
 confBlocks.buzzer.wedo = {
     title : 'BUZZER',
     bricks : true,
@@ -474,6 +572,11 @@ confBlocks.buzzer.wedo = {
 };
 
 confBlocks.sound = {};
+confBlocks.sound.calliope = {
+    title: 'SOUND',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    sensor : true
+};
 confBlocks.sound.sensebox = {
     title : 'SOUND',
     ports : [ [ 'out', 'OUT' ] ],
@@ -508,7 +611,16 @@ confBlocks.rgbled.arduino = {
     standardPins : [ '5', '6', '3' ],
     fixedPorts : [ [ 'GND', 'GND' ] ]
 };
-
+confBlocks.rgbled.calliope = {
+    title : 'RGBLED',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [ [ Blockly.Msg.PORT_INTERNAL, '0' ], [ Blockly.Msg.CB_LEFT + " " + Blockly.Msg.SLOT_FRONT, '1' ],
+        [ Blockly.Msg.CB_RIGHT + " " + Blockly.Msg.SLOT_FRONT, '4' ], [ Blockly.Msg.CB_LEFT + " " + Blockly.Msg.SLOT_REAR, '2' ],
+        [ Blockly.Msg.CB_RIGHT + " " + Blockly.Msg.SLOT_REAR, '3' ], [ Blockly.Msg.CB_ALL, '5' ] ];
+    },
+    sensor : false
+};
 confBlocks.rgbled.sensebox = {
     title : 'RGBLED',
     ports : [ [ 'red', 'RED' ], [ 'green', 'GREEN' ], [ 'blue', 'BLUE' ] ],
@@ -545,6 +657,14 @@ confBlocks.servo.arduino = {
 };
 confBlocks.servo.festobionic = confBlocks.servo.arduino;
 confBlocks.servo.festobionic.standardPins = [ '1' ];
+confBlocks.servo.calliope = {
+    title : 'SERVO',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return Blockly.Blocks.robConfigDefinitions['pinsAnalog'][a];
+    },
+    sensor : false
+};
 
 confBlocks.gyro = {};
 confBlocks.gyro.wedo = {
@@ -554,7 +674,11 @@ confBlocks.gyro.wedo = {
     pins : Blockly.Blocks.robConfigDefinitions['pins_wedo'],
     sensor : true
 };
-
+confBlocks.gyro.calliope = {
+    title : 'GYRO',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    sensor : true
+};
 confBlocks.gyro.sensebox = {
     title : 'GYRO',
     sensor : true
@@ -563,6 +687,14 @@ confBlocks.gyro.sensebox = {
 confBlocks.gyro.arduino = confBlocks.gyro.sensebox;
 
 confBlocks.motor = {};
+confBlocks.motor.calliope = {
+    title : 'MOTOR',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [ [ 'Port A', 'A' ], [ 'Port B', 'B' ], [ Blockly.Msg.CB_LEFT, '0' ], [ Blockly.Msg.CB_RIGHT, '2' ] ];
+    },
+    action : true
+};
 confBlocks.motor.wedo = {
     title : 'MOTOR',
     bricks : true,
@@ -580,8 +712,16 @@ confBlocks.digitalout.arduino = {
     },
     sensor : true,
 };
-
 confBlocks.digitalout.sensebox = confBlocks.digitalout.arduino;
+confBlocks.digitalout.calliope = {
+    title : 'DIGITALOUT',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return Blockly.Blocks.robConfigDefinitions['pinsDigital'][a];
+    },
+    sensor : true,
+};
+confBlocks.digitalout.microbit = confBlocks.digitalout.calliope;
 
 confBlocks.analogout = {};
 confBlocks.analogout.arduino = {
@@ -592,8 +732,16 @@ confBlocks.analogout.arduino = {
     },
     sensor : true,
 };
-
 confBlocks.analogout.sensebox = confBlocks.analogout.arduino;
+confBlocks.analogout.calliope = {
+    title : 'ANALOGOUT',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return Blockly.Blocks.robConfigDefinitions['pinsAnalog'][a];
+    },
+    sensor : true,
+};
+confBlocks.analogout.microbit = confBlocks.analogout.calliope;
 
 confBlocks.digitalin = {};
 confBlocks.digitalin.arduino = {
@@ -604,8 +752,16 @@ confBlocks.digitalin.arduino = {
     },
     sensor : false,
 };
-
 confBlocks.digitalin.sensebox = confBlocks.digitalin.arduino;
+confBlocks.digitalin.calliope = {
+    title : 'DIGITALIN',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return Blockly.Blocks.robConfigDefinitions['pinsDigital'][a];
+    },
+    sensor : false,
+};
+confBlocks.digitalin.microbit = confBlocks.digitalin.calliope;
 
 confBlocks.analogin = {};
 confBlocks.analogin.arduino = {
@@ -616,8 +772,16 @@ confBlocks.analogin.arduino = {
     },
     sensor : false,
 };
-
 confBlocks.analogin.sensebox = confBlocks.analogin.arduino;
+confBlocks.analogin.calliope = {
+    title : 'ANALOGIN',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return Blockly.Blocks.robConfigDefinitions['pinsAnalogWrite'][a];
+    },
+    sensor : false,
+};
+confBlocks.analogin.microbit = confBlocks.analogin.calliope;
 
 confBlocks.wireless = {}
 confBlocks.wireless.sensebox = {
@@ -660,6 +824,26 @@ confBlocks.gps.sensebox = {
         return [ [ 'I2C', 'I2C' ] ];
     },
     sensor : true
+};
+
+confBlocks.fourdigitdisplay = {}
+confBlocks.fourdigitdisplay.calliope = {
+    title : 'FOURDIGITDISPLAY',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [ ['A1', '5'] ];
+    },
+    sensor : false
+};
+
+confBlocks.ledbar = {}
+confBlocks.ledbar.calliope = {
+    title : 'LEDBAR',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [ ['A1', '5'] ];
+    },
+    sensor : false
 };
 
 function initConfBlocks() {
