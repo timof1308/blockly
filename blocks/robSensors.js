@@ -484,7 +484,8 @@ Blockly.Blocks['robSensors_generic_all'] = {
                     standardPort : sensors[i].standardPort,
                     unit : sensors[i].modes[j].unit,
                     op : sensors[i].modes[j].op,
-                    value : sensors[i].modes[j].value
+                    value : sensors[i].modes[j].value,
+                    ports : sensors[i].ports
                 });
             }
         }

@@ -138,7 +138,7 @@ Blockly.Blocks['mbedControls_start'] = {
 
 /**
  * Block waiting for sensor values.
- * 
+ * @deprecated replaced by robControls_wait_for
  * @constructs mbedControls_wait_for
  * @param {Boolean} -
  *            sensor condition.
