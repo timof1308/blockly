@@ -365,17 +365,6 @@ confBlocks.humidity.sensebox = {
     sensor : true
 };
 
-confBlocks.encoder = {};
-confBlocks.encoder.arduino = {
-    title : 'ENCODER',
-    ports : [ [ 'output', 'OUTPUT' ] ],
-    pins : function(a) {
-        return Blockly.Blocks.robConfigDefinitions['pinsAnalog'][a];
-    },
-    sensor : true,
-    standardPins : [ '2' ]
-};
-
 confBlocks.motion = {};
 confBlocks.motion.arduino = {
     title : 'MOTION',
