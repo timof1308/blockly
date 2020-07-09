@@ -1491,3 +1491,9 @@ Blockly.Msg.SHARE_PROGRAMS_USERGROUP_HINT = "To share programs with a user group
 Blockly.Msg.ORA_USER_UPDATE_ERROR_NOT_SAVED_TO_DB = 'The password could not be saved to the database. Are you sure that you entered the old password correctly?';
 
 Blockly.Msg.USERGROUP_DELETE_WITH_MEMBERS_WARNING = 'Are your sure that you want to delete the usergroup including all members? No member did log in so far.';
+Blockly.Msg.ORA_PROGRAM_GET_ALL_ERROR_USER_NOT_FOUND = 'Can not load the programs of the specified user. Please reload the lab and try again.';
+Blockly.Msg.ORA_USER_DELETE_ERROR_HAS_GROUPS = 'You have user groups associated with your account. Please delete them first, before you delete your account.';
+Blockly.Msg.ORA_USER_ERROR_NOT_LOGGED_IN = 'You need to be logged in to a user account to use this function. If you are logged in, please log out and in again.';
+Blockly.Msg.DATATABLE_MEMBERS = "members";
+Blockly.Msg.DATATABLE_SHARED_PROGRAMS = "shared programs";
+Blockly.Msg.USERGROUP_INITIAL_MEMBERS  = "Number of initial members";

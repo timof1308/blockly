@@ -1372,6 +1372,12 @@
 	"SHARE_PROGRAMS_USERGROUP_HINT": "Um Programme mit der Gruppe zu teilen musst zur Liste deiner Programme gehen und das Programm dort mit der Gruppe teilen.",
 	"ORA_USER_UPDATE_ERROR_NOT_SAVED_TO_DB": "Die Passwortänderung konnte nicht gespeichert werden. Hast du das alte Passwort richtig eingegeben?",
 
-	"USERGROUP_DELETE_WITH_MEMBERS_WARNING": "Bist du sicher, dass du alle ausgewählten Gruppen inklusive ihrer Mitglieder löschen möchtest? Bisher hat sich noch kein Mitglied angemeldet."
+	"USERGROUP_DELETE_WITH_MEMBERS_WARNING": "Bist du sicher, dass du alle ausgewählten Gruppen inklusive ihrer Mitglieder löschen möchtest? Bisher hat sich noch kein Mitglied angemeldet.",
+	"ORA_PROGRAM_GET_ALL_ERROR_USER_NOT_FOUND": "Die Programme des ausgewählten Benutzers konnten nicht geladen werden. Bitte lade das Open Roberta Lab neu und versuche es dann erneut.",
+	"ORA_USER_DELETE_ERROR_HAS_GROUPS": "Bevor du dein Benutzerkonto löschen kannst, musst zu erst alle Gruppen löschen, die du mit diesem Benutzer erstellt hast.",
+	"ORA_USER_ERROR_NOT_LOGGED_IN": "Du musst als Benutzer angemeldet sein, um diese Funktion nutzen zu können. Solltest du angemeldet sein, logge dich bitte aus und dann wieder ein.",
+	"DATATABLE_MEMBERS": "Mitglieder",
+	"DATATABLE_SHARED_PROGRAMS": "Geteilte Programme",
+	"USERGROUP_INITIAL_MEMBERS": "Anzahl der initialen Mitglieder"
 }
 
