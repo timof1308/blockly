@@ -1488,5 +1488,6 @@ Blockly.Msg.HINT_USERGROUP_MEMBER = 'Enter the member id of your user here. It s
 Blockly.Msg.DELETE_USERGROUP_MEMBER_WARNING = 'Are you sure that you want to delete the selected member(s)?';
 Blockly.Msg.DELETE_USERGROUP_MEMBER_AFTER_LOGIN_WARNING = 'A member you want to delete did already log in and might have create own programs. Are you sure that you want to delete the selected member(s)?';
 Blockly.Msg.SHARE_PROGRAMS_USERGROUP_HINT = "To share programs with a user group, open your program list and share a program with a user group.";
-
 Blockly.Msg.ORA_USER_UPDATE_ERROR_NOT_SAVED_TO_DB = 'The password could not be saved to the database. Are you sure that you entered the old password correctly?';
+
+Blockly.Msg.USERGROUP_DELETE_WITH_MEMBERS_WARNING = 'Are your sure that you want to delete the usergroup including all members? No member did log in so far.';

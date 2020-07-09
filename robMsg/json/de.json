@@ -1370,6 +1370,8 @@
 	"DELETE_USERGROUP_MEMBER_WARNING": "Bist du sicher, dass du die auswählten Mitglieder löschen möchtest?",
 	"DELETE_USERGROUP_MEMBER_AFTER_LOGIN_WARNING": "Ein Mitglieder, welches du löschen willst, hat sich beriets angemeldet und eventuell Programme erstellt. Bist du sicher, dass du die auswählten Mitglieder löschen möchtest?",
 	"SHARE_PROGRAMS_USERGROUP_HINT": "Um Programme mit der Gruppe zu teilen musst zur Liste deiner Programme gehen und das Programm dort mit der Gruppe teilen.",
-	"ORA_USER_UPDATE_ERROR_NOT_SAVED_TO_DB": "Die Passwortänderung konnte nicht gespeichert werden. Hast du das alte Passwort richtig eingegeben?"
+	"ORA_USER_UPDATE_ERROR_NOT_SAVED_TO_DB": "Die Passwortänderung konnte nicht gespeichert werden. Hast du das alte Passwort richtig eingegeben?",
+
+	"USERGROUP_DELETE_WITH_MEMBERS_WARNING": "Bist du sicher, dass du alle ausgewählten Gruppen inklusive ihrer Mitglieder löschen möchtest? Bisher hat sich noch kein Mitglied angemeldet."
 }
 
