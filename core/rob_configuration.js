@@ -38,28 +38,33 @@ Blockly.RobConfig.renameConfig = function(thatBlock, oldName, newName, workspace
         }
 
         var dropDown = dependConfig.dropDown;
-        var index = -1;
-        for (var i = 0; i < dropDown.menuGenerator_.length; i++) {
-            if (dropDown.menuGenerator_[i][1] === thatBlock.getFieldValue('NAME')) {
-                index = i;
-                break;
-            }
+        if (!Array.isArray(dropDown)) {
+            dropDown = [dropDown];
         }
-        if (dropDown.menuGenerator_[0][0] == Blockly.Msg.CONFIGURATION_NO_PORT) {
-            dropDown.menuGenerator_[0][0] = newName;
-            dropDown.menuGenerator_[0][1] = newName;
-            dropDown.setValue(newName);            
-        } else if (index >= 0) {
-            dropDown.menuGenerator_[index][0] = newName;
-            dropDown.menuGenerator_[index][1] = newName;
-            if (dropDown.value_ === oldName) {
-                dropDown.setValue(newName);
+        for (var d = 0; d < dropDown.length; d++) {
+            var index = -1;
+            for (var i = 0; i < dropDown[d].menuGenerator_.length; i++) {
+                if (dropDown[d].menuGenerator_[i][1] === thatBlock.getFieldValue('NAME')) {
+                    index = i;
+                    break;
+                }
             }
-        } else {
-            dropDown.menuGenerator_.push([ newName, newName ]);
-            dropDown.arrow_.replaceChild(document.createTextNode(dropDown.sourceBlock_.RTL ? Blockly.FieldDropdown.ARROW_CHAR + ' ' : ' '
-                    + Blockly.FieldDropdown.ARROW_CHAR), dropDown.arrow_.childNodes[0]);
-            dropDown.render_();
+            if (dropDown[d].menuGenerator_[0][0] == Blockly.Msg.CONFIGURATION_NO_PORT) {
+                dropDown[d].menuGenerator_[0][0] = newName;
+                dropDown[d].menuGenerator_[0][1] = newName;
+                dropDown[d].setValue(newName);            
+            } else if (index >= 0) {
+                dropDown[d].menuGenerator_[index][0] = newName;
+                dropDown[d].menuGenerator_[index][1] = newName;
+                if (dropDown[d].value_ === oldName) {
+                    dropDown[d].setValue(newName);
+                }
+            } else {
+                dropDown[d].menuGenerator_.push([ newName, newName ]);
+                dropDown[d].arrow_.replaceChild(document.createTextNode(dropDown[d].sourceBlock_.RTL ? Blockly.FieldDropdown.ARROW_CHAR + ' ' : ' '
+                        + Blockly.FieldDropdown.ARROW_CHAR), dropDown[d].arrow_.childNodes[0]);
+                dropDown[d].render_();
+            }
         }
         block.render();
     }
@@ -83,27 +88,31 @@ Blockly.RobConfig.disposeConfig = function(thisBlock) {
         if (thisBlock.confBlock !== dependConfig.type) {
             continue;
         }
-
         var dropDown = dependConfig.dropDown;
-        var index = -1;
-        for (var i = 0; i < dropDown.menuGenerator_.length; i++) {
-            if (dropDown.menuGenerator_[i][1] === thisBlock.getFieldValue('NAME')) {
-                index = i;
-                break;
-            }
+        if (!Array.isArray(dropDown)) {
+            dropDown = [dropDown];
         }
-        if (index >= 0) {
-            dropDown.menuGenerator_.splice(index, 1);
-            if (dropDown.menuGenerator_.length == 0) {
-                dropDown.menuGenerator_.push([ Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT'),
-                        (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
-                dropDown.setValue((Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase());
-            } else if (dropDown.menuGenerator_.length == 1) {
-                dropDown.arrow_.replaceChild(document.createTextNode(''), dropDown.arrow_.childNodes[0]);
-                dropDown.render_();
+        for (var d = 0; d < dropDown.length; d++) {
+            var index = -1;
+            for (var i = 0; i < dropDown[d].menuGenerator_.length; i++) {
+                if (dropDown[d].menuGenerator_[i][1] === thisBlock.getFieldValue('NAME')) {
+                    index = i;
+                    break;
+                }
             }
-            if (dropDown.getValue() === thisBlock.getFieldValue('NAME')) {
-                dropDown.setValue(dropDown.menuGenerator_[0][1]);
+            if (index >= 0) {
+                dropDown[d].menuGenerator_.splice(index, 1);
+                if (dropDown[d].menuGenerator_.length == 0) {
+                    dropDown[d].menuGenerator_.push([ Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT'),
+                            (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
+                    dropDown[d].setValue((Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase());
+                } else if (dropDown[d].menuGenerator_.length == 1) {
+                    dropDown[d].arrow_.replaceChild(document.createTextNode(''), dropDown[d].arrow_.childNodes[0]);
+                    dropDown[d].render_();
+                }
+                if (dropDown[d].getValue() === thisBlock.getFieldValue('NAME')) {
+                    dropDown[d].setValue(dropDown[d].menuGenerator_[0][1]);
+                }
             }
         }
         block.render();

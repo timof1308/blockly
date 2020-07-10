@@ -66,13 +66,9 @@ Blockly.Blocks['mbedActions_motors_on'] = {
         this.setColour(Blockly.CAT_ACTION_RGB);
         this.dropDownPortsA = getConfigPorts('motor');
         this.dropDownPortsB = getConfigPorts('motor');
-        this.dependConfigA = {
+        this.dependConfig = {
             'type' : 'motor',
-            'dropDown' : this.dropDownPortsA
-        };
-        this.dependConfigB = {
-            'type' : 'motor',
-            'dropDown' : this.dropDownPortsB
+            'dropDown' : [this.dropDownPortsA, this.dropDownPortsB]
         };
         this.appendValueInput('POWER_A').appendField(Blockly.Msg.MOTOR).appendField(this.dropDownPortsA, 'A').appendField(Blockly.Msg.ON).appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
         this.appendValueInput('POWER_B').setAlign(Blockly.ALIGN_RIGHT).appendField(this.dropDownPortsB, 'B').appendField(Blockly.Msg.ON).appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
