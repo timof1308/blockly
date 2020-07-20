@@ -6,3 +6,5 @@ npm-debug.log
 *.pyc
 *.komodoproject
 /nbproject/private/
+.vscode/
+**/package-lock.json
