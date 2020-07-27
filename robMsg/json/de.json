@@ -1337,8 +1337,9 @@
 	"ORA_GROUP_UPDATE_ERROR_NOT_FOUND": "Es konnte keine Fruppe mit dem angegebenen Namen gefunden werden. Bitte lade die Liste der Gruppen neu und versuche es dann erneut. Wenn der Fehler bestehen bleibt, schreibe bitte unserem Support.",
 	"ORA_GROUP_UPDATE_ERROR_NOT_OWNER": "Die Gruppe konnte nicht geändert werden. Du bist nicht der Eigentümer der Gruppe.",
 	"ORA_GROUP_ADD_MEMBER_ERROR": "Beim Hinzufügen neuer Mitglieder ist es zu einem Fehler gekommen. Bitte lade die aktuelle Ansicht neu und versuche es dann erneut. Wenn der Fehler bestehen bleibt, schreibe bitte unserem Support.",
-	"ORA_GROUP_ADD_MEMBER_ERROR_LIMIT_REACHED": "Du hast das Limit der Mitglieder für diese Gruppe erreicht. Eine Gruppe kann maximal 99 Mitglieder haben.",
-	"ORA_GROUP_ADD_MEMBER_ERROR_SMALLER_THAN_ONE": "Bitte gebe eine Zahl ein, die mindestens 1 oder größer ist.",
+	"ORA_GROUP_MEMBER_ERROR_ALREADY_EXISTS": "Es existiert bereits ein Benutzer mit dem angegebenen Benutzernamen in der Gruppe.",
+	"ORA_GROUP_ADD_MEMBER_ERROR_LIMIT_REACHED": "Eine Gruppe kann maximal 99 Mitglieder haben.",
+	"ORA_GROUP_ADD_MEMBER_ERROR_SMALLER_THAN_ONE": "Bitte gebe eine ganze Zahl ein, die mindestens 1 oder größer ist, um automatisch generierte Mitglieder hinzuzufügen.",
 	"ORA_GROUP_RENAME_ERROR": "Beim Umbenennen der Gruppe ist es zu einem Fehler gekommen. Bitte lade die aktuelle Ansicht neu und versuche es dann erneut. Wenn der Fehler bestehen bleibt, schreibe bitte unserem Support.",
 	"MENU_USERGROUP_LOG_IN": "Bei Gruppe anmelden ...",
 	"MENU_MANAGE_USERGROUPS": "Gruppen verwalten ...",
@@ -1350,10 +1351,8 @@
 	"DATATABLE_USERGROUP_NAME": "Name der Gruppe",
 	"DATATABLE_USERGROUP_NAME_CREATE_HINT": "Der Name der Gruppe. Bitte bedenke, dass alle Mitglieder der Gruppe den Gruppennamen bei jedem Login eingeben müssen.",
 	"DATATABLE_USERGROUP_OWNER": "Benutzername des Gruppeneigentümers",
-	"USERGROUP_CREATE_INITIAL_MEMBERS": "Anzahl der anfänglichen Mitglieder",
 	"USERGROUP_CREATE": "Erstelle neue Gruppe",
 	"USERGROUP_ADD_MEMBERS": "Weitere Mitglieder generieren",
-	"USERGROUP_ADD_MEMBERS_COUNT": "Anzahl weiterer Mitglieder",
 	"USERGROUP_CREATE_TOOLTIP": "Klicke hier, um eine neue Gruppe zu erstellen",
 	"USERGROUP_LIST_DELETE_TOOLTIP": "Klicke hier, um die Gruppe zu löschen",
 	"USERGROUP_LIST_DELETE_ALL_TOOLTIP": "Klicke hier, um alle ausgewählten Gruppen zu löschen",
@@ -1378,6 +1377,7 @@
 	"ORA_USER_ERROR_NOT_LOGGED_IN": "Du musst als Benutzer angemeldet sein, um diese Funktion nutzen zu können. Solltest du angemeldet sein, logge dich bitte aus und dann wieder ein.",
 	"DATATABLE_MEMBERS": "Mitglieder",
 	"DATATABLE_SHARED_PROGRAMS": "Geteilte Programme",
-	"USERGROUP_INITIAL_MEMBERS": "Anzahl der initialen Mitglieder"
+	"USERGROUP_GENERATED_MEMBERS": "Automatisch generierte Mitglieder",
+	"USERGROUP_GENERATED_MEMBERS_TOOLTIP": "Automatisch generierte Mitglieder sind ganz normale Mitglieder einer Gruppe. Sie bekommen eine Nummer als Benutzernamen, die man nachträglich ändern kann."
 }
 
