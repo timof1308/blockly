@@ -58,6 +58,10 @@ Blockly.Xml.workspaceToDom = function(workspace) {
         var top = goog.dom.createDom('instance');
         Blockly.Xml.appendlistToDom(top, block);
         var xy = block.getRelativeToSurfaceXY();
+        var width; // Not used in LTR.
+        if (block.workspace.RTL) {
+          width = block.workspace.getWidth();
+        }
         top.setAttribute('x', Math.round(workspace.RTL ? width - xy.x : xy.x));
         top.setAttribute('y', Math.round(xy.y));
         xml.appendChild(top);

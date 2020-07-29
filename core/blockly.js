@@ -26,7 +26,6 @@
 
 // Top level object for Blockly.
 goog.provide('Blockly');
-
 goog.require('Blockly.BlockSvg.render');
 goog.require('Blockly.Events');
 goog.require('Blockly.FieldAngle');
@@ -46,6 +45,7 @@ goog.require('Blockly.FieldNumber');
 goog.require('Blockly.FieldVariable');
 goog.require('Blockly.Generator');
 goog.require('Blockly.Msg');
+goog.require('Blockly.Msg.en');
 goog.require('Blockly.Procedures');
 goog.require('Blockly.Toolbox');
 goog.require('Blockly.WidgetDiv');
@@ -57,6 +57,38 @@ goog.require('Blockly.inject');
 goog.require('Blockly.utils');
 goog.require('goog.color');
 goog.require('goog.userAgent');
+goog.require('Blockly.Blocks.bob3Actions'); 
+goog.require('Blockly.Blocks.bob3Communication'); 
+goog.require('Blockly.Blocks.colour'); 
+goog.require('Blockly.Blocks.lists'); 
+goog.require('Blockly.Blocks.logic'); 
+goog.require('Blockly.Blocks.loops'); 
+goog.require('Blockly.Blocks.makeblockActions'); 
+goog.require('Blockly.Blocks.math'); 
+goog.require('Blockly.Blocks.mbedActions'); 
+goog.require('Blockly.Blocks.mbedBrick'); 
+goog.require('Blockly.Blocks.mbedColour'); 
+goog.require('Blockly.Blocks.mbedCommunication'); 
+goog.require('Blockly.Blocks.mbedControls'); 
+goog.require('Blockly.Blocks.mbedImage'); 
+goog.require('Blockly.Blocks.mBotImage'); 
+goog.require('Blockly.Blocks.naoActions'); 
+goog.require('Blockly.Blocks.naoBrick'); 
+goog.require('Blockly.Blocks.naoColour'); 
+goog.require('Blockly.Blocks.naoSensors'); 
+goog.require('Blockly.Blocks.procedures'); 
+goog.require('Blockly.Blocks.robActions'); 
+goog.require('Blockly.Blocks.robBrick'); 
+goog.require('Blockly.Blocks.robColour'); 
+goog.require('Blockly.Blocks.robCommunication'); 
+goog.require('Blockly.Blocks.robConfig'); 
+goog.require('Blockly.Blocks.robConfigDefinitions'); 
+goog.require('Blockly.Blocks.robControls'); 
+goog.require('Blockly.Blocks.robSensorDefinitions'); 
+goog.require('Blockly.Blocks.robSensors'); 
+goog.require('Blockly.Blocks.texts'); 
+goog.require('Blockly.Blocks.variables'); 
+goog.require('Blockly.Blocks.vorwerkActions'); 
 
 
 // Turn off debugging when compiled.

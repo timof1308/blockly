@@ -205,6 +205,7 @@ Blockly.Blocks['robBrick_senseBox-Brick'] = {
         }
         while (!isLegalName(name)) {
             // Collision with another variable.
+            var r = name.match(/^(.*?)(\d+)$/);
             if (!r) {
                 name += '2';
             } else {

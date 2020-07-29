@@ -1308,7 +1308,7 @@ Blockly.Block.prototype.removeLastInput = function(opt_quiet) {
     input.dispose();
     this.inputList.splice(this.inputList.length - 1, 1);
     if (!opt_quiet) {
-        goog.asserts.fail('Input "%s" not found.', name);
+        goog.asserts.fail('Input "%s" not found.', input);
     }
     console.log("after removing last input")
     console.log(this.inputList.length)

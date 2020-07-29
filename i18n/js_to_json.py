@@ -66,8 +66,8 @@ def transform(results, synonyms, description, infile):
         result = {}
         result['meaning'] = match.group(1)
         result['source'] = match.group(2)
-        if not description:
-          print('Warning: No description for ' + result['meaning'])
+        #if not description:
+          #print('Warning: No description for ' + result['meaning'])
         result['description'] = description
         description = ''
         results.append(result)
@@ -109,12 +109,9 @@ def main():
   transform(results, synonyms, description, infile)
   infile.close()
   if os.path.exists(args.robInput_file):
-    print('Merged Open Roberta messages');
     infile = codecs.open(args.robInput_file, 'r', 'utf-8')
     transform(results, synonyms, description, infile)
     infile.close()
-    with open(args.robInput_file, 'r') as fin:
-        print fin.read()
 
   # Create <lang_file>.json, keys.json, and qqq.json.
   write_files(args.author, args.lang, args.output_dir, results, False)
