@@ -1,0 +1,14 @@
+{
+  "name": "headless-blockly",
+  "version": "1.0.0",
+  "description": "Simulate the \"import-export action\" in the Lab.\r Due to various changes made to NEPO blockly throughout the years, old XMLs are in some cases different to the newer versions of XML. Some block types are mapped to different ones, some blocks have additional or changed fields, etc..\r This file replicates the \"import-export action\" that applies these changes to the XML.\r In order to validate the XSLT changes serverside (which replace the need for blockly mappings) this can be used to independently generate new XMLs from old ones. These can then be used to check the XSLT output.",
+  "main": "transform.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick Werner",
+  "license": "MIT",
+  "dependencies": {
+    "xmldom": "^0.3.0"
+  }
+}
