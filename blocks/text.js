@@ -819,3 +819,43 @@ Blockly.Blocks['robText_append'] = {
       }
     }
 };
+
+Blockly.Blocks['text_cast_string_toNumber'] = {
+    init : function() {
+        this.jsonInit({
+           "message0" : Blockly.Msg.TEXT_CAST_STRING_TONUMBER,
+            "args0" : [ {
+                "type" : "input_value",
+                "name" : "VALUE",
+                "check" : "String"
+            }],
+            "output" : "Number",
+            "colour" : Blockly.CAT_TEXT_RGB,
+            "tooltip" : Blockly.Msg.TEXT_CAST_STRING_TONUMBER_TOOLTIP
+        });
+    }
+};
+
+Blockly.Blocks['text_cast_char_toNumber'] = {
+    init : function() {
+        this.jsonInit({
+           "message0" : Blockly.Msg.TEXT_CAST_CHAR_TONUMBER,
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "VALUE",
+          "check": "String"
+        },
+        {
+          "type": "input_value",
+          "name": "AT",
+          "check": "Number"
+        },
+      ],
+      "inputsInline": true,
+            "output" : "Number",
+            "colour" : Blockly.CAT_TEXT_RGB,
+            "tooltip" : Blockly.Msg.TEXT_CAST_CHAR_TONUMBER_TOOLTIP
+        });
+    }
+};

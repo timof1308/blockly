@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Blockly Playground</title>
         <script src="../blockly_compressed.js"></script>
+        <script src="../robMsg/robMessages.js"></script>
         <script src="../msg/js/de.js"></script>
         <script src="../core/blockly.js"></script>
         <script src="../core/scrollbar.js"></script>
@@ -663,6 +664,8 @@
 	</category>
 	<category name="TOOLBOX_MATH" svg="true">
 		<block type="math_number"></block>
+		<block type="math_cast_toString"></block>
+		<block type="math_cast_toChar"></block>
 		<block type="math_arithmetic"></block>
 		<block type="math_single"></block>
 		<block type="math_trig"></block>
@@ -706,6 +709,8 @@
 	</category>
 	<category name="TOOLBOX_TEXT" svg="true">
 		<block type="text"></block>
+		<block type="text_cast_string_toNumber"></block>
+		<block type="text_cast_char_toNumber"></block>
 		<block type="text_comment"></block>
 		<block type="robText_join"></block>
 		<block type="robText_append"></block>

@@ -709,3 +709,37 @@ Blockly.Blocks['robMath_change'] = {
     }
   }
 };
+
+Blockly.Blocks['math_cast_toString'] = {
+    init : function() {
+        this.jsonInit({
+           "message0" : Blockly.Msg.MATH_CAST_TOSTRING,
+            "args0" : [ {
+                "type" : "input_value",
+                "name" : "VALUE",
+                "check" : "Number"
+            }],
+            "output" : "String",
+            "colour" : Blockly.CAT_MATH_RGB,
+            "tooltip" : Blockly.Msg.MATH_CAST_TOSTRING_TOOLTIP
+        });
+    }
+};
+
+Blockly.Blocks['math_cast_toChar'] = {
+    init : function() {
+        this.jsonInit({
+           "message0" : Blockly.Msg.MATH_CAST_TOCHAR,
+            "args0" : [ {
+                "type" : "input_value",
+                "name" : "VALUE",
+                "check" : "Number"
+            }],
+            "output" : "String",
+            "colour" : Blockly.CAT_MATH_RGB,
+            "tooltip" : Blockly.Msg.MATH_CAST_TOCHAR_TOOLTIP
+        });
+    }
+};
+
+
