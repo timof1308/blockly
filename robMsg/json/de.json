@@ -205,7 +205,6 @@
 	"MENU_ZOOM_RESET": "zurücksezten",
 	"MENU_ZOOM_OUT": "verkleinern",
 	"MENU_SIM_POSE_TOOLTIP": "Verschiebe alle Roboter an die Ausgangsposition und entferne alle Zeichnungen.",
-	"MENU_SIM_POSE_TOOLTIP": "Resets the positions of all robots and obstacles then clears all drawings.",
 	"MESSAGE_CONFIGURATION_DELETED": "Du hast die Roboterkonfiguration »$« gelöscht.",
 	"MESSAGE_EDIT_CHECK": "Dein Programm wird nun überprüft!",
 	"MESSAGE_EDIT_SAVE_CONFIGURATION": "Deine Konfiguration »$« wurde gespeichert!",
@@ -1387,6 +1386,12 @@
 	"DATATABLE_MEMBERS": "Mitglieder",
 	"DATATABLE_SHARED_PROGRAMS": "Geteilte Programme",
 	"USERGROUP_GENERATED_MEMBERS": "Automatisch generierte Mitglieder",
-	"USERGROUP_GENERATED_MEMBERS_TOOLTIP": "Automatisch generierte Mitglieder sind ganz normale Mitglieder einer Gruppe. Sie bekommen eine Nummer als Benutzernamen, die man nachträglich ändern kann."
+	"USERGROUP_GENERATED_MEMBERS_TOOLTIP": "Automatisch generierte Mitglieder sind ganz normale Mitglieder einer Gruppe. Sie bekommen eine Nummer als Benutzernamen, die man nachträglich ändern kann.",
+    "MENU_DEBUG_START_TOOLTIP" : "Starte den Debugger Modus.",
+    "MENU_DEBUG_STOP_TOOLTIP" : "Stoppe den Debugger Modus.",
+    "MENU_DEBUG_STEP_BREAKPOINT_TOOLTIP" : "Fahre fort bis der nächste Haltepunkt im Programm erreicht wird.",
+    "MENU_DEBUG_STEP_OVER_TOOLTIP" : "Mache einen Schritt über den nächsten Block im Programm.",
+    "MENU_DEBUG_STEP_INTO_TOOLTIP" : "Mache einen Schritt hinein in den nächste Block im Programm.",
+    "MENU_SIM_VARIABLES_TOOLTIP" : "Öffne/schließe die Ansicht der Variablen."
 }
 
