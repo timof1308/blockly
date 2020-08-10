@@ -1365,7 +1365,7 @@
 	"USERGROUP_LOGIN_LOST_PASSWORD_HINT": "Wenn du das Passwort für dein Benutzerkonto vergessen hast, kannst du den Eigentümer der Gruppe darum bitten dein Passwort für dich zurückzusetzen. Danach kannst du dich wieder mit dem Passwort anmelden, das du beim ersten Login angeben musstest.",
 	"USERGROUP_NAME_HINT": "Hier musst du den Namen der Gruppe angeben, bei der du dich anmelden möchtest.",
 	"HINT_USERGROUP_OWNER": "Hier kommt <strong>nicht</strong> der echten Name von dem/der Gruppen-Eigentümer*in hin, sondern der <strong>Benutzername</strong>.",
-	"HINT_USERGROUP_MEMBER": "Gebe hier die Kennung deines Benutzerkontos an. Dabei handelt es sich in der Regel um eine zweistellige Zahl.",
+	"HINT_USERGROUP_MEMBER": "Gebe hier den Benutzernamen deines Gruppen-Kontos an.",
 	"DELETE_USERGROUP_MEMBER_WARNING": "Bist du sicher, dass du die auswählten Mitglieder löschen möchtest?",
 	"DELETE_USERGROUP_MEMBER_AFTER_LOGIN_WARNING": "Ein Mitglieder, welches du löschen willst, hat sich beriets angemeldet und eventuell Programme erstellt. Bist du sicher, dass du die auswählten Mitglieder löschen möchtest?",
 	"SHARE_PROGRAMS_USERGROUP_HINT": "Um Programme mit der Gruppe zu teilen musst zur Liste deiner Programme gehen und das Programm dort mit der Gruppe teilen.",
