@@ -39,9 +39,19 @@ Blockly.Blocks['robConf_generic'] = {
                 return null;
             if (!name.match(/^[a-zA-Z][a-zA-Z_$0-9]*$/))
                 return null;
+            
+            var subComp = block.inputList.filter(function(item) {
+                return (item.nameOld) ? item.nameOld === name : item.fieldRow[1].getText() === name;
+            })[0];
+            var nameOld = block.nameOld;
+            if (subComp) {
+                subComp.nameOld = name;
+                nameOld = name;
+            }
+            
             // Ensure two identically-named variables don't exist.
-            name = Blockly.RobConfig.findLegalName(name, block);
-            Blockly.RobConfig.renameConfig(this.sourceBlock_, block.nameOld, name, Blockly.Workspace.getByContainer("blocklyDiv"));
+            name = Blockly.RobConfig.findLegalName(name, block, nameOld);
+            Blockly.RobConfig.renameConfig(this.sourceBlock_, nameOld, name, Blockly.Workspace.getByContainer("blocklyDiv"));
             block.nameOld = name;
             return name;
         };
@@ -134,6 +144,13 @@ Blockly.Blocks['robConf_generic'] = {
                 this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(confBlock.fixedPorts[i][0]).appendField(dropDown);
             }
         }
+        if (confBlock.subcomponents) {
+            for (var i = 0; i < confBlock.subcomponents.length; i++) {
+                var name = Blockly.Msg[confBlock.subcomponents[i][0]] || confBlock.subcomponents[i][0];
+                var textField = new Blockly.FieldTextInput(Blockly.RobConfig.findLegalName(name.charAt(0).toUpperCase(), this), validateName);
+                this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(name).appendField(textField, confBlock.subcomponents[i][1]);
+            }
+        }
         var that = this;
         this.setTooltip(function() {
             return Blockly.Msg[confBlock.title + '_TOOLTIP_' + that.workspace.device.toUpperCase()] || Blockly.Msg[confBlock.title + '_TOOLTIP']
@@ -141,10 +158,21 @@ Blockly.Blocks['robConf_generic'] = {
         });
         this.type = 'robConf_' + confBlock.title.toLowerCase();
         this.getConfigDecl = function() {
-            return {
+            var configDecl = [];
+            if (confBlock.subcomponents) {
+                for (var i = 0; i < confBlock.subcomponents.length; i++) {
+                    configDecl.push({
+                        // subcomponents may have an additional underscore in the name, to give it a unique name
+                        'type' : confBlock.subcomponents[i][0].toLowerCase().split('_')[0],
+                        'name' : that.inputList[i + 1].fieldRow[1].getText()
+                    });
+                }
+            }
+            configDecl.push({
                 'type' : confBlock.title.toLowerCase(),
                 'name' : that.getFieldValue('NAME')
-            }
+            });
+            return configDecl;
         };
         this.onDispose = function() {
             Blockly.RobConfig.disposeConfig(this);

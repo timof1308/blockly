@@ -18,9 +18,12 @@ function getConfigPortsActions(actorName) {
         for (var x = 0; x < blocks.length; x++) {
             var func = blocks[x].getConfigDecl;
             if (func) {
-                var config = func.call(blocks[x]);
-                if (config.type === actorName) {
-                    ports.push([ config.name, config.name ]);
+                var configs = func.call(blocks[x]);
+                for (var i = 0; i < configs.length; i++) {
+                    var config = configs[i];
+                    if (config.type === actorName) {
+                        ports.push([ config.name, config.name ]);
+                    }
                 }
             }
         }
@@ -165,9 +168,12 @@ Blockly.Blocks['robActions_motor_on'] = {
                 for (var x = 0; x < blocks.length; x++) {
                     var func = blocks[x].getConfigDecl;
                     if (func) {
-                        var config = func.call(blocks[x]);
-                        if (config.type === 'motor') {
-                            ports.push([ config.name, config.name ]);
+                        var configs = func.call(blocks[x]);
+                        for (var i = 0; i < configs.length; i++) {
+                            var config = configs[i];
+                            if (config.type === 'motor') {
+                                ports.push([ config.name, config.name ]);
+                            }
                         }
                     }
                 }
@@ -237,9 +243,12 @@ Blockly.Blocks['robActions_motor_on_for'] = {
                 for (var x = 0; x < blocks.length; x++) {
                     var func = blocks[x].getConfigDecl;
                     if (func) {
-                        var config = func.call(blocks[x]);
-                        if (config.type === 'motor') {
-                            portList.push([ config.name, config.name ]);
+                        var configs = func.call(blocks[x]);
+                        for (var i = 0; i < configs.length; i++) {
+                            var config = configs[i];
+                            if (config.type === 'motor') {
+                                portList.push([ config.name, config.name ]);
+                            }
                         }
                     }
                 }
@@ -421,9 +430,12 @@ Blockly.Blocks['robActions_motor_stop'] = {
                 for (var x = 0; x < blocks.length; x++) {
                     var func = blocks[x].getConfigDecl;
                     if (func) {
-                        var config = func.call(blocks[x]);
-                        if (config.type === 'motor') {
-                            portList.push([ config.name, config.name ]);
+                        var configs = func.call(blocks[x]);
+                        for (var i = 0; i < configs.length; i++) {
+                            var config = configs[i];
+                            if (config.type === 'motor') {
+                                portList.push([ config.name, config.name ]);
+                            }
                         }
                     }
                 }
@@ -777,9 +789,12 @@ Blockly.Blocks['robActions_play_tone'] = {
                 for (var x = 0; x < blocks.length; x++) {
                     var func = blocks[x].getConfigDecl;
                     if (func) {
-                        var config = func.call(blocks[x]);
-                        if (config.type === 'buzzer') {
-                            portList.push([ config.name, config.name ]);
+                        var configs = func.call(blocks[x]);
+                        for (var i = 0; i < configs.length; i++) {
+                            var config = configs[i];
+                            if (config.type === 'buzzer') {
+                                portList.push([ config.name, config.name ]);
+                            }
                         }
                     }
                 }
@@ -941,9 +956,12 @@ Blockly.Blocks['robActions_led_on'] = {
             for (var x = 0; x < blocks.length; x++) {
                 var func = blocks[x].getConfigDecl;
                 if (func) {
-                    var config = func.call(blocks[x]);
-                    if (config.type === 'led') {
-                        portList.push([ config.name, config.name ]);
+                    var configs = func.call(blocks[x]);
+                    for (var i = 0; i < configs.length; i++) {
+                        var config = configs[i];
+                        if (config.type === 'led') {
+                            portList.push([ config.name, config.name ]);
+                        }
                     }
                 }
             }
@@ -1000,9 +1018,12 @@ Blockly.Blocks['robActions_led_off'] = {
             for (var x = 0; x < blocks.length; x++) {
                 var func = blocks[x].getConfigDecl;
                 if (func) {
-                    var config = func.call(blocks[x]);
-                    if (config.type === 'led') {
-                        portList.push([ config.name, config.name ]);
+                    var configs = func.call(blocks[x]);
+                    for (var i = 0; i < configs.length; i++) {
+                        var config = configs[i];
+                        if (config.type === 'led') {
+                            portList.push([ config.name, config.name ]);
+                        }
                     }
                 }
             }

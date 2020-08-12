@@ -171,7 +171,7 @@ confBlocks.ultrasonic.calliope = {
     title : 'ULTRASONIC',
     ports : [ [ 'pin', 'PIN1' ] ],
     pins : function(a) {
-        return [['A1', '1'], ['Calli:bot', '2']];
+        return [['A1', '1']];
     },
     sensor : true
 };
@@ -290,14 +290,6 @@ confBlocks.infrared.wedo = {
     bricks : true,
     ports : [ [ 'CONNECTOR', 'CONNECTOR' ] ],
     pins : Blockly.Blocks.robConfigDefinitions['pins_wedo'],
-    sensor : true
-};
-confBlocks.infrared.calliope = {
-    title : 'INFRARED',
-    ports : [ [ 'pin', 'PIN1' ] ],
-    pins : function(a) {
-        return [ [ Blockly.Msg.CB_LEFT, '2' ], [ Blockly.Msg.CB_RIGHT, '1' ] ];
-    },
     sensor : true
 };
 confBlocks.infrared.arduino = {
@@ -487,14 +479,6 @@ confBlocks.led.arduino = {
     standardPins : [ 'LED_BUILTIN' ],
     fixedPorts : [ [ 'GND', 'GND' ] ]
 };
-confBlocks.led.calliope = {
-    title : 'LED',
-    ports : [ [ 'pin', 'PIN1' ] ],
-    pins : function(a) {
-        return [ [ Blockly.Msg.CB_LEFT, '1' ], [ Blockly.Msg.CB_RIGHT, '2' ], [ Blockly.Msg.CB_BOTH, '3' ] ];
-    },
-    sensor : false
-};
 confBlocks.led.festobionic = {
     title : 'LED',
     ports : [ [ 'input', 'INPUT' ] ],
@@ -604,9 +588,7 @@ confBlocks.rgbled.calliope = {
     title : 'RGBLED',
     ports : [ [ 'pin', 'PIN1' ] ],
     pins : function(a) {
-        return [ [ Blockly.Msg.PORT_INTERNAL, '0' ], [ Blockly.Msg.CB_LEFT + " " + Blockly.Msg.SLOT_FRONT, '1' ],
-        [ Blockly.Msg.CB_RIGHT + " " + Blockly.Msg.SLOT_FRONT, '4' ], [ Blockly.Msg.CB_LEFT + " " + Blockly.Msg.SLOT_REAR, '2' ],
-        [ Blockly.Msg.CB_RIGHT + " " + Blockly.Msg.SLOT_REAR, '3' ], [ Blockly.Msg.CB_ALL, '5' ] ];
+        return [ [ Blockly.Msg.PORT_INTERNAL, '0' ] ];
     },
     sensor : false
 };
@@ -680,7 +662,7 @@ confBlocks.motor.calliope = {
     title : 'MOTOR',
     ports : [ [ 'pin', 'PIN1' ] ],
     pins : function(a) {
-        return [ [ 'Port A', 'A' ], [ 'Port B', 'B' ], [ Blockly.Msg.CB_LEFT, '0' ], [ Blockly.Msg.CB_RIGHT, '2' ] ];
+        return [ [ 'Port A', 'A' ], [ 'Port B', 'B' ] ];
     },
     action : true
 };
@@ -833,6 +815,25 @@ confBlocks.ledbar.calliope = {
         return [ ['A1', '5'] ];
     },
     sensor : false
+};
+
+confBlocks.callibot = {}
+confBlocks.callibot.calliope = {
+    title : 'CALLIBOT',
+    super : true,
+    subcomponents : [ [ 'LEFT_MOTOR', 'MOTOR_L' ],
+                      [ 'RIGHT_MOTOR', 'MOTOR_R' ],
+                      [ 'LEFT_FRONT_RGBLED', 'RGBLED_LF' ],
+                      [ 'RIGHT_FRONT_RGBLED', 'RGBLED_RF' ],
+                      [ 'LEFT_REAR_RGBLED', 'RGBLED_LR' ],
+                      [ 'RIGHT_REAR_RGBLED', 'RGBLED_RR' ],
+                      [ 'ALL_RGBLED', 'RGBLED_A' ],
+                      [ 'LEFT_LED', 'LED_L' ],
+                      [ 'RIGHT_LED', 'LED_R' ],
+                      [ 'BOTH_LED', 'LED_B' ],
+                      [ 'LEFT_INFRARED_SENSOR', 'INFRARED_L' ],
+                      [ 'RIGHT_INFRARED_SENSOR', 'INFRARED_R' ],
+                      [ 'SENSOR_ULTRASONIC', 'ULTRASONIC' ] ]
 };
 
 function initConfBlocks() {

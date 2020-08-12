@@ -419,9 +419,12 @@ Blockly.Blocks['robSensors_generic_all'] = {
                             for (var x = 0; x < blocks.length; x++) {
                                 var func = blocks[x].getConfigDecl;
                                 if (func) {
-                                    var config = func.call();
-                                    if (config.type.toUpperCase() === sensorTitle) {
-                                        portsList.push([ config.name, config.name ]);
+                                    var configs = func.call(blocks[x]);
+                                    for (var y = 0; y < configs.length; y++) {
+                                        var config = configs[y];
+                                        if (config.type.toUpperCase() === sensorTitle) {
+                                            portsList.push([ config.name, config.name ]);
+                                        }
                                     }
                                 }
                             }
@@ -621,9 +624,12 @@ Blockly.Blocks['robSensors_generic_all'] = {
                         for (var x = 0; x < blocks.length; x++) {
                             var func = blocks[x].getConfigDecl;
                             if (func) {
-                                var config = func.call();
-                                if (config.type.toUpperCase() === sensorTitle) {
-                                    portsList.push([ config.name, config.name ]);
+                                var configs = func.call(blocks[x]);
+                                for (var y = 0; y < configs.length; y++) {
+                                    var config = configs[y];
+                                    if (config.type === sensorTitle) {
+                                        portsList.push([ config.name, config.name ]);
+                                    }
                                 }
                             }
                         }
@@ -720,9 +726,12 @@ function getConfigPorts(actorName) {
         for (var x = 0; x < blocks.length; x++) {
             var func = blocks[x].getConfigDecl;
             if (func) {
-                var config = func.call(blocks[x]);
-                if (config.type === actorName) {
-                    ports.push([ config.name, config.name ]);
+                var configs = func.call(blocks[x]);
+                for (var i = 0; i < configs.length; i++) {
+                    var config = configs[i];
+                    if (config.type === actorName) {
+                        ports.push([ config.name, config.name ]);
+                    }
                 }
             }
         }

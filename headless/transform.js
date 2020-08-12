@@ -79,9 +79,12 @@ function getConfigPorts(actorName) {
         for (var x = 0; x < blocks.length; x++) {
             var func = blocks[x].getConfigDecl;
             if (func) {
-                var config = func.call(blocks[x]);
-                if (config.type === actorName) {
-                    ports.push([ config.name, config.name ]);
+                var configs = func.call(blocks[x]);
+                for (var i = 0; i < configs.length; i++) {
+                    var config = configs[i];
+                    if (config.type === actorName) {
+                        ports.push([ config.name, config.name ]);
+                    }
                 }
             }
         }

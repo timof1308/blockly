@@ -33,10 +33,23 @@ Blockly.RobConfig.renameConfig = function(thatBlock, oldName, newName, workspace
         } else {
             dependConfig = block.dependConfig;
         }
-        if (thatBlock.confBlock !== dependConfig.type) {
+        var matchingSubCompTypes = [];
+        var subComponentNames = new Set();
+        for (var i = 1; i < thatBlock.inputList.length; i++) {
+            var subComp = thatBlock.inputList[i].fieldRow[1];
+            if (subComp.name) {
+                // subcomponents may have an additional underscore in the name, to give it a unique name
+                var subCompType = subComp.name.toLowerCase().split('_')[0];
+                var subCompName = subComp.getText();
+                if (subCompType === dependConfig.type && subCompName === oldName) {
+                    matchingSubCompTypes.push([subCompType, subCompName]);
+                    subComponentNames.add(subCompName);
+                }
+            }
+        }
+        if (thatBlock.confBlock !== dependConfig.type && matchingSubCompTypes.length === 0) {
             continue;
         }
-
         var dropDown = dependConfig.dropDown;
         if (!Array.isArray(dropDown)) {
             dropDown = [dropDown];
@@ -44,7 +57,7 @@ Blockly.RobConfig.renameConfig = function(thatBlock, oldName, newName, workspace
         for (var d = 0; d < dropDown.length; d++) {
             var index = -1;
             for (var i = 0; i < dropDown[d].menuGenerator_.length; i++) {
-                if (dropDown[d].menuGenerator_[i][1] === thatBlock.getFieldValue('NAME')) {
+                if (dropDown[d].menuGenerator_[i][1] === thatBlock.getFieldValue('NAME') || subComponentNames.has(dropDown[d].menuGenerator_[i][1])) {
                     index = i;
                     break;
                 }
@@ -85,7 +98,17 @@ Blockly.RobConfig.disposeConfig = function(thisBlock) {
         } else {
             dependConfig = block.dependConfig;
         }
-        if (thisBlock.confBlock !== dependConfig.type) {
+        var subComponentTypes = new Set();
+        var subComponentNames = new Set();
+        for (var i = 1; i < thisBlock.inputList.length; i++) {
+            var subComp = thisBlock.inputList[i].fieldRow[1];
+            if (subComp.name) {
+                // subcomponents may have an additional underscore in the name, to give it a unique name
+                subComponentTypes.add(subComp.name.toLowerCase().split('_')[0]);
+                subComponentNames.add(subComp.getText());
+            }
+        }
+        if (thisBlock.confBlock !== dependConfig.type && !subComponentTypes.has(dependConfig.type)) {
             continue;
         }
         var dropDown = dependConfig.dropDown;
@@ -93,24 +116,28 @@ Blockly.RobConfig.disposeConfig = function(thisBlock) {
             dropDown = [dropDown];
         }
         for (var d = 0; d < dropDown.length; d++) {
-            var index = -1;
+            var toRemove = new Set();
             for (var i = 0; i < dropDown[d].menuGenerator_.length; i++) {
-                if (dropDown[d].menuGenerator_[i][1] === thisBlock.getFieldValue('NAME')) {
-                    index = i;
-                    break;
+                var dropDownEntry = dropDown[d].menuGenerator_[i][1];
+                if (dropDownEntry === thisBlock.getFieldValue('NAME') || subComponentNames.has(dropDownEntry)) {
+                    toRemove.add(dropDownEntry);
                 }
             }
-            if (index >= 0) {
-                dropDown[d].menuGenerator_.splice(index, 1);
+            if (toRemove.size > 0) {
+                dropDown[d].menuGenerator_ = dropDown[d].menuGenerator_.filter(function(item) {
+                    return !toRemove.has(item[0]);
+                });
                 if (dropDown[d].menuGenerator_.length == 0) {
                     dropDown[d].menuGenerator_.push([ Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT'),
                             (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
                     dropDown[d].setValue((Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase());
+                    dropDown[d].arrow_.replaceChild(document.createTextNode(''), dropDown[d].arrow_.childNodes[0]);
+                    dropDown[d].render_();
                 } else if (dropDown[d].menuGenerator_.length == 1) {
                     dropDown[d].arrow_.replaceChild(document.createTextNode(''), dropDown[d].arrow_.childNodes[0]);
                     dropDown[d].render_();
                 }
-                if (dropDown[d].getValue() === thisBlock.getFieldValue('NAME')) {
+                if (dropDown[d].getValue() === thisBlock.getFieldValue('NAME') || subComponentNames.has(dropDown[d].getValue())) {
                     dropDown[d].setValue(dropDown[d].menuGenerator_[0][1]);
                 }
             }
@@ -129,8 +156,8 @@ Blockly.RobConfig.disposeConfig = function(thisBlock) {
  *            block Block to disambiguate.
  * @return {string} Non-colliding name.
  */
-Blockly.RobConfig.findLegalName = function(name, block) {
-    while (!Blockly.RobConfig.isLegalName(name, block) || Blockly.Variables.isReservedName(name, block)) {
+Blockly.RobConfig.findLegalName = function(name, block, opt_oldName) {
+    while (!Blockly.RobConfig.isLegalName(name, block, opt_oldName) || Blockly.Variables.isReservedName(name, block)) {
         // Collision with another variable.
         var r = name.match(/^(.*?)(\d+)$/);
         if (!r) {
@@ -142,8 +169,10 @@ Blockly.RobConfig.findLegalName = function(name, block) {
     return name;
 };
 
-Blockly.RobConfig.isLegalName = function(name, block) {
+Blockly.RobConfig.isLegalName = function(name, block, opt_oldName) {
     var blocks = Blockly.mainWorkspace.getAllBlocks();
+
+    var names = [];
     // Iterate through every block.
     for (var x = 0; x < blocks.length; x++) {
         if (blocks[x] == block) {
@@ -151,10 +180,23 @@ Blockly.RobConfig.isLegalName = function(name, block) {
         }
         var func = blocks[x].getConfigDecl;
         if (func) {
-            var varName = func.call(blocks[x]);
-            if (Blockly.Names.equals(name, varName.name)) {
-                return false;
+            var configs = func.call(blocks[x]);
+            for (var i = 0; i < configs.length; i++) {
+                names.push(configs[i].name);
             }
+        }
+    }
+    // Iterate through the block itself, as it may be a super block with subcomponents
+    for (var i = 0; i < block.inputList.length; i++) { // leave out the name itself
+        var nName = block.inputList[i].fieldRow[1].getText();
+        if (nName !== opt_oldName) {
+            names.push(nName);
+        }
+    }
+
+    for (var i = 0; i < names.length; i++) {
+        if (Blockly.Names.equals(name, names[i])) {
+            return false;
         }
     }
     return true;

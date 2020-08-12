@@ -1079,6 +1079,7 @@
 	"RELAY_TOOLTIP": "Block für die Relais.",
 	"RGBLED_TOOLTIP": "Block für RGB LED.",
 	"RGB_LED_TOOLTIP": "Schaltet die LED an oder aus oder wechselt die Farbe.",
+	"MOTOR_TOOLTIP": "Repräsentiert einen Motor.",
 	"STEPMOTOR_TOOLTIP": "Block für den Schrittmotor.",
 	"SERVO_TOOLTIP": "Block für den Servomotor.",
 	"SENSOR_MOISTURE_GETSAMPLE_TOOLTIP": "Gibt den aktuellen Wert des Feuchtigkeitsensors in Prozent zurück.",
@@ -1242,10 +1243,12 @@
 	"SWITCH_LED_MATRIX_TOOLTIP": "Aktiviert/Deaktiviert die LED Matrix um die doppelt belegten Pins zu nutzen.",
 	"ACTION_EVAL": "werte",
 	"ACTION_EVAL_AS": "als",
+	"ACTION_CALLIBOT": "Calli:bot",
 	"CB_LEFT": "Calli:bot links",
     "CB_RIGHT": "Calli:bot rechts",
     "CB_ALL": "Calli:bot alle",
 	"CB_BOTH": "Calli:bot beide",
+	"CALLIBOT_TOOLTIP": "Repräsentiert das Calli:bot Erweiterungsboard.",
     "PORT_INTERNAL": "Port intern",
 
     "CONFIGURATION_ERROR_WLAN_CREDENTIALS_MISSING" : "WLAN Zugangsdaten fehlen, bitte unter dem »Robot -> WLAN Zugangsdaten« ... Menupunkt eingeben!",
@@ -1392,6 +1395,19 @@
     "MENU_DEBUG_STEP_BREAKPOINT_TOOLTIP" : "Fahre fort bis der nächste Haltepunkt im Programm erreicht wird.",
     "MENU_DEBUG_STEP_OVER_TOOLTIP" : "Mache einen Schritt über den nächsten Block im Programm.",
     "MENU_DEBUG_STEP_INTO_TOOLTIP" : "Mache einen Schritt hinein in den nächste Block im Programm.",
-    "MENU_SIM_VARIABLES_TOOLTIP" : "Öffne/schließe die Ansicht der Variablen."
+	"MENU_SIM_VARIABLES_TOOLTIP" : "Öffne/schließe die Ansicht der Variablen.",
+	
+	"LEFT_MOTOR" : "Motor links",
+	"RIGHT_MOTOR" : "Motor rechts",
+	"LEFT_FRONT_RGBLED" : "RGB LED links vorne",
+	"RIGHT_FRONT_RGBLED" : "RGB LED rechts vorne",
+	"LEFT_REAR_RGBLED" : "RGB LED links hinten",
+	"RIGHT_REAR_RGBLED" : "RGB LED rechts hinten",
+	"ALL_RGBLED" : "RGB LEDs alle",
+	"LEFT_LED" : "LED links",
+	"RIGHT_LED" : "LED rechts",
+	"BOTH_LED" : "LEDs beide",
+	"LEFT_INFRARED_SENSOR" : "Infrarotsensor links",
+	"RIGHT_INFRARED_SENSOR" : "Infrarotsensor rechts"
 }
 
