@@ -51,7 +51,7 @@ var useFile = process.argv[2];
 var inputXml;
 var outputFileName;
 if (useFile === '-f' && process.argv[3]) {
-    inputXml = fs.readFileSync(path.join(__dirname, process.argv[3]), {encoding:'utf8'});
+    inputXml = fs.readFileSync(process.argv[3], {encoding:'utf8'});
     outputFileName = process.argv[4];
 } else if (useFile === '-nf' && process.argv[3]) {
     inputXml = process.argv[3];
@@ -99,13 +99,15 @@ function getConfigPorts(actorName) {
 global.getConfigPorts = getConfigPorts;
 
 try {
+    Blockly.Events.disable();
+
     // File to DOM
     var inputDom = Blockly.Xml.textToDom(inputXml);
 
     // Create a headless workspace
     var workspace = new Blockly.Workspace();
-    workspace.device = inputDom.getAttribute('robottype');
-    workspace.version = inputDom.getAttribute('xmlversion');
+    workspace.device = inputDom.getAttribute('robottype') || 'ev3';
+    workspace.version = inputDom.getAttribute('xmlversion') || '2.0';
     workspace.description = inputDom.getAttribute('description');
     workspace.tags = inputDom.getAttribute('tags');
     Blockly.mainWorkspace = workspace;
@@ -124,7 +126,7 @@ try {
     // DOM to file
     var outputXml = Blockly.Xml.domToText(dom);
     if (outputFileName) {
-        fs.writeFileSync(path.join(__dirname, outputFileName), outputXml, {encoding:'utf8'});
+        fs.writeFileSync(outputFileName, outputXml, {encoding:'utf8'});
     } else {
         console.log(outputXml);
     }
