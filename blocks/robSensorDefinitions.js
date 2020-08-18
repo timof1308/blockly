@@ -239,6 +239,23 @@ sensors.compass.sensebox = {
     ports : 'CONFIGURATION'
 };
 
+sensors.colourtcs3472 = {};
+sensors.colourtcs3472.calliope = {
+    title : 'COLOURTCS3472',
+    modes : [ {
+        name : 'COLOUR',
+        type : 'Colour',
+       }, {
+        name : 'LIGHT',
+        type : 'Number',
+        unit : 'PERCENT'
+    }, {
+        name : 'RGB',
+        type : 'Array_Number',
+    } ],
+    ports : 'CONFIGURATION'
+};
+
 sensors.detectface = {};
 sensors.detectface.nao = {
     title : 'DETECTFACE',

@@ -1396,6 +1396,9 @@
     "MENU_DEBUG_STEP_OVER_TOOLTIP" : "Mache einen Schritt über den nächsten Block im Programm.",
     "MENU_DEBUG_STEP_INTO_TOOLTIP" : "Mache einen Schritt hinein in den nächste Block im Programm.",
 	"MENU_SIM_VARIABLES_TOOLTIP" : "Öffne/schließe die Ansicht der Variablen.",
+	"GAIN": "Empfindlichket",
+    "I_TIME": "Integrationszeit",
+    "SENSOR_COLOURTCS3472": "Farbsensor TCS3472",
 	
 	"LEFT_MOTOR" : "Motor links",
 	"RIGHT_MOTOR" : "Motor rechts",

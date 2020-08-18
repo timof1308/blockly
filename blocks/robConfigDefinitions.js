@@ -237,6 +237,19 @@ confBlocks.accelerometer.sensebox = {
 };
 confBlocks.accelerometer.arduino = confBlocks.accelerometer.sensebox;
 
+
+confBlocks.colourtcs3472 = {};
+confBlocks.colourtcs3472.calliope = {
+title : 'COLOURTCS3472',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    dropdowns : [ [ 'GAIN', [ [ '1x', '1X' ], [ '4x', '4X' ],[ '16x', '16X' ],[ '60x', '60X' ] ]],
+                  ['I_TIME',[["2.4ms", "2_4MS"], ["24ms", "24MS"], ["50ms", "50MS"], ["101ms", "101MS"], ["154ms", "154MS"], ["700ms", "700MS"] ]]],
+    pins : function(a) {
+        return [['A0', 'A0']];
+    },
+    sensor : true
+};
+
 confBlocks.compass = {};
 confBlocks.compass.calliope = {
     title: 'COMPASS',

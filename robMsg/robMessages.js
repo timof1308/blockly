@@ -1514,7 +1514,9 @@ Blockly.Msg.MATH_CAST_TOSTRING_TOOLTIP = 'Convert this number into a string.';
 Blockly.Msg.MATH_CAST_TOCHAR_TOOLTIP = 'Convert this number into a single ASCII character';
 Blockly.Msg.TEXT_CAST_CHAR_TONUMBER_TOOLTIP = 'Convert the character at the given position in this string into the corresponding ASCII number. The first character in the string is at position 0!';
 Blockly.Msg.TEXT_CAST_STRING_TONUMBER_TOOLTIP = 'Convert this string into a number, if it contains a number.';
-
+Blockly.Msg.GAIN = 'gain';
+Blockly.Msg.I_TIME = 'integration time';
+Blockly.Msg.SENSOR_COLOURTCS3472 = 'colour sensor TCS3472';
 Blockly.Msg.LEFT_MOTOR = 'motor left';
 Blockly.Msg.RIGHT_MOTOR = 'motor right';
 Blockly.Msg.LEFT_FRONT_RGBLED = 'RGB LED left front';
@@ -1535,3 +1537,6 @@ Blockly.Msg.MODE_IAQ = 'Indoor Air Quality (IAQ)';
 Blockly.Msg.MODE_CALIBRATION = 'Calibration Value';
 Blockly.Msg.MODE_CO2EQUIVALENT = 'CO2 Equivalent';
 Blockly.Msg.MODE_VOCEQUIVALENT = 'Breathe VOC Equivalent';
+Blockly.Msg.SENSOR_COLOURTCS3472_COLOUR_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_COLOUR_GETSAMPLE_TOOLTIP;
+Blockly.Msg.SENSOR_COLOURTCS3472_LIGHT_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_LIGHT_GETSAMPLE_TOOLTIP;
+Blockly.Msg.SENSOR_COLOURTCS3472_RGB_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_RGB_GETSAMPLE_TOOLTIP;
