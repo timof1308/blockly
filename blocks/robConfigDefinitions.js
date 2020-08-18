@@ -836,6 +836,16 @@ confBlocks.callibot.calliope = {
                       [ 'SENSOR_ULTRASONIC', 'ULTRASONIC' ] ]
 };
 
+confBlocks.environmental = {}
+confBlocks.environmental.sensebox = {
+    title : 'ENVIRONMENTAL',
+    ports : [ [ 'I2C', 'I2C' ] ],
+    pins : function(a) {
+        return [ [ 'I2C', 'I2C' ] ];
+    },
+    sensor : true
+};
+
 function initConfBlocks() {
     for ( var confBlock in confBlocks) {
         if (confBlocks.hasOwnProperty(confBlock)) {

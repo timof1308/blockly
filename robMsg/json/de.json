@@ -1408,6 +1408,14 @@
 	"RIGHT_LED" : "LED rechts",
 	"BOTH_LED" : "LEDs beide",
 	"LEFT_INFRARED_SENSOR" : "Infrarotsensor links",
-	"RIGHT_INFRARED_SENSOR" : "Infrarotsensor rechts"
+	"RIGHT_INFRARED_SENSOR" : "Infrarotsensor rechts",
+	"SENSOR_ENVIRONMENTAL" : "Umweltsensor",
+	"SENSOR_ENVIRONMENTAL_GETSAMPLE_TOOLTIP" : "Gibt Messwerte des Umweltsensors zurück.",
+	"ENVIRONMENTAL_TOOLTIP" : "Repräsentiert einen Umweltsensor.",
+	"ENVIRONMENTAL_TOOLTIP_SENSEBOX" : "Repräsentiert den BME680 Umweltsensor.",
+	"MODE_IAQ" : "Innenraumluftqualität (IAQ)",
+	"MODE_CALIBRATION" : "Kalibrierungswert",
+	"MODE_CO2EQUIVALENT" : "CO2 Äquivalent",
+	"MODE_VOCEQUIVALENT" : "Atemluft VOC Äquivalent"
 }
 
