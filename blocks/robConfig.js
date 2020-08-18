@@ -163,7 +163,7 @@ Blockly.Blocks['robConf_generic'] = {
                 for (var i = 0; i < confBlock.subcomponents.length; i++) {
                     configDecl.push({
                         // subcomponents may have an additional underscore in the name, to give it a unique name
-                        'type' : confBlock.subcomponents[i][0].toLowerCase().split('_')[0],
+                        'type' : confBlock.subcomponents[i][1].toLowerCase().split('_')[0],
                         'name' : that.inputList[i + 1].fieldRow[1].getText()
                     });
                 }
