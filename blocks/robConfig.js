@@ -65,6 +65,9 @@ Blockly.Blocks['robConf_generic'] = {
         this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg[type + confBlock.title + "_" + this.workspace.device.toUpperCase()]
                 || Blockly.Msg[type + confBlock.title] || type + confBlock.title, 'SENSORTITLE').appendField(nameField, 'NAME');
 
+        if (confBlock.super) {
+            this.super = true;
+        }
         if (confBlock.bricks) {
             var container = Blockly.Workspace.getByContainer("bricklyDiv");
             if (container) {

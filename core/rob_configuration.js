@@ -187,10 +187,12 @@ Blockly.RobConfig.isLegalName = function(name, block, opt_oldName) {
         }
     }
     // Iterate through the block itself, as it may be a super block with subcomponents
-    for (var i = 0; i < block.inputList.length; i++) { // leave out the name itself
-        var nName = block.inputList[i].fieldRow[1].getText();
-        if (nName !== opt_oldName) {
-            names.push(nName);
+    if (block.super) {
+        for (var i = 0; i < block.inputList.length; i++) { // leave out the name itself
+            var nName = block.inputList[i].fieldRow[1].getText();
+            if (nName !== opt_oldName) {
+                names.push(nName);
+            }
         }
     }
 

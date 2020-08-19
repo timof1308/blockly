@@ -627,7 +627,7 @@ Blockly.Blocks['robSensors_generic_all'] = {
                                 var configs = func.call(blocks[x]);
                                 for (var y = 0; y < configs.length; y++) {
                                     var config = configs[y];
-                                    if (config.type === sensorTitle) {
+                                    if (config.type.toUpperCase() === sensorTitle) {
                                         portsList.push([ config.name, config.name ]);
                                     }
                                 }
