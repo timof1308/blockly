@@ -607,13 +607,12 @@ confBlocks.rgbled.calliope = {
 };
 confBlocks.rgbled.sensebox = {
     title : 'RGBLED',
-    ports : [ [ 'red', 'RED' ], [ 'green', 'GREEN' ], [ 'blue', 'BLUE' ] ],
+    ports : [ [ 'input', 'INPUT' ] ],
     pins : function(a) {
         return Blockly.Blocks.robConfigDefinitions['pinsDigital'][a];
     },
     sensor : false,
-    standardPins : [ '1', '2', '3' ],
-    fixedPorts : [ [ 'GND', 'GND' ] ]
+    fixedPorts : [ ['+', '5V'], [ 'GND', 'GND' ] ]
 };
 
 confBlocks.stepmotor = {};
