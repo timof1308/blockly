@@ -1522,3 +1522,28 @@ Blockly.Blocks['robActions_eval_expr'] = {
         this.setOutput(true, type);
     }
 };
+
+Blockly.Blocks['robActions_nnstep'] = {
+    /**
+     * Represents a step in a neural network
+     * 
+     * @constructs robActions_nnstep
+     * @this.Blockly.Block
+     * @param {String}
+     * @returns immediately
+     * @memberOf Block
+     */
+    init : function() {
+        this.setColour("#646464");
+        this.appendDummyInput().appendField("nnStep");
+        this.appendValueInput("INPUT0").appendField("INPUT0");
+        this.appendValueInput("INPUT1").appendField("INPUT1");
+        this.appendValueInput("INPUT2").appendField("INPUT2");
+        this.appendValueInput("OUTPUT0").appendField("OUTPUT0");
+        this.appendValueInput("OUTPUT1").appendField("OUTPUT1");
+        this.appendValueInput("OUTPUT2").appendField("OUTPUT2");
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setTooltip("Run a step in the configured neural network");
+    }
+};
