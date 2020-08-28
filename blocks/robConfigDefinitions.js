@@ -591,7 +591,11 @@ confBlocks.rgbled.arduino = {
     title : 'RGBLED',
     ports : [ [ 'red', 'RED' ], [ 'green', 'GREEN' ], [ 'blue', 'BLUE' ] ],
     pins : function(a) {
-        return Blockly.Blocks.robConfigDefinitions['pinsDigital'][a];
+        var pins = Blockly.Blocks.robConfigDefinitions['pinsDigital'][a];
+        if (pins !== undefined) {
+            pins = pins().concat([[Blockly.Msg.PORT_INTERNAL, 'LED_BUILTIN']]); // add internal LED to available LEDs
+        }
+        return pins;
     },
     sensor : false,
     standardPins : [ '5', '6', '3' ],
