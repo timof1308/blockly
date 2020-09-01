@@ -555,6 +555,7 @@ Blockly.Msg.CONFIGURATION_ERROR_MOTOR_LEFT_UNREGULATED = 'Left motor is not regu
 Blockly.Msg.CONFIGURATION_ERROR_MOTOR_RIGHT_UNREGULATED = 'Right motor is not regulated!';
 Blockly.Msg.CONFIGURATION_ERROR_OTHER_NOT_SUPPORTED = 'Other power consumer does not support this type of block!';
 Blockly.Msg.CONFIGURATION_ERROR_OVERLAPPING_PORTS = 'Another component is already using the same port!';
+Blockly.Msg.CONFIGURATION_ERROR_NO_BUILTIN_RGBLED = 'This board does not have a built in RGB LED!';
 
 Blockly.Msg.DATATABLE_PROGRAM_NAME = 'Program name';
 Blockly.Msg.DATATABLE_CREATED_BY = 'Creator';
