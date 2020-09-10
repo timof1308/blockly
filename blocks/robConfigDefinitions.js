@@ -853,7 +853,10 @@ confBlocks.callibot.calliope = {
                       [ 'BOTH_LED', 'LED_B' ],
                       [ 'LEFT_INFRARED_SENSOR', 'INFRARED_L' ],
                       [ 'RIGHT_INFRARED_SENSOR', 'INFRARED_R' ],
-                      [ 'SENSOR_ULTRASONIC', 'ULTRASONIC' ] ]
+                      [ 'SENSOR_ULTRASONIC', 'ULTRASONIC' ],
+                      [ 'SERVO_S1', 'SERVO_S1'],
+                      [ 'SERVO_S2', 'SERVO_S2']
+                     ]
 };
 
 confBlocks.environmental = {}

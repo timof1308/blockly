@@ -1413,6 +1413,8 @@
 	"BOTH_LED" : "LEDs beide",
 	"LEFT_INFRARED_SENSOR" : "Infrarotsensor links",
 	"RIGHT_INFRARED_SENSOR" : "Infrarotsensor rechts",
+	"SERVO_S1" : "Servomotor S1",
+	"SERVO_S2" : "Servomotor S2",
 	"SENSOR_ENVIRONMENTAL" : "Umweltsensor",
 	"SENSOR_ENVIRONMENTAL_GETSAMPLE_TOOLTIP" : "Gibt Messwerte des Umweltsensors zurück.",
 	"ENVIRONMENTAL_TOOLTIP" : "Repräsentiert einen Umweltsensor.",
