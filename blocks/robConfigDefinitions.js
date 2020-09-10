@@ -540,7 +540,11 @@ confBlocks.buzzer.calliope = {
     ports : [ [ 'pin', 'PIN1' ] ],
     sensor : false
 };
-confBlocks.buzzer.microbit = confBlocks.buzzer.calliope;
+confBlocks.buzzer.microbit = {
+    title : 'BUZZER',
+    fixedPorts : [ [ 'pin', '0' ], [ 'GND', 'GND' ] ],
+    sensor : false
+};
 confBlocks.buzzer.sensebox = {
     title : 'BUZZER',
     ports : [ [ '+', '+' ] ],
