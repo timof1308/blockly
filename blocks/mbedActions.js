@@ -197,8 +197,12 @@ Blockly.Blocks['mbedActions_display_text'] = {
             this.appendValueInput('OUT').appendField(Blockly.Msg.DISPLAY_SHOW).appendField(what, 'TYPE').setCheck([ 'Number', 'Boolean', 'String' ]);
         } else {
             var what = new Blockly.FieldDropdown([ [ Blockly.Msg.DISPLAY_TEXT, 'TEXT' ] ]);
-            var port = new Blockly.FieldDropdown([ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ]);
-            this.appendValueInput('OUT').appendField(Blockly.Msg.DISPLAY_SHOW).appendField(what, 'TYPE').appendField(Blockly.Msg.LED_MATRIX).appendField(port, 'ACTORPORT').setCheck([
+            this.dropDownPorts = getConfigPorts('ledmatrix');
+            this.dependConfig = {
+                'type' : 'ledmatrix',
+                'dropDown' : this.dropDownPorts
+            };
+            this.appendValueInput('OUT').appendField(Blockly.Msg.DISPLAY_SHOW).appendField(what, 'TYPE').appendField(Blockly.Msg.LED_MATRIX).appendField(this.dropDownPorts, 'ACTORPORT').setCheck([
                     'Number', 'Boolean', 'String' ]);
         }
         this.setPreviousStatement(true);
@@ -236,8 +240,12 @@ Blockly.Blocks['mbedActions_display_image'] = {
         if (this.workspace.device !== 'mbot') {
             this.appendValueInput('VALUE').appendField(Blockly.Msg.DISPLAY_SHOW).appendField(what, 'TYPE').setCheck('Image');
         } else {
-            var port = new Blockly.FieldDropdown([ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ]);
-            this.appendValueInput('VALUE').appendField(Blockly.Msg.DISPLAY_SHOW).appendField(what, 'TYPE').appendField(Blockly.Msg.LED_MATRIX).appendField(port, 'ACTORPORT').setCheck('Image');
+            this.dropDownPorts = getConfigPorts('ledmatrix');
+            this.dependConfig = {
+                'type' : 'ledmatrix',
+                'dropDown' : this.dropDownPorts
+            };
+            this.appendValueInput('VALUE').appendField(Blockly.Msg.DISPLAY_SHOW).appendField(what, 'TYPE').appendField(Blockly.Msg.LED_MATRIX).appendField(this.dropDownPorts, 'ACTORPORT').setCheck('Image');
         }
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -298,8 +306,12 @@ Blockly.Blocks['mbedActions_display_clear'] = {
         if (this.workspace.device !== 'mbot') {
             this.appendDummyInput().appendField(Blockly.Msg.DISPLAY_CLEAR);
         } else {
-            var port = new Blockly.FieldDropdown([ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ]);
-            this.appendDummyInput().appendField(Blockly.Msg.CLEAR).appendField(Blockly.Msg.LED_MATRIX).appendField(port, 'ACTORPORT');
+            this.dropDownPorts = getConfigPorts('ledmatrix');
+            this.dependConfig = {
+                'type' : 'ledmatrix',
+                'dropDown' : this.dropDownPorts
+            };
+            this.appendDummyInput().appendField(Blockly.Msg.CLEAR).appendField(Blockly.Msg.LED_MATRIX).appendField(this.dropDownPorts, 'ACTORPORT');
         }
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -363,9 +375,13 @@ Blockly.Blocks['mbedActions_display_setBrightness'] = {
             this.appendValueInput('BRIGHTNESS').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.SET + ' '
                     + Blockly.Msg.DISPLAY_PIXEL_BRIGHTNESS);
         } else {
-            var port = new Blockly.FieldDropdown([ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ]);
+            this.dropDownPorts = getConfigPorts('ledmatrix');
+            this.dependConfig = {
+                'type' : 'ledmatrix',
+                'dropDown' : this.dropDownPorts
+            };
             this.appendValueInput('BRIGHTNESS').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.SET + ' '
-                    + Blockly.Msg.DISPLAY_PIXEL_BRIGHTNESS).appendField(Blockly.Msg.LED_MATRIX).appendField(port, 'ACTORPORT');
+                    + Blockly.Msg.DISPLAY_PIXEL_BRIGHTNESS).appendField(Blockly.Msg.LED_MATRIX).appendField(this.dropDownPorts, 'ACTORPORT');
         }
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -466,18 +482,17 @@ Blockly.Blocks['mbedActions_play_note'] = {
         var duration = new Blockly.FieldDropdown([ [ Blockly.Msg.PLAY_WHOLE, '2000' ], [ Blockly.Msg.PLAY_HALF, '1000' ], [ Blockly.Msg.PLAY_QUARTER, '500' ],
                 [ Blockly.Msg.PLAY_EIGHTH, '250' ], [ Blockly.Msg.PLAY_SIXTEENTH, '125' ] ]);
         
-        if (this.workspace.device === 'calliope' || this.workspace.device === 'microbit' || this.workspace.device === 'wedo') {
+        if (this.workspace.device === 'calliope' || this.workspace.device === 'microbit' || this.workspace.device === 'wedo' || this.workspace.device === 'ev3' || this.workspace.device === 'mbot' || this.workspace.device === 'nxt' || this.workspace.device === 'botnroll') {
             this.dropDownPorts = getConfigPorts('buzzer');
             this.dependConfig = {
                 'type' : 'buzzer',
                 'dropDown' : this.dropDownPorts
             };
-            
             this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts, 'ACTORPORT').appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
         } else {
             this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
         }
-        if (this.workspace.device === 'calliope' || this.workspace.device === 'microbit') {
+        if (this.workspace.device === 'calliope' || this.workspace.device === 'microbit' || this.workspace.device === 'ev3' || this.workspace.device === 'mbot' || this.workspace.device === 'nxt' || this.workspace.device === 'botnroll') {
             hidePortIfOnlyInbuilt(this);
         }
         this.setPreviousStatement(true);

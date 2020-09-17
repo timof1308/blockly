@@ -54,25 +54,6 @@ sensors.accelerometer.calliope = {
     portsHidden : true
 };
 sensors.accelerometer.microbit = sensors.accelerometer.calliope;
-
-sensors.accelerometer.mbot = {
-    title : 'ACCELEROMETER',
-    modes : [ {
-        name : 'X',
-        type : 'Number',
-        unit : 'g'
-    }, {
-        name : 'Y',
-        type : 'Number',
-        unit : 'g'
-    }, {
-        name : 'Z',
-        type : 'Number',
-        unit : 'g'
-    } ],
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ]
-};
-
 sensors.accelerometer.nao = {
     title : 'ACCELEROMETER',
     modes : [ {
@@ -84,7 +65,6 @@ sensors.accelerometer.nao = {
     } ],
     ports : [ [ 'x', 'X' ], [ 'y', 'Y' ], [ 'z', 'Z' ] ]
 };
-
 sensors.accelerometer.sensebox = {
     title : 'ACCELEROMETER',
     modes : [ {
@@ -102,9 +82,7 @@ sensors.accelerometer.sensebox = {
     } ],
     ports : 'CONFIGURATION'
 };
-
 sensors.accelerometer.arduino = sensors.accelerometer.sensebox;
-
 sensors.accelerometer.vorwerk = sensors.accelerometer.calliope;
 
 sensors.battery = {};
@@ -130,7 +108,7 @@ sensors.code.bob3 = {
 sensors.colour = {};
 sensors.colour.botnroll = {
     title : 'COLOUR',
-    ports : [ [ 'LEFT', '1' ], [ 'RIGHT', '2' ] ],
+    ports : 'CONFIGURATION',
     modes : [ {
         name : 'COLOUR',
         type : 'Colour',
@@ -146,7 +124,6 @@ sensors.colour.botnroll = {
 };
 sensors.colour.ev3 = {
     title : 'COLOUR',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     modes : [ {
         name : 'COLOUR',
         type : 'Colour',
@@ -165,7 +142,7 @@ sensors.colour.ev3 = {
         name : 'RGB',
         type : 'Array_Number'
     } ],
-    standardPort : '3'
+    ports : 'CONFIGURATION'
 };
 sensors.colour.nxt = {
     title : 'COLOUR',
@@ -195,7 +172,9 @@ sensors.compass.botnroll = {
         name : 'ANGLE',
         type : 'Number',
         unit : 'DEGREE'
-    } ]
+    } ],
+    ports: 'CONFIGURATION',
+    portsHidden : true
 };
 sensors.compass.calliope = {
     title : 'COMPASS',
@@ -219,8 +198,7 @@ sensors.compass.ev3 = {
         type : 'Number',
         unit : 'DEGREE'
     } ],
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    standardPort : '1'
+    ports : 'CONFIGURATION'
 };
 
 sensors.compass.sensebox = {
@@ -345,8 +323,7 @@ sensors.encoder.ev3 = {
         type : 'Number',
         unit : 'CM'
     } ],
-    ports : [ [ 'A', 'A' ], [ 'B', 'B' ], [ 'C', 'C' ], [ 'D', 'D' ] ],
-    standardPort : 'B'
+    ports : 'CONFIGURATION'
 };
 
 sensors.encoder.nxt = {
@@ -481,21 +458,6 @@ sensors.gyro.calliope = {
     portsHidden : true
 };
 sensors.gyro.nao = sensors.gyro.calliope;
-
-sensors.gyro.mbot = {
-    title : 'GYRO',
-    modes : [ {
-        name : 'X',
-        type : 'Number',
-        unit : 'DEGREE'
-    }, {
-        name : 'Y',
-        type : 'Number',
-        unit : 'DEGREE'
-    } ],
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ]
-};
-
 sensors.gyro.ev3 = {
     title : 'GYRO',
     modes : [ {
@@ -511,10 +473,8 @@ sensors.gyro.ev3 = {
         op : 'NUM_REV',
         value : 90
     } ],
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    standardPort : '2'
+    ports : 'CONFIGURATION'
 };
-
 sensors.gyro.wedo = {
     title : 'GYRO',
     modes : [ {
@@ -526,7 +486,6 @@ sensors.gyro.wedo = {
             [ 'SLOT_TILTED_NO', 'NO' ], [ 'SLOT_TILTED_ANY', 'ANY' ] ],
     ports : 'CONFIGURATION'
 };
-
 sensors.gyro.sensebox = {
     title : 'GYRO',
     modes : [ {
@@ -544,7 +503,6 @@ sensors.gyro.sensebox = {
     } ],
     ports : 'CONFIGURATION'
 };
-
 sensors.gyro.arduino = {
     title : 'GYRO',
     modes : [ {
@@ -566,7 +524,6 @@ sensors.gyro.arduino = {
 sensors.htcolour = {};
 sensors.htcolour.ev3 = {
     title : 'HTCOLOUR',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     modes : [ {
         name : 'COLOUR',
         type : 'Colour',
@@ -585,7 +542,7 @@ sensors.htcolour.ev3 = {
         name : 'RGB',
         type : 'Array_Number'
     } ],
-    standardPort : '3'
+    ports : 'CONFIGURATION'
 };
 sensors.htcolour.nxt = sensors.htcolour.ev3;
 
@@ -635,7 +592,7 @@ sensors.humidity.calliope = {
 sensors.infrared = {};
 sensors.infrared.botnroll = {
     title : 'INFRARED',
-    ports : [ [ 'LEFT', '1' ], [ 'RIGHT', '2' ], [ 'BOTH', 'BOTH' ] ],
+    ports : 'CONFIGURATION',
     modes : [ {
         name : 'OBSTACLE',
         type : 'Boolean'
@@ -685,14 +642,12 @@ sensors.infrared.mbot = {
         name : 'LINE',
         type : 'Boolean'
     } ],
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    slots : [ [ 'SLOT_LEFT', '1' ], [ 'SLOT_RIGHT', '2' ] ],
-    standardPort : '2'
+    ports : 'CONFIGURATION',
+    slots : [ [ 'SLOT_LEFT', '1' ], [ 'SLOT_RIGHT', '2' ] ]
 };
 
 sensors.infrared.ev3 = {
     title : 'INFRARED',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     modes : [ {
         name : 'DISTANCE',
         type : 'Number',
@@ -700,7 +655,8 @@ sensors.infrared.ev3 = {
     }, {
         name : 'PRESENCE',
         type : 'Array_Number'
-    } ]
+    } ],
+    ports : 'CONFIGURATION'
 };
 
 sensors.infrared.wedo = {
@@ -726,7 +682,6 @@ sensors.infrared.edison = {
 sensors.irseeker = {};
 sensors.irseeker.ev3 = {
     title : 'IRSEEKER',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     modes : [ {
         name : 'MODULATED',
         type : 'Number',
@@ -735,7 +690,8 @@ sensors.irseeker.ev3 = {
         name : 'UNMODULATED',
         type : 'Number',
         unit : 'DEGREE'
-    } ]
+    } ],
+    ports : 'CONFIGURATION'
 };
 
 sensors.irseeker.edison = {
@@ -754,7 +710,7 @@ sensors.key.botnroll = {
         type : 'Boolean',
         question : true
     } ],
-    ports : [ [ '1', 'LEFT' ], [ '2', 'ENTER' ], [ '3', 'RIGHT' ], [ 'SENSOR_KEY_ANY', 'ANY' ] ]
+    ports : 'CONFIGURATION'
 };
 
 sensors.key.arduino = {
@@ -773,9 +729,10 @@ sensors.key.mbot = {
         name : 'PRESSED',
         type : 'Boolean',
         question : true
-    } ]
+    } ],
+    ports : 'CONFIGURATION',
+    portsHidden : true
 };
-
 sensors.key.calliope = {
     title : 'KEY',
     modes : [ {
@@ -793,8 +750,7 @@ sensors.key.ev3 = {
         type : 'Boolean',
         question : true
     } ],
-    ports : [ [ 'SENSOR_KEY_ENTER', 'ENTER' ], [ 'SENSOR_KEY_UP', 'UP' ], [ 'SENSOR_KEY_DOWN', 'DOWN' ], [ 'SENSOR_KEY_LEFT', 'LEFT' ],
-            [ 'SENSOR_KEY_RIGHT', 'RIGHT' ], [ 'SENSOR_KEY_ESCAPE', 'ESCAPE' ], [ 'SENSOR_KEY_ANY', 'ANY' ] ]
+    ports : 'CONFIGURATION'
 };
 sensors.key.nxt = {
     title : 'KEY',
@@ -845,7 +801,7 @@ sensors.light.botnroll = {
         type : 'Number',
         unit : 'PERCENT'
     } ],
-    ports : [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '5', '5' ], [ '6', '6' ], [ '7', '7' ] ]
+    ports : 'CONFIGURATION'
 };
 sensors.light.calliope = {
     title : 'LIGHT',
@@ -882,7 +838,7 @@ sensors.light.mbot = {
         unit : 'PERCENT',
         value : 50
     } ],
-    ports : [ [ 'PORT_INTERNAL', '6' ], [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ]
+    ports : 'CONFIGURATION'
 };
 sensors.light.edison = {
 	title : 'LIGHT',
@@ -938,16 +894,6 @@ sensors.motion.arduino = {
     ports : 'CONFIGURATION'
 };
 
-sensors.motion.mbot = {
-    title : 'MOTION',
-    modes : [ {
-        name : 'PRESENCE',
-        type : 'Boolean'
-    } ],
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    standardPort : '3'
-};
-
 sensors.out = {};
 sensors.out.arduino = {
     title : 'OUT',
@@ -997,17 +943,6 @@ sensors.potentiometer.arduino = {
 };
 
 sensors.potentiometer.sensebox = sensors.potentiometer.arduino;
-
-sensors.potentiometer.mbot = {
-    title : 'POTENTIOMETER',
-    modes : [ {
-        name : 'VALUE',
-        type : 'Number',
-        unit : 'VOLT'
-    } ],
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    standardPort : '4'
-};
 
 sensors.pintouch = {};
 sensors.pintouch.bob3 = {
@@ -1097,8 +1032,7 @@ sensors.sound.ev3 = {
         op : 'NUM_REV',
         value : 50
     } ],
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    standardPort : '2'
+    ports : 'CONFIGURATION'
 };
 
 sensors.sound.sensebox = {
@@ -1114,7 +1048,6 @@ sensors.sound.sensebox = {
 };
 
 sensors.sound.nxt = sensors.sound.ev3;
-sensors.sound.mbot = sensors.sound.ev3;
 sensors.sound.edison = {
 	title : 'SOUND',
 	modes : [ {
@@ -1155,17 +1088,6 @@ sensors.temperature.calliope = {
     portsHidden : true
 };
 sensors.temperature.microbit = sensors.temperature.calliope;
-sensors.temperature.mbot = {
-    title : 'TEMPERATURE',
-    modes : [ {
-        name : 'VALUE',
-        type : 'Number',
-        unit : 'DEGREE',
-        value : 20
-    } ],
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    standardPort : '3'
-};
 sensors.temperature.sensebox = {
     title : 'TEMPERATURE',
     modes : [ {
@@ -1216,20 +1138,17 @@ sensors.timer.festobionic = sensors.timer.ev3;
 sensors.timer.mbot = sensors.timer.ev3;
 sensors.timer.sensebox = sensors.timer.ev3;
 
-
 sensors.touch = {};
 sensors.touch.ev3 = {
     title : 'TOUCH',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     modes : [ {
         name : 'PRESSED',
         type : 'Boolean',
         question : true
     } ],
-    standardPort : '1'
+    ports : 'CONFIGURATION'
 };
 sensors.touch.nxt = sensors.touch.ev3;
-sensors.touch.mbot = sensors.touch.ev3;
 sensors.touch.nao = {
     title : 'TOUCH',
     modes : [ {
@@ -1270,28 +1189,13 @@ sensors.ultrasonic.arduino = {
     } ],
     ports : 'CONFIGURATION'
 };
+sensors.ultrasonic.botnroll = sensors.ultrasonic.arduino;
+sensors.ultrasonic.calliope = sensors.ultrasonic.arduino;
+sensors.ultrasonic.mbot = sensors.ultrasonic.arduino;
+sensors.ultrasonic.nxt = sensors.ultrasonic.arduino;
 sensors.ultrasonic.sensebox = sensors.ultrasonic.arduino;
-sensors.ultrasonic.botnroll = {
-    title : 'ULTRASONIC',
-    ports : [ [ 'LEFT', '0' ], [ 'CENTER', '1' ], [ 'RIGHT', '2' ], [ 'SENSOR_SONAR', '3' ] ],
-    modes : [ {
-        name : 'DISTANCE',
-        type : 'Number',
-        unit : 'CM'
-    } ]
-};
-sensors.ultrasonic.calliope = {
-    title : 'ULTRASONIC',
-    modes : [ {
-        name : 'DISTANCE',
-        type : 'Number',
-        unit : 'CM'
-    } ],
-    ports : 'CONFIGURATION'
-};
 sensors.ultrasonic.ev3 = {
     title : 'ULTRASONIC',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     modes : [ {
         name : 'DISTANCE',
         type : 'Number',
@@ -1300,17 +1204,7 @@ sensors.ultrasonic.ev3 = {
         name : 'PRESENCE',
         type : 'Boolean'
     } ],
-    standardPort : '4'
-};
-sensors.ultrasonic.mbot = {
-    title : 'ULTRASONIC',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    modes : [ {
-        name : 'DISTANCE',
-        type : 'Number',
-        unit : 'CM'
-    } ],
-    standardPort : '3'
+    ports : 'CONFIGURATION'
 };
 sensors.ultrasonic.nao = {
     title : 'ULTRASONIC',
@@ -1319,16 +1213,6 @@ sensors.ultrasonic.nao = {
         type : 'Number',
         unit : 'CM'
     } ]
-};
-sensors.ultrasonic.nxt = {
-    title : 'ULTRASONIC',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    modes : [ {
-        name : 'DISTANCE',
-        type : 'Number',
-        unit : 'CM'
-    } ],
-    standardPort : '4'
 };
 sensors.ultrasonic.vorwerk = {
     title : 'ULTRASONIC',
@@ -1349,31 +1233,6 @@ sensors.wall.vorwerk = {
         type : 'Number',
         unit : 'CM'
     } ]
-};
-
-sensors.flame = {};
-sensors.flame.mbot = {
-    title : 'FLAME',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    modes : [ {
-        name : 'VALUE',
-        type : 'Number',
-    } ],
-    standardPort : '4'
-};
-
-sensors.joystick = {};
-sensors.joystick.mbot = {
-    title : 'JOYSTICK',
-    ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
-    modes : [ {
-        name : 'X',
-        type : 'Number'
-    }, {
-        name : 'Y',
-        type : 'Number'
-    } ],
-    standardPort : '3'
 };
 
 sensors.particle = {};
