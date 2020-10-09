@@ -58,10 +58,17 @@ Blockly.Blocks['robConf_generic'] = {
 
         var type = confBlock.sensor ? 'SENSOR_' : 'ACTION_';
         var msg = Blockly.Msg[type + confBlock.title + "_" + this.workspace.device.toUpperCase()] || Blockly.Msg[type + confBlock.title];
-        var name = Blockly.RobConfig.findLegalName(msg.charAt(0).toUpperCase() || Blockly.Msg[type + confBlock.title]
-                || Blockly.checkMsgKey('CONFIGURATION_PORT'), this);
+
+        var nameBase = msg.charAt(0).toUpperCase() || Blockly.Msg[type + confBlock.title] || Blockly.checkMsgKey('CONFIGURATION_PORT');
+        if (confBlock.inbuilt) {
+            nameBase = '_' + nameBase;
+        }
+        var name = Blockly.RobConfig.findLegalName(nameBase, this);
         this.nameOld = name;
         var nameField = new Blockly.FieldTextInput(name, validateName);
+        if (confBlock.inbuilt) {
+            nameField.setVisible(false);
+        }
         this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg[type + confBlock.title + "_" + this.workspace.device.toUpperCase()]
                 || Blockly.Msg[type + confBlock.title] || type + confBlock.title, 'SENSORTITLE').appendField(nameField, 'NAME');
 

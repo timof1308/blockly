@@ -70,34 +70,6 @@ Blockly.Block.prototype.render = function(){
     return '';
 };
 
-// copied from robActions, not available (e.g. in mbedActions) without building
-function getConfigPorts(actorName) {
-    var ports = [];
-    var container = Blockly.Workspace.getByContainer("bricklyDiv");
-    if (container) {
-        var blocks = Blockly.Workspace.getByContainer("bricklyDiv").getAllBlocks();
-        for (var x = 0; x < blocks.length; x++) {
-            var func = blocks[x].getConfigDecl;
-            if (func) {
-                var configs = func.call(blocks[x]);
-                for (var i = 0; i < configs.length; i++) {
-                    var config = configs[i];
-                    if (config.type === actorName) {
-                        ports.push([ config.name, config.name ]);
-                    }
-                }
-            }
-        }
-    }
-
-    if (ports.length === 0) {
-        ports.push([ Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT'),
-                (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
-    }
-    return new Blockly.FieldDropdown(ports);
-};
-global.getConfigPorts = getConfigPorts;
-
 try {
     Blockly.Events.disable();
 

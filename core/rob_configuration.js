@@ -74,8 +74,11 @@ Blockly.RobConfig.renameConfig = function(thatBlock, oldName, newName, workspace
                 }
             } else {
                 dropDown[d].menuGenerator_.push([ newName, newName ]);
-                dropDown[d].arrow_.replaceChild(document.createTextNode(dropDown[d].sourceBlock_.RTL ? Blockly.FieldDropdown.ARROW_CHAR + ' ' : ' '
-                        + Blockly.FieldDropdown.ARROW_CHAR), dropDown[d].arrow_.childNodes[0]);
+                // temporary, there needs to be a possibility to go from FieldHidden to FieldDropdown and back, or hide a FieldDropdown similar to FieldHidden
+                if (dropDown[d].arrow_) {
+                    dropDown[d].arrow_.replaceChild(document.createTextNode(dropDown[d].sourceBlock_.RTL ? Blockly.FieldDropdown.ARROW_CHAR + ' ' : ' '
+                            + Blockly.FieldDropdown.ARROW_CHAR), dropDown[d].arrow_.childNodes[0]);
+                }
                 dropDown[d].render_();
             }
         }

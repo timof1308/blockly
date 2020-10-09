@@ -191,6 +191,8 @@ Blockly.Block.obtain = function(workspace, prototypeName) {
  */
 Blockly.Block.prototype.data = null;
 
+Blockly.Block.prototype.hide = null;
+
 /**
  * Colour of the block in '#RRGGBB' format.
  * @type {string}

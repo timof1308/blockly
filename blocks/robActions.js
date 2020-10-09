@@ -10,32 +10,6 @@ goog.provide('Blockly.Blocks.robActions');
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Blocks.robConfigDefinitions');
 
-function getConfigPortsActions(actorName) {
-    var ports = [];
-    var container = Blockly.Workspace.getByContainer("bricklyDiv");
-    if (container) {
-        var blocks = Blockly.Workspace.getByContainer("bricklyDiv").getAllBlocks();
-        for (var x = 0; x < blocks.length; x++) {
-            var func = blocks[x].getConfigDecl;
-            if (func) {
-                var configs = func.call(blocks[x]);
-                for (var i = 0; i < configs.length; i++) {
-                    var config = configs[i];
-                    if (config.type === actorName) {
-                        ports.push([ config.name, config.name ]);
-                    }
-                }
-            }
-        }
-    }
-
-    if (ports.length === 0) {
-        ports.push([ Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT'),
-                (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
-    }
-    return new Blockly.FieldDropdown(ports);
-};
-
 /**
  * @lends Block
  */
@@ -268,7 +242,7 @@ Blockly.Blocks['robActions_motor_on_for'] = {
         } else {
             var motorPort = new Blockly.FieldDropdown(ports);
             if (this.workspace.device === 'arduino') {
-                motorPort = getConfigPortsActions('stepmotor');
+                motorPort = getConfigPorts('stepmotor');
                 this.dependConfig = {
                     'type' : 'stepmotor',
                     'dropDown' : motorPort
@@ -317,7 +291,7 @@ Blockly.Blocks['robActions_motor_on_for_ardu'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
         if (this.workspace.device == 'arduino' || this.workspace.device == 'festobionic') {
-            var dropDownPorts = getConfigPortsActions('servo');
+            var dropDownPorts = getConfigPorts('servo');
             this.dependConfig = {
                 'type' : 'servo',
                 'dropDown' : dropDownPorts
@@ -633,7 +607,7 @@ Blockly.Blocks['robActions_display_text'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
         if (this.workspace.device == 'arduino') {
-            var dropDownPorts = getConfigPortsActions('lcd');
+            var dropDownPorts = getConfigPorts('lcd');
             this.dependConfig = {
                 'type' : 'lcd',
                 'dropDown' : dropDownPorts
@@ -675,7 +649,7 @@ Blockly.Blocks['robActions_display_text_i2c'] = {
      */
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        var dropDownPorts = getConfigPortsActions('lcdi2c');
+        var dropDownPorts = getConfigPorts('lcdi2c');
         this.dependConfig = {
             'type' : 'lcdi2c',
             'dropDown' : dropDownPorts
@@ -707,7 +681,7 @@ Blockly.Blocks['robActions_display_clear'] = {
         // this.setHelpUrl(Blockly.Msg.DISPLAY_CLEAR_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
         if (this.workspace.device == 'arduino') {
-            var dropDownPorts = getConfigPortsActions('lcd');
+            var dropDownPorts = getConfigPorts('lcd');
             this.dependConfig = {
                 'type' : 'lcd',
                 'dropDown' : dropDownPorts
@@ -736,7 +710,7 @@ Blockly.Blocks['robActions_display_clear_i2c'] = {
         // this.setHelpUrl(Blockly.Msg.DISPLAY_CLEAR_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
         if (this.workspace.device === 'arduino' || this.workspace.device === 'sensebox') {
-            var dropDownPorts = getConfigPortsActions('lcdi2c');
+            var dropDownPorts = getConfigPorts('lcdi2c');
             this.dependConfig = {
                 'type' : 'lcdi2c',
                 'dropDown' : dropDownPorts
@@ -774,7 +748,7 @@ Blockly.Blocks['robActions_play_tone'] = {
         // this.setHelpUrl(Blockly.Msg.PLAY_TONE_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
         if (this.workspace.device === 'arduino' || this.workspace.device === 'sensebox') {
-            var dropDownPorts = getConfigPortsActions('buzzer');
+            var dropDownPorts = getConfigPorts('buzzer');
             this.dependConfig = {
                 'type' : 'buzzer',
                 'dropDown' : dropDownPorts
@@ -920,7 +894,7 @@ Blockly.Blocks['robActions_brickLight_on'] = {
         }
         if (this.workspace.device === 'arduino' || this.workspace.device === 'calliope' || this.workspace.device === 'sensebox' || this.workspace.device === 'festobionic') {
             var dropDownPorts;
-            dropDownPorts = getConfigPortsActions('led');
+            dropDownPorts = getConfigPorts('led');
             this.dependConfig = {
                 'type' : 'led',
                 'dropDown' : dropDownPorts
@@ -971,7 +945,7 @@ Blockly.Blocks['robActions_led_on'] = {
                     (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
         }
         if (this.workspace.device === 'arduino' || this.workspace.device === 'sensebox') {
-            var ports = getConfigPortsActions('rgbled');
+            var ports = getConfigPorts('rgbled');
             this.dependConfig = {
                 'type' : 'rgbled',
                 'dropDown' : ports
@@ -1033,7 +1007,7 @@ Blockly.Blocks['robActions_led_off'] = {
                     (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
         }
         if (this.workspace.device === 'arduino' || this.workspace.device === 'sensebox') {
-            var ports = getConfigPortsActions('rgbled');
+            var ports = getConfigPorts('rgbled');
             this.dependConfig = {
                 'type' : 'rgbled',
                 'dropDown' : ports
@@ -1139,7 +1113,7 @@ Blockly.Blocks['robActions_set_relay'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
         var relayState = new Blockly.FieldDropdown([ [ Blockly.Msg.ON, 'OFF' ], [ Blockly.Msg.OFF, 'ON' ] ]);
-        var dropDownPorts = getConfigPortsActions('relay');
+        var dropDownPorts = getConfigPorts('relay');
         this.dependConfig = {
             'type' : 'relay',
             'dropDown' : dropDownPorts
@@ -1179,7 +1153,7 @@ Blockly.Blocks['robActions_serial_print'] = {
 Blockly.Blocks['robActions_write_pin'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        this.dropDownPorts = getConfigPortsActions('digitalin');
+        this.dropDownPorts = getConfigPorts('digitalin');
         var that = this;
         var valueType = new Blockly.FieldDropdown([ [ Blockly.Msg.MODE_DIGITAL, 'DIGITAL' ], [ Blockly.Msg.MODE_ANALOG, 'ANALOG' ] ], function(option) {
             if (option && this.sourceBlock_.getFieldValue('MODE') !== option) {
@@ -1212,7 +1186,7 @@ Blockly.Blocks['robActions_write_pin'] = {
     updatePins_ : function(option) {
     	this.protocol_ = option;
         var configBlockName = option.toLowerCase() + 'in';
-        var dropDownPorts = getConfigPortsActions(configBlockName);
+        var dropDownPorts = getConfigPorts(configBlockName);
         this.dependConfig.type = configBlockName;
         this.dropDownPorts.menuGenerator_ = dropDownPorts.menuGenerator_;
         this.dropDownPorts.arrow_ && this.dropDownPorts.arrow_.replaceChild(document.createTextNode(' '), this.dropDownPorts.arrow_.childNodes[0]);
@@ -1402,7 +1376,7 @@ Blockly.Blocks['robActions_sendData'] = {
 Blockly.Blocks['robActions_plot_point'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        var dropDownPorts = getConfigPortsActions('lcdi2c');
+        var dropDownPorts = getConfigPorts('lcdi2c');
         this.dependConfig = {
             'type' : 'lcdi2c',
             'dropDown' : dropDownPorts
@@ -1418,7 +1392,7 @@ Blockly.Blocks['robActions_plot_point'] = {
 Blockly.Blocks['robActions_plot_clear'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        var ports = getConfigPortsActions('lcdi2c');
+        var ports = getConfigPorts('lcdi2c');
         this.dependConfig = {
             'type' : 'lcdi2c',
             'dropDown' : ports

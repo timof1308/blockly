@@ -134,7 +134,11 @@ Blockly.Xml.blockToDom = function(block, statement_list) {
 
     for (var i = 0, input; input = block.inputList[i]; i++) {
         for (var j = 0, field; field = input.fieldRow[j]; j++) {
-            fieldToDom(field);
+            if (block.hide && block.hide.name === field.name) {
+
+            } else {
+                fieldToDom(field);
+            }
         }
     }
 
@@ -164,6 +168,20 @@ Blockly.Xml.blockToDom = function(block, statement_list) {
     if (block.data) {
         var dataElement = goog.dom.createDom('data', null, block.data);
         element.appendChild(dataElement);
+    }
+
+    if (block.hide) {
+        var f = {};
+        f.getValue = function() {
+            return block.hide.value;
+        }
+        f.name = block.hide.name;
+        f.EDITABLE = true;
+        fieldToDom(f);
+        var hideElement = goog.dom.createDom('hide');
+        hideElement.setAttribute("name", block.hide.name);
+        hideElement.setAttribute("value", block.hide.value);
+        element.appendChild(hideElement);
     }
 
     for (var i = 0, input; input = block.inputList[i]; i++) {
@@ -740,6 +758,10 @@ Blockly.Xml.childToBlock = function(workspace, block, xmlChild) {
         break;
     case 'data':
         block.data = xmlChild.textContent;
+        break;
+    case 'hide':
+        block.hide.name = xmlChild.getAttribute('name');
+        block.hide.value = xmlChild.getAttribute('value');
         break;
     case 'title':
         // Titles were renamed to field in December 2013.

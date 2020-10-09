@@ -217,6 +217,10 @@ Blockly.Blocks['robSensors_generic'] = {
                 'type' : sensorTitle.toLowerCase(),
                 'dropDown' : ports
             };
+
+            if (sensor.portsHidden) {
+                ports = hidePortIfOnlyInbuilt(thisBlock, ports, 'sensor');
+            }
         } else {
             ports = new Blockly.FieldHidden();
         }
@@ -488,7 +492,8 @@ Blockly.Blocks['robSensors_generic_all'] = {
                     unit : sensors[i].modes[j].unit,
                     op : sensors[i].modes[j].op,
                     value : sensors[i].modes[j].value,
-                    ports : sensors[i].ports
+                    ports : sensors[i].ports,
+                    portsHidden : sensors[i].portsHidden,
                 });
             }
         }
@@ -509,6 +514,9 @@ Blockly.Blocks['robSensors_generic_all'] = {
                     this.sourceBlock_.updatePort_(option);
                 }
             });
+        }
+        if (this.ports[0].portsHidden) {
+            this.dropDownPorts = hidePortIfOnlyInbuilt(thisBlock, this.dropDownPorts, 'sensor');
         }
         var slots = this.slots[0];
         if (Array.isArray(this.slots[0])) {
@@ -654,6 +662,9 @@ Blockly.Blocks['robSensors_generic_all'] = {
                 } else {
                     this.dropDownPorts = new Blockly.FieldDropdown(this.ports[index]);
                 }
+                if (this.sensors[index].portsHidden) {
+                    this.dropDownPorts = hidePortIfOnlyInbuilt(thisBlock, this.dropDownPorts, 'sensor');
+                }
             } else {
                 this.dropDownPorts = new Blockly.FieldDropdown(this.ports[index], function(option) {
                     if (option && this.sourceBlock_.getFieldValue('SENSOPORT') !== option) {
@@ -743,3 +754,18 @@ function getConfigPorts(actorName) {
     }
     return new Blockly.FieldDropdown(ports);
 };
+
+function hidePortIfOnlyInbuilt(block, ports, type) {
+    block.hide = {};
+    if (type === 'sensor') {
+        block.hide.name = 'SENSORPORT';
+    } else if (type === 'actor') {
+        block.hide.name = 'ACTORPORT';
+    }
+    block.hide.value = ports.getValue();
+    if (ports.menuGenerator_.length < 2) {
+        return new Blockly.FieldHidden();
+    } else {
+        return ports;
+    }
+}

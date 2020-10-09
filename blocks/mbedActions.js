@@ -429,6 +429,7 @@ Blockly.Blocks['mbedActions_play_tone'] = {
             'type' : 'buzzer',
             'dropDown' : this.dropDownPorts
         };
+        this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
         this.appendValueInput('FREQUENCE').appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts).appendField(Blockly.Msg.PLAY_FREQUENZ).setCheck('Number');
         this.appendValueInput('DURATION').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.PLAY_DURATION);
         this.setPreviousStatement(true);
@@ -461,6 +462,7 @@ Blockly.Blocks['mbedActions_play_note'] = {
             'type' : 'buzzer',
             'dropDown' : this.dropDownPorts
         };
+        this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
         var frequence = new Blockly.FieldNote('261.626');
         var duration = new Blockly.FieldDropdown([ [ Blockly.Msg.PLAY_WHOLE, '2000' ], [ Blockly.Msg.PLAY_HALF, '1000' ], [ Blockly.Msg.PLAY_QUARTER, '500' ],
                 [ Blockly.Msg.PLAY_EIGHTH, '250' ], [ Blockly.Msg.PLAY_SIXTEENTH, '125' ] ]);
@@ -537,9 +539,7 @@ Blockly.Blocks['mbedActions_leds_on'] = {
             'type' : 'rgbled',
             'dropDown' : this.dropDownPorts
         };
-        var ports = new Blockly.FieldDropdown([ [ Blockly.Msg.PORT_INTERNAL, '0' ], [ Blockly.Msg.CB_LEFT + " " + Blockly.Msg.SLOT_FRONT, '1' ],
-                [ Blockly.Msg.CB_RIGHT + " " + Blockly.Msg.SLOT_FRONT, '4' ], [ Blockly.Msg.CB_LEFT + " " + Blockly.Msg.SLOT_REAR, '2' ],
-                [ Blockly.Msg.CB_RIGHT + " " + Blockly.Msg.SLOT_REAR, '3' ], [ Blockly.Msg.CB_ALL, '5' ] ]);
+        this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
         this.appendValueInput('COLOR').appendField(Blockly.Msg.LED_ON).appendField(this.dropDownPorts, 'ACTORPORT').appendField(Blockly.Msg.BRICKLIGHT_COLOR).setCheck('Colour');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -571,6 +571,7 @@ Blockly.Blocks['mbedActions_leds_off'] = {
             'type' : 'rgbled',
             'dropDown' : this.dropDownPorts
         };
+        this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
         this.appendDummyInput().appendField(Blockly.Msg.LED_OFF).appendField(this.dropDownPorts, 'ACTORPORT');
         this.setPreviousStatement(true);
         this.setNextStatement(true);

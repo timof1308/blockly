@@ -50,7 +50,8 @@ sensors.accelerometer.calliope = {
         value : 0
     } ],
     slots : [ [ 'x', 'X' ], [ 'y', 'Y' ], [ 'z', 'Z' ], [ 'STRENGTH', 'STRENGTH' ] ],
-    ports : 'CONFIGURATION'
+    ports : 'CONFIGURATION',
+    portsHidden : true
 };
 sensors.accelerometer.microbit = sensors.accelerometer.calliope;
 
@@ -203,7 +204,8 @@ sensors.compass.calliope = {
         type : 'Number',
         unit : 'DEGREE'
     } ],
-    ports: 'CONFIGURATION'
+    ports: 'CONFIGURATION',
+    portsHidden : true
 };
 sensors.compass.microbit = sensors.compass.calliope;
 sensors.compass.ev3 = {
@@ -475,7 +477,8 @@ sensors.gyro.calliope = {
         value : 90
     } ],
     slots : [ [ 'x', 'X' ], [ 'y', 'Y' ] ],
-    ports : 'CONFIGURATION'
+    ports : 'CONFIGURATION',
+    portsHidden : true
 };
 sensors.gyro.nao = sensors.gyro.calliope;
 
@@ -851,7 +854,8 @@ sensors.light.calliope = {
         type : 'Number',
         unit : 'PERCENT'
     } ],
-    ports : 'CONFIGURATION'
+    ports : 'CONFIGURATION',
+    portsHidden : true
 };
 sensors.light.microbit = sensors.light.calliope;
 sensors.light.nxt = {
@@ -1081,7 +1085,8 @@ sensors.sound.calliope = {
         op : 'NUM_REV',
         value : 50
     } ],
-    ports : 'CONFIGURATION'
+    ports : 'CONFIGURATION',
+    portsHidden : true
 };
 sensors.sound.ev3 = {
     title : 'SOUND',
@@ -1146,7 +1151,8 @@ sensors.temperature.calliope = {
         unit : 'DEGREE',
         value : 20
     } ],
-    ports: 'CONFIGURATION'
+    ports: 'CONFIGURATION',
+    portsHidden : true
 };
 sensors.temperature.microbit = sensors.temperature.calliope;
 sensors.temperature.mbot = {

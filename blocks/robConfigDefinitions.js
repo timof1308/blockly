@@ -200,7 +200,8 @@ confBlocks.light.arduino = {
 confBlocks.light.calliope = {
     title: 'LIGHT',
     ports : [ [ 'pin', 'PIN1' ] ],
-    sensor : true
+    sensor : true,
+    inbuilt : true
 };
 confBlocks.light.microbit = confBlocks.light.calliope;
 confBlocks.light.sensebox = {
@@ -228,7 +229,8 @@ confBlocks.accelerometer = {};
 confBlocks.accelerometer.calliope = {
     title : 'ACCELEROMETER',
     ports : [ [ 'pin', 'PIN1' ] ],
-    sensor : true
+    sensor : true,
+    inbuilt : true
 };
 confBlocks.accelerometer.microbit = confBlocks.accelerometer.calliope;
 confBlocks.accelerometer.sensebox = {
@@ -254,7 +256,8 @@ confBlocks.compass = {};
 confBlocks.compass.calliope = {
     title: 'COMPASS',
     ports : [ [ 'pin', 'PIN1' ] ],
-    sensor : true
+    sensor : true,
+    inbuilt : true
 };
 confBlocks.compass.microbit = confBlocks.compass.calliope;
 confBlocks.compass.sensebox = {
@@ -330,7 +333,8 @@ confBlocks.temperature.arduino = {
 confBlocks.temperature.calliope = {
     title: 'TEMPERATURE',
     ports : [ [ 'pin', 'PIN1' ] ],
-    sensor : true
+    sensor : true,
+    inbuilt : true
 };
 confBlocks.temperature.microbit = confBlocks.temperature.calliope;
 confBlocks.temperature.sensebox = {
@@ -538,7 +542,8 @@ confBlocks.buzzer.arduino = {
 confBlocks.buzzer.calliope = {
     title : 'BUZZER',
     ports : [ [ 'pin', 'PIN1' ] ],
-    sensor : false
+    sensor : false,
+    inbuilt : true
 };
 confBlocks.buzzer.microbit = {
     title : 'BUZZER',
@@ -565,7 +570,8 @@ confBlocks.sound = {};
 confBlocks.sound.calliope = {
     title: 'SOUND',
     ports : [ [ 'pin', 'PIN1' ] ],
-    sensor : true
+    sensor : true,
+    inbuilt : true
 };
 confBlocks.sound.sensebox = {
     title : 'SOUND',
@@ -608,10 +614,8 @@ confBlocks.rgbled.arduino = {
 confBlocks.rgbled.calliope = {
     title : 'RGBLED',
     ports : [ [ 'pin', 'PIN1' ] ],
-    pins : function(a) {
-        return [ [ Blockly.Msg.PORT_INTERNAL, '0' ] ];
-    },
-    sensor : false
+    sensor : false,
+    inbuilt : true
 };
 confBlocks.rgbled.sensebox = {
     title : 'RGBLED',
@@ -668,7 +672,8 @@ confBlocks.gyro.wedo = {
 confBlocks.gyro.calliope = {
     title : 'GYRO',
     ports : [ [ 'pin', 'PIN1' ] ],
-    sensor : true
+    sensor : true,
+    inbuilt : true
 };
 confBlocks.gyro.sensebox = {
     title : 'GYRO',
