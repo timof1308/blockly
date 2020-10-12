@@ -424,13 +424,18 @@ Blockly.Blocks['mbedActions_play_tone'] = {
     init : function() {
         // this.setHelpUrl(Blockly.Msg.PLAY_TONE_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
-        this.dropDownPorts = getConfigPorts('buzzer');
-        this.dependConfig = {
-            'type' : 'buzzer',
-            'dropDown' : this.dropDownPorts
-        };
-        this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
-        this.appendValueInput('FREQUENCE').appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts).appendField(Blockly.Msg.PLAY_FREQUENZ).setCheck('Number');
+        // for some reason non mbed robots use mbedActions_play_tone
+        if (this.workspace.device === 'calliope' || this.workspace.device === 'microbit') {
+            this.dropDownPorts = getConfigPorts('buzzer');
+            this.dependConfig = {
+                'type' : 'buzzer',
+                'dropDown' : this.dropDownPorts
+            };
+            this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
+            this.appendValueInput('FREQUENCE').appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts, 'ACTORPORT').appendField(Blockly.Msg.PLAY_FREQUENZ).setCheck('Number');
+        } else {
+            this.appendValueInput('FREQUENCE').appendField(Blockly.Msg.PLAY).appendField(Blockly.Msg.PLAY_FREQUENZ).setCheck('Number');
+        }
         this.appendValueInput('DURATION').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.PLAY_DURATION);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -457,16 +462,23 @@ Blockly.Blocks['mbedActions_play_note'] = {
     init : function() {
         // this.setHelpUrl(Blockly.Msg.PLAY_TONE_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
-        this.dropDownPorts = getConfigPorts('buzzer');
-        this.dependConfig = {
-            'type' : 'buzzer',
-            'dropDown' : this.dropDownPorts
-        };
-        this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
         var frequence = new Blockly.FieldNote('261.626');
         var duration = new Blockly.FieldDropdown([ [ Blockly.Msg.PLAY_WHOLE, '2000' ], [ Blockly.Msg.PLAY_HALF, '1000' ], [ Blockly.Msg.PLAY_QUARTER, '500' ],
                 [ Blockly.Msg.PLAY_EIGHTH, '250' ], [ Blockly.Msg.PLAY_SIXTEENTH, '125' ] ]);
-        this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts).appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
+        
+        if (this.workspace.device === 'calliope' || this.workspace.device === 'microbit' || this.workspace.device === 'wedo') {
+            this.dropDownPorts = getConfigPorts('buzzer');
+            this.dependConfig = {
+                'type' : 'buzzer',
+                'dropDown' : this.dropDownPorts
+            };
+            if (this.workspace.device === 'calliope' || this.workspace.device === 'microbit') {
+                this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
+            }
+            this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts, 'ACTORPORT').appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
+        } else {
+            this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
+        }
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setBlocking(true);
