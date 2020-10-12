@@ -431,11 +431,11 @@ Blockly.Blocks['mbedActions_play_tone'] = {
                 'type' : 'buzzer',
                 'dropDown' : this.dropDownPorts
             };
-            this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
             this.appendValueInput('FREQUENCE').appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts, 'ACTORPORT').appendField(Blockly.Msg.PLAY_FREQUENZ).setCheck('Number');
         } else {
             this.appendValueInput('FREQUENCE').appendField(Blockly.Msg.PLAY).appendField(Blockly.Msg.PLAY_FREQUENZ).setCheck('Number');
         }
+        hidePortIfOnlyInbuilt(this);
         this.appendValueInput('DURATION').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.PLAY_DURATION);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -472,12 +472,13 @@ Blockly.Blocks['mbedActions_play_note'] = {
                 'type' : 'buzzer',
                 'dropDown' : this.dropDownPorts
             };
-            if (this.workspace.device === 'calliope' || this.workspace.device === 'microbit') {
-                this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
-            }
+            
             this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts, 'ACTORPORT').appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
         } else {
             this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
+        }
+        if (this.workspace.device === 'calliope' || this.workspace.device === 'microbit') {
+            hidePortIfOnlyInbuilt(this);
         }
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -551,8 +552,8 @@ Blockly.Blocks['mbedActions_leds_on'] = {
             'type' : 'rgbled',
             'dropDown' : this.dropDownPorts
         };
-        this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
         this.appendValueInput('COLOR').appendField(Blockly.Msg.LED_ON).appendField(this.dropDownPorts, 'ACTORPORT').appendField(Blockly.Msg.BRICKLIGHT_COLOR).setCheck('Colour');
+        hidePortIfOnlyInbuilt(this);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.LED_ON_TOOLTIP);
@@ -583,8 +584,8 @@ Blockly.Blocks['mbedActions_leds_off'] = {
             'type' : 'rgbled',
             'dropDown' : this.dropDownPorts
         };
-        this.dropDownPorts = hidePortIfOnlyInbuilt(this, this.dropDownPorts, 'actor');
         this.appendDummyInput().appendField(Blockly.Msg.LED_OFF).appendField(this.dropDownPorts, 'ACTORPORT');
+        hidePortIfOnlyInbuilt(this);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.LED_OFF_TOOLTIP);

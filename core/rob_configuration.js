@@ -54,7 +54,25 @@ Blockly.RobConfig.renameConfig = function(thatBlock, oldName, newName, workspace
         if (!Array.isArray(dropDown)) {
             dropDown = [dropDown];
         }
+
         for (var d = 0; d < dropDown.length; d++) {
+            if (block.hide && block.dropDownPorts instanceof Blockly.FieldHidden) {
+                modifyField(block, function(prevName, field) {
+                    if (field === block.dropDownPorts) {
+                        field.dispose(); // dispose FieldHidden, as a new one will be created if needed
+                        field = dropDown[d];
+                        block.dropDownPorts = field;
+
+                        // when an inbuilt component becomes visible, don't show the underscore name
+                        if (field.text_.indexOf('_') === 0) {
+                            field.text_ = Blockly.Msg['PORT_INTERNAL'];
+                            field.menuGenerator_[0][0] = field.text_;
+                        }
+                    }
+                    return field;
+                });
+            }
+
             var index = -1;
             for (var i = 0; i < dropDown[d].menuGenerator_.length; i++) {
                 if (dropDown[d].menuGenerator_[i][1] === thatBlock.getFieldValue('NAME') || subComponentNames.has(dropDown[d].menuGenerator_[i][1])) {
@@ -74,11 +92,8 @@ Blockly.RobConfig.renameConfig = function(thatBlock, oldName, newName, workspace
                 }
             } else {
                 dropDown[d].menuGenerator_.push([ newName, newName ]);
-                // temporary, there needs to be a possibility to go from FieldHidden to FieldDropdown and back, or hide a FieldDropdown similar to FieldHidden
-                if (dropDown[d].arrow_) {
-                    dropDown[d].arrow_.replaceChild(document.createTextNode(dropDown[d].sourceBlock_.RTL ? Blockly.FieldDropdown.ARROW_CHAR + ' ' : ' '
-                            + Blockly.FieldDropdown.ARROW_CHAR), dropDown[d].arrow_.childNodes[0]);
-                }
+                dropDown[d].arrow_.replaceChild(document.createTextNode(dropDown[d].sourceBlock_.RTL ? Blockly.FieldDropdown.ARROW_CHAR + ' ' : ' '
+                        + Blockly.FieldDropdown.ARROW_CHAR), dropDown[d].arrow_.childNodes[0]);
                 dropDown[d].render_();
             }
         }
@@ -145,6 +160,18 @@ Blockly.RobConfig.disposeConfig = function(thisBlock) {
                 }
             }
         }
+
+        if (block.hide) {
+            modifyField(block, function(prevName, field) {
+                if (field instanceof Blockly.FieldDropdown && field === block.dropDownPorts && field.menuGenerator_.length < 2) {
+                    // do NOT dispose FieldDropdown, as it is saved in dependConfig and can be reused multiple times
+                    field = new Blockly.FieldHidden();
+                    block.dropDownPorts = field;
+                }
+                return field;
+            });
+        }
+
         block.render();
     }
     Blockly.Events.setGroup(false);

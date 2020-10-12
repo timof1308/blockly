@@ -217,10 +217,6 @@ Blockly.Blocks['robSensors_generic'] = {
                 'type' : sensorTitle.toLowerCase(),
                 'dropDown' : ports
             };
-
-            if (sensor.portsHidden) {
-                ports = hidePortIfOnlyInbuilt(thisBlock, ports, 'sensor');
-            }
         } else {
             ports = new Blockly.FieldHidden();
         }
@@ -254,6 +250,9 @@ Blockly.Blocks['robSensors_generic'] = {
                     || Blockly.checkMsgKey(firstMode.unit), 'UNIT').appendField(Blockly.Msg['SENSOR_' + sensor.title + '_'
                     + this.workspace.device.toUpperCase()]
                     || Blockly.Msg['SENSOR_' + sensor.title] || Blockly.checkMsgKey('SENSOR_' + sensor.title), 'SENSORTITLE').appendField(ports, 'SENSORPORT').appendField(slots, 'SLOT');
+        }
+        if (sensor.portsHidden) {
+            hidePortIfOnlyInbuilt(thisBlock);
         }
         if (sensor.standardPort) {
             ports.setValue(sensor.standardPort);
@@ -515,15 +514,14 @@ Blockly.Blocks['robSensors_generic_all'] = {
                 }
             });
         }
-        if (this.ports[0].portsHidden) {
-            this.dropDownPorts = hidePortIfOnlyInbuilt(thisBlock, this.dropDownPorts, 'sensor');
-        }
         var slots = this.slots[0];
         if (Array.isArray(this.slots[0])) {
             slots = this.slots[0][0];
         }
         this.appendDummyInput('ROW').appendField(Blockly.Msg.GET, 'GET').appendField(dropdownModes, 'SENSORTYPE').appendField(this.dropDownPorts, 'SENSORPORT').appendField(slots, 'SLOT');
-
+        if (this.ports[0].portsHidden) {
+            hidePortIfOnlyInbuilt(thisBlock);
+        }
         this.setOutput(true, sensors[0].modes[0].type);
         var thisBlock = this;
 
@@ -662,9 +660,6 @@ Blockly.Blocks['robSensors_generic_all'] = {
                 } else {
                     this.dropDownPorts = new Blockly.FieldDropdown(this.ports[index]);
                 }
-                if (this.sensors[index].portsHidden) {
-                    this.dropDownPorts = hidePortIfOnlyInbuilt(thisBlock, this.dropDownPorts, 'sensor');
-                }
             } else {
                 this.dropDownPorts = new Blockly.FieldDropdown(this.ports[index], function(option) {
                     if (option && this.sourceBlock_.getFieldValue('SENSOPORT') !== option) {
@@ -678,7 +673,9 @@ Blockly.Blocks['robSensors_generic_all'] = {
             } else {
                 input.appendField(this.slots[index][0], 'SLOT');
             }
-
+            if (this.sensors[index].portsHidden) {
+                hidePortIfOnlyInbuilt(thisBlock);
+            }
             if (this.sensors[index].standardPort) {
                 this.dropDownPorts.setValue(this.sensors[index].standardPort);
             }
@@ -755,17 +752,37 @@ function getConfigPorts(actorName) {
     return new Blockly.FieldDropdown(ports);
 };
 
-function hidePortIfOnlyInbuilt(block, ports, type) {
+function hidePortIfOnlyInbuilt(block) {
     block.hide = {};
-    if (type === 'sensor') {
-        block.hide.name = 'SENSORPORT';
-    } else if (type === 'actor') {
-        block.hide.name = 'ACTORPORT';
-    }
-    block.hide.value = ports.getValue();
-    if (ports.menuGenerator_.length < 2) {
-        return new Blockly.FieldHidden();
-    } else {
-        return ports;
+    modifyField(block, function(prevName, field) {
+        if ((prevName === 'SENSORPORT' || prevName === 'ACTORPORT') && field.menuGenerator_.length < 2) {
+            block.hide.name = prevName;
+            block.hide.value = field.getValue();
+            field.init(); // the previous dropdown needs to be initialized, otherwise it is missing some components
+            field = new Blockly.FieldHidden();
+            block.dropDownPorts = field;
+        }
+        return field;
+    });
+}
+
+function modifyField(block, func) {
+    for (var i = 0; i < block.inputList.length; i++) {
+        var input = block.inputList[i];
+        var oldFields = input.fieldRow.slice();
+        var newFields = [];
+        for (var f = 0; f < oldFields.length; f++) {
+            var field = oldFields[f];
+            // some fields do not have names, add a temporary one
+            var prevName = field.name;
+            field.name = f;
+            field = func(prevName, field);
+            newFields.push(field);
+            input.removeField(f);
+            field.name = prevName;
+        }
+        for (var f in newFields) {
+            input.appendField(newFields[f]);
+        }
     }
 }
