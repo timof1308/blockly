@@ -773,6 +773,12 @@ function modifyField(block, func) {
         var newFields = [];
         for (var f = 0; f < oldFields.length; f++) {
             var field = oldFields[f];
+            if (f > 0 && oldFields[f-1].suffixField) {
+                continue;
+            }
+            if (f < (oldFields.length - 1) && oldFields[f + 1].prefixField) {
+                continue;
+            }
             // some fields do not have names, add a temporary one
             var prevName = field.name;
             field.name = f;
