@@ -57,6 +57,9 @@ Blockly.Blocks.robConfigDefinitions['pinsDigital'].unowifirev2 = function() {
 Blockly.Blocks.robConfigDefinitions['pinsDigital'].nano = function() {
     return createPins(0, 13, "D");
 };
+Blockly.Blocks.robConfigDefinitions['pinsDigital'].nano33ble = function() {
+    return createPins(0, 13, "D");
+};
 Blockly.Blocks.robConfigDefinitions['pinsDigital'].mega = function() {
     return createPins(0, 53);
 };
@@ -89,6 +92,9 @@ Blockly.Blocks.robConfigDefinitions['pinsAnalog'].unowifirev2 = function() {
     return createPins(0, 5, "A", "A");
 };
 Blockly.Blocks.robConfigDefinitions['pinsAnalog'].nano = function() {
+    return createPins(0, 7, "A", "A");
+};
+Blockly.Blocks.robConfigDefinitions['pinsAnalog'].nano33ble = function() {
     return createPins(0, 7, "A", "A");
 };
 Blockly.Blocks.robConfigDefinitions['pinsAnalog'].mega = function() {
@@ -125,6 +131,12 @@ Blockly.Blocks.robConfigDefinitions['pinsAnalogWrite'].unowifirev2 = function() 
     return part1.concat(part2).concat(part3);
 };
 Blockly.Blocks.robConfigDefinitions['pinsAnalogWrite'].nano = function() {
+    var part1 = createPins(3, 3, "D");
+    var part2 = createPins(5, 6, "D");
+    var part3 = createPins(9, 11, "D");
+    return part1.concat(part2).concat(part3);
+};
+Blockly.Blocks.robConfigDefinitions['pinsAnalogWrite'].nano33ble = function() {
     var part1 = createPins(3, 3, "D");
     var part2 = createPins(5, 6, "D");
     var part3 = createPins(9, 11, "D");
