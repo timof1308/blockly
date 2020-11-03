@@ -435,7 +435,9 @@ Blockly.Blocks['mbedActions_play_tone'] = {
         } else {
             this.appendValueInput('FREQUENCE').appendField(Blockly.Msg.PLAY).appendField(Blockly.Msg.PLAY_FREQUENZ).setCheck('Number');
         }
-        hidePortIfOnlyInbuilt(this);
+        if (this.workspace.device === 'calliope'){
+             hidePortIfOnlyInbuilt(this);
+        }
         this.appendValueInput('DURATION').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.PLAY_DURATION);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -449,7 +451,7 @@ Blockly.Blocks['mbedActions_play_note'] = {
     /**
      * Play a tone.
      * 
-     * @constructs mbedActions_play_tone
+     * @constructs mbedActions_play_note
      * @this.Blockly.Block
      * @param {Number}
      *            FREQUENCE Frequence
@@ -471,13 +473,12 @@ Blockly.Blocks['mbedActions_play_note'] = {
             this.dependConfig = {
                 'type' : 'buzzer',
                 'dropDown' : this.dropDownPorts
-            };
-            
+            };            
             this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(this.dropDownPorts, 'ACTORPORT').appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
         } else {
             this.appendDummyInput().appendField(Blockly.Msg.PLAY).appendField(duration, 'DURATION').appendField(frequence, 'FREQUENCE');
         }
-        if (this.workspace.device === 'calliope' || this.workspace.device === 'microbit') {
+        if (this.workspace.device === 'calliope') {
             hidePortIfOnlyInbuilt(this);
         }
         this.setPreviousStatement(true);

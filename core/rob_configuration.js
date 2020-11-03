@@ -57,20 +57,25 @@ Blockly.RobConfig.renameConfig = function(thatBlock, oldName, newName, workspace
 
         for (var d = 0; d < dropDown.length; d++) {
             if (block.hide && block.dropDownPorts instanceof Blockly.FieldHidden) {
-                modifyField(block, function(prevName, field) {
-                    if (field === block.dropDownPorts) {
-                        field.dispose(); // dispose FieldHidden, as a new one will be created if needed
-                        field = dropDown[d];
-                        block.dropDownPorts = field;
-
-                        // when an inbuilt component becomes visible, don't show the underscore name
-                        if (field.text_.indexOf('_') === 0) {
-                            field.text_ = Blockly.Msg['PORT_INTERNAL'];
-                            field.menuGenerator_[0][0] = field.text_;
+                for (var i = 0; i < block.inputList.length; i++) {
+                    var input = block.inputList[i];
+                    for (var f = 0; f < input.fieldRow.length; f++) {
+                        var field = input.fieldRow[f];
+                        if (field === block.dropDownPorts) {       
+                            input.removeField(field.name);
+                            input.appendField(dropDown[d]);
+                            var newField = input.fieldRow[input.fieldRow.length - 1];            
+                            input.fieldRow.splice(f, 0, newField);
+                            input.fieldRow.splice(-1,1);
+                            block.dropDownPorts = newField;
+                            // when an inbuilt component becomes visible, don't show the underscore name
+                            if (newField.text_.indexOf('_') === 0) {
+                                newField.text_ = Blockly.Msg['PORT_INTERNAL'];
+                                newField.menuGenerator_[0][0] = newField.text_;
+                            }
                         }
                     }
-                    return field;
-                });
+                }
             }
 
             var index = -1;
@@ -92,8 +97,10 @@ Blockly.RobConfig.renameConfig = function(thatBlock, oldName, newName, workspace
                 }
             } else {
                 dropDown[d].menuGenerator_.push([ newName, newName ]);
-                dropDown[d].arrow_.replaceChild(document.createTextNode(dropDown[d].sourceBlock_.RTL ? Blockly.FieldDropdown.ARROW_CHAR + ' ' : ' '
-                        + Blockly.FieldDropdown.ARROW_CHAR), dropDown[d].arrow_.childNodes[0]);
+                if (dropDown[d].arrow_) {
+                    dropDown[d].arrow_.replaceChild(document.createTextNode(dropDown[d].sourceBlock_.RTL ? Blockly.FieldDropdown.ARROW_CHAR + ' ' : ' '
+                            + Blockly.FieldDropdown.ARROW_CHAR), dropDown[d].arrow_.childNodes[0]);
+                }   
                 dropDown[d].render_();
             }
         }
@@ -149,7 +156,9 @@ Blockly.RobConfig.disposeConfig = function(thisBlock) {
                     dropDown[d].menuGenerator_.push([ Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT'),
                             (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
                     dropDown[d].setValue((Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase());
-                    dropDown[d].arrow_.replaceChild(document.createTextNode(''), dropDown[d].arrow_.childNodes[0]);
+                    if (dropDown[d].arrow_) {
+                        dropDown[d].arrow_.replaceChild(document.createTextNode(''), dropDown[d].arrow_.childNodes[0]);
+                    }
                     dropDown[d].render_();
                 } else if (dropDown[d].menuGenerator_.length == 1) {
                     dropDown[d].arrow_.replaceChild(document.createTextNode(''), dropDown[d].arrow_.childNodes[0]);
@@ -162,16 +171,21 @@ Blockly.RobConfig.disposeConfig = function(thisBlock) {
         }
 
         if (block.hide) {
-            modifyField(block, function(prevName, field) {
-                if (field instanceof Blockly.FieldDropdown && field === block.dropDownPorts && field.menuGenerator_.length < 2) {
-                    // do NOT dispose FieldDropdown, as it is saved in dependConfig and can be reused multiple times
-                    field = new Blockly.FieldHidden();
-                    block.dropDownPorts = field;
+                for (var i = 0; i < block.inputList.length; i++) {
+                    var input = block.inputList[i];
+                    for (var f = 0; f < input.fieldRow.length; f++) {
+                        var field = input.fieldRow[f]
+                        if (field instanceof Blockly.FieldDropdown && field === block.dropDownPorts && field.menuGenerator_.length < 2) {
+                            input.removeField(field.name);
+                            input.appendField(new Blockly.FieldHidden(), field.name);
+                            var newField = input.fieldRow[input.fieldRow.length - 1];            
+                            input.fieldRow.splice(f, 0, newField);
+                            input.fieldRow.splice(-1,1);
+                            block.dropDownPorts = newField;
+                        }
+                    }
                 }
-                return field;
-            });
         }
-
         block.render();
     }
     Blockly.Events.setGroup(false);
