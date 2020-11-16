@@ -86,6 +86,8 @@ goog.require('Blockly.Blocks.robConfigDefinitions');
 goog.require('Blockly.Blocks.robControls'); 
 goog.require('Blockly.Blocks.robSensorDefinitions'); 
 goog.require('Blockly.Blocks.robSensors'); 
+goog.require('Blockly.Blocks.robSensorDefinitionsDataAvailable'); 
+goog.require('Blockly.Blocks.robSensorsDataAvailable'); 
 goog.require('Blockly.Blocks.texts'); 
 goog.require('Blockly.Blocks.variables'); 
 goog.require('Blockly.Blocks.vorwerkActions'); 

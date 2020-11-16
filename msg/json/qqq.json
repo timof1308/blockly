@@ -540,6 +540,7 @@
 	"SENSOR_ENCODER": "",
 	"SENSOR_GYRO": "",
 	"SENSOR_GYRO_WEDO": "",
+	"SENSOR_LSM9DS1": "",
 	"SENSOR_FLAME": "",
 	"SENSOR_BATTERY": "",
 	"SENSOR_KEY": "",
@@ -595,6 +596,7 @@
 	"MODE_HUMIDITY": "",
 	"MODE_TEMPERATURE": "",
 	"MODE_PRESSURE": "",
+	"MODE_GYRO": "",
 	"MODE_X": "",
 	"MODE_Y": "",
 	"MODE_Z": "",
@@ -1740,5 +1742,6 @@
 	"MODE_IAQ": "",
 	"MODE_CALIBRATION": "",
 	"MODE_CO2EQUIVALENT": "",
-	"MODE_VOCEQUIVALENT": ""
+	"MODE_VOCEQUIVALENT": "",
+	"SENSOR_DATA_READY": ""
 }
