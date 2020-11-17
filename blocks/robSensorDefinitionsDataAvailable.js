@@ -57,8 +57,8 @@ sensors.lsm9ds1_gyro.arduino = {
     ]
 };
 
-sensors.lsm9ds1_magneticField = {};
-sensors.lsm9ds1_magneticField.arduino = {
+sensors.lsm9ds1_magneticfield = {};
+sensors.lsm9ds1_magneticfield.arduino = {
     params: [
         { "name": "x", "unit": "MILLIG" },
         { "name": "y", "unit": "MILLIG" },

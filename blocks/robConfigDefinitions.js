@@ -691,9 +691,9 @@ confBlocks.gyro.sensebox = {
     title : 'GYRO',
     sensor : true
 };
-confBlocks.gyrolsm9ds1 = {}
-confBlocks.gyrolsm9ds1.arduino = {
-    title : 'GYROLSM9DS1',
+confBlocks.lsm9ds1 = {}
+confBlocks.lsm9ds1.arduino = {
+    title : 'LSM9DS1',
     sensor : true, 
     inbuilt : true
 };
