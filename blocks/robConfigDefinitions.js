@@ -691,11 +691,30 @@ confBlocks.gyro.sensebox = {
     title : 'GYRO',
     sensor : true
 };
+
 confBlocks.lsm9ds1 = {}
 confBlocks.lsm9ds1.arduino = {
     title : 'LSM9DS1',
     sensor : true, 
     inbuilt : true
+};
+confBlocks.apds9960 = {}
+confBlocks.apds9960.arduino = {
+		title : 'APDS9960',
+		sensor : true, 
+		inbuilt : true
+};
+confBlocks.lps22hb = {}
+confBlocks.lps22hb.arduino = {
+		title : 'LPS22HB',
+		sensor : true, 
+		inbuilt : true
+};
+confBlocks.hts221 = {}
+confBlocks.hts221.arduino = {
+		title : 'HTS221',
+		sensor : true, 
+		inbuilt : true
 };
 
 confBlocks.gyro.arduino = confBlocks.gyro.sensebox;

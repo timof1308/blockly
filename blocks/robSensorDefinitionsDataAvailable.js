@@ -1,7 +1,7 @@
 /**
- * @fileoverview Sensor blocks for all systems.
+ * @fileoverview Sensor blocks for the nano 33 ble sense
  * @requires Blockly.Blocks
- * @author Beate
+ * @author Beate + Reinhard
  */
 
 'use strict';
@@ -9,33 +9,6 @@
 goog.provide('Blockly.Blocks.robSensorDefinitionsDataAvailable');
 
 goog.require('Blockly.Blocks');
-
-// define sensors here as a property of sensors  ********************************************************************************
-
-/*- minimal example:
- *
- * sensors.ultrasonic.ev3 = {
- *     title : 'ULTRASONIC',
- *     modes : [ {
- *         name : 'PRESENCE',
- *         type : 'Boolean',
- *     } ],
- * };
- *
- */
-
-/*- all supported properties:
- *
- * title,
- * ports,
- * modes,
- *     name,
- *     type,
- *     value,
- *     unit,
- *     op,
- * standardPort
- */
 
 var sensors = {};
 
@@ -64,6 +37,50 @@ sensors.lsm9ds1_magneticfield.arduino = {
         { "name": "y", "unit": "MILLIG" },
         { "name": "z", "unit": "MILLIG" }
     ]
+};
+
+sensors.apds9960_distance = {};
+sensors.apds9960_distance.arduino = {
+	params: [
+		{ "name": "", "unit": "CM" }
+	]
+};
+
+sensors.apds9960_gesture = {};
+sensors.apds9960_gesture.arduino = {
+		params: [
+			{ "name": "", "unit": "DEGREE" }
+			]
+};
+
+sensors.apds9960_color = {};
+sensors.apds9960_color.arduino = {
+		params: [
+			{ "name": "r", "unit": "PERCENT" },
+			{ "name": "g", "unit": "PERCENT" },
+			{ "name": "b", "unit": "PERCENT" }
+			]
+};
+
+sensors.lps22hb_pressure = {};
+sensors.lps22hb_pressure.arduino = {
+		params: [
+			{ "name": "", "unit": "PASCAL" }
+			]
+};
+
+sensors.hts221_temperature = {};
+sensors.hts221_temperature.arduino = {
+		params: [
+			{ "name": "", "unit": "DEGREE" }
+			]
+};
+
+sensors.hts221_humidity = {};
+sensors.hts221_humidity.arduino = {
+		params: [
+			{ "name": "", "unit": "PERCENT" }
+			]
 };
 
 var sensorsAll = [];
