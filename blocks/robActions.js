@@ -1498,26 +1498,151 @@ Blockly.Blocks['robActions_eval_expr'] = {
 };
 
 Blockly.Blocks['robActions_nnstep'] = {
-    /**
-     * Represents a step in a neural network
-     * 
-     * @constructs robActions_nnstep
-     * @this.Blockly.Block
-     * @param {String}
-     * @returns immediately
-     * @memberOf Block
-     */
-    init : function() {
-        this.setColour("#646464");
-        this.appendDummyInput().appendField("nnStep");
-        this.appendValueInput("INPUT0").appendField("INPUT0");
-        this.appendValueInput("INPUT1").appendField("INPUT1");
-        this.appendValueInput("INPUT2").appendField("INPUT2");
-        this.appendValueInput("OUTPUT0").appendField("OUTPUT0");
-        this.appendValueInput("OUTPUT1").appendField("OUTPUT1");
-        this.appendValueInput("OUTPUT2").appendField("OUTPUT2");
-        this.setPreviousStatement(true);
-        this.setNextStatement(true);
-        this.setTooltip("Run a step in the configured neural network");
-    }
-};
+	/**
+	 * Represents a step in a neural network
+	 * 
+	 * @constructs robActions_nnstep
+	 * @this.Blockly.Block
+	 * @param {String}
+	 * @returns immediately
+	 * @memberOf Block
+	 */
+	init : function() {
+		this.setColour("#646464");
+		this.appendDummyInput().appendField("nnStep");
+		this.appendValueInput("INPUT0").appendField("INPUT0");
+		this.appendValueInput("INPUT1").appendField("INPUT1");
+		this.appendValueInput("INPUT2").appendField("INPUT2");
+		this.appendValueInput("OUTPUT0").appendField("OUTPUT0");
+		this.appendValueInput("OUTPUT1").appendField("OUTPUT1");
+		this.appendValueInput("OUTPUT2").appendField("OUTPUT2");
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setTooltip("Run a step in the configured neural network");
+	}
+}
+
+Blockly.Blocks['robActions_aifes_newneuralnet'] = {
+		/**
+		 * connects to the AIfES library
+		 * 
+		 * @constructs robActions_aifes_newneuralnet
+		 * @returns a boolean immediately
+		 * @memberOf Block
+		 */
+		init : function() {
+			this.setColour("#646464");
+			this.appendDummyInput().appendField("new network");
+			this.appendValueInput("NUMBEROFCLASSES").appendField("number of classes");
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setTooltip("create a new neural network classifier for the number of classes given");
+		}
+}
+
+Blockly.Blocks['robActions_aifes_trainingofclass'] = {
+		/**
+		 * connects to the AIfES library
+		 * 
+		 * @constructs robActions_aifes_trainingofclass
+		 * @returns a boolean immediately
+		 * @memberOf Block
+		 */
+		init : function() {
+			this.setColour("#646464");
+			this.appendDummyInput().appendField("start assembling training data for class");
+			this.appendValueInput("").appendField("class number");
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setTooltip("start assembling raw data to be added later as training data");
+		}
+}
+
+Blockly.Blocks['robActions_aifes_addrawdata'] = {
+		/**
+		 * connects to the AIfES library
+		 * 
+		 * @constructs robActions_aifes_addrawdata
+		 * @returns a boolean immediately
+		 * @memberOf Block
+		 */
+		init : function() {
+			this.setColour("#646464");
+			this.appendDummyInput().appendField("add raw data");
+			this.appendValueInput("X").appendField("X");
+			this.appendValueInput("Y").appendField("Y");
+			this.appendValueInput("Z").appendField("Z");
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setTooltip("add raw data for training");
+		}
+}
+
+Blockly.Blocks['robActions_aifes_addToTrainingData'] = {
+		/**
+		 * connects to the AIfES library
+		 * 
+		 * @constructs robActions_aifes_addToTrainingData
+		 * @returns a boolean immediately
+		 * @memberOf Block
+		 */
+		init : function() {
+			this.setColour("#646464");
+			this.appendDummyInput().appendField("extract features from raw data for training");
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setTooltip("extract features from the raw data and add the features to the training data");
+		}
+}
+
+Blockly.Blocks['robActions_aifes_train'] = {
+		/**
+		 * connects to the AIfES library
+		 * 
+		 * @constructs robActions_aifes_train
+		 * @returns a boolean immediately
+		 * @memberOf Block
+		 */
+		init : function() {
+			this.setColour("#646464");
+			this.appendDummyInput().appendField("train the neural network");
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setTooltip("train the neural network using the assembled training data");
+		}
+}
+
+Blockly.Blocks['robActions_aifes_start_classify'] = {
+		/**
+		 * connects to the AIfES library
+		 * 
+		 * @constructs robActions_aifes_start_classify
+		 * @returns a boolean immediately
+		 * @memberOf Block
+		 */
+		init : function() {
+			this.setColour("#646464");
+			this.appendDummyInput().appendField("start assembling raw data for classification");
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setTooltip("start assembling raw data to be used later for classification");
+		}
+}
+
+Blockly.Blocks['robActions_aifes_classify'] = {
+		/**
+		 * connects to the AIfES library
+		 * 
+		 * @constructs robActions_aifes_classify
+		 * @returns a boolean immediately
+		 * @memberOf Block
+		 */
+		init : function() {
+			this.setColour("#646464");
+			this.appendDummyInput().appendField("classify");
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setTooltip("extract features from the raw data and classify");
+		}
+}
+
