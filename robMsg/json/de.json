@@ -1433,6 +1433,9 @@
 	"MODE_IAQ" : "Innenraumluftqualität (IAQ)",
 	"MODE_CALIBRATION" : "Kalibrierungswert",
 	"MODE_CO2EQUIVALENT" : "CO2 Äquivalent",
-	"MODE_VOCEQUIVALENT" : "Atemluft VOC Äquivalent"
+	"MODE_VOCEQUIVALENT" : "Atemluft VOC Äquivalent",
+
+	"SLOT_BACK" : "hinten",
+	"SENSOR_POSITION" : "Position des Sensors"
 }
 
