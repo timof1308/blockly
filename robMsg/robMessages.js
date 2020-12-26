@@ -21,11 +21,11 @@
 /**
  * @fileoverview English strings.
  * @author Beate.Jost@iais.fraunhofer.de (Beate Jost)
- * 
+ *
  * After modifying this file, either run "build.py" from the parent directory,
  * or run (from this directory): ../i18n/js_to_json.py to regenerate
  * json/{en,qqq,synonyms}.json.
- * 
+ *
  * To convert all of the json files to .js files, run:
  * ../i18n/create_messages.py json/*.json
  */
@@ -1564,4 +1564,11 @@ Blockly.Msg.MODE_VOCEQUIVALENT = 'Breathe VOC Equivalent';
 Blockly.Msg.SENSOR_COLOURTCS3472_COLOUR_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_COLOUR_GETSAMPLE_TOOLTIP;
 Blockly.Msg.SENSOR_COLOURTCS3472_LIGHT_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_LIGHT_GETSAMPLE_TOOLTIP;
 Blockly.Msg.SENSOR_COLOURTCS3472_RGB_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_RGB_GETSAMPLE_TOOLTIP;
-Blockly.Msg.SENSOR_DATA_READY = 'ready?'
+Blockly.Msg.SENSOR_DATA_READY = 'ready?';
+
+Blockly.Msg.MIN_ANGLE = 'Minimum angle';
+Blockly.Msg.MAX_ANGLE = 'Maximum angle';
+Blockly.Msg.MIN_PULSE_WIDTH = 'Minimum pulse width';
+Blockly.Msg.MAX_PULSE_WIDTH = 'Maximum pulse width';
+Blockly.Msg.FRAME_WIDTH = 'Frame width';
+Blockly.Msg.LIGHT_LDR = 'Light (LDR)';
