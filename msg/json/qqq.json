@@ -1757,5 +1757,7 @@
 	"MIN_PULSE_WIDTH": "",
 	"MAX_PULSE_WIDTH": "",
 	"FRAME_WIDTH": "",
-	"LIGHT_LDR": ""
+	"LIGHT_LDR": "",
+	"SLOT_BACK": "",
+	"SENSOR_POSITION": ""
 }
