@@ -25,47 +25,57 @@ Blockly.Blocks['robSensorsDataAvailable_generic'] = {
      * 
      * @memberof Block
      */
-    init : function(sensor, sensorNames) {
-        var names = sensorNames.split("_");
-        sensor.title = names[0].toUpperCase();
-        sensor.mode = names[1].toUpperCase();
+    init : function(sensor, sensorName) {
+        var nameComponents = sensorName.split("_");
+        sensor.title = nameComponents[0].toUpperCase();
+        sensor.mode = nameComponents[1].toUpperCase();
         this.setColour(Blockly.CAT_SENSOR_RGB);
-        this.type = 'robSensors_' + sensorNames.toLowerCase() + '_getDataAvailableSample';
+        this.type = 'robSensors_' + sensorName.toLowerCase() + '_getDataAvailableSample';
         this.setOutput(true, 'Boolean');
-        //this.setInputsInline(true); // TODO check later if we want to have a rule for this
-
-        var sensorTitle = Blockly.Msg['SENSOR_' + sensor.title + '_' + this.workspace.device.toUpperCase()] || Blockly.Msg['SENSOR_' + sensor.title] || 'SENSOR_'+ sensor.title || 'SENSORTITLE';
-        var sensorMode = Blockly.Msg['MODE_' + sensor.mode.toUpperCase()] || 'MODE_' + sensor.mode.toUpperCase() || 'MODE';
-        this.appendValueInput(sensor.params[0].name.toUpperCase()).appendField(sensorTitle).appendField(sensorMode)
-            .appendField(Blockly.Msg['SENSOR_DATA_READY'] || 'SENSOR_DATA_READY')
-            .appendField(Blockly.Msg[sensor.params[0].name.toUpperCase()] || sensor.params[0].name.toUpperCase())
-            .setAlign(Blockly.ALIGN_RIGHT).setCheck('Number').appendField(Blockly.Msg['SENSOR_UNIT_' + sensor.params[0].unit.toUpperCase()] || sensor.params[0].unit.toUpperCase());
+        var sensorMode = Blockly.Msg['MODE_' + sensor.mode] || 'MODE_' + sensor.mode || 'MODEMISSING';
+        // Head with first param
+        var param = sensor.params[0];
+        var target = param.target.toUpperCase();
+        var valueInput = this.appendValueInput(target).appendField(sensor.title).appendField(sensorMode).appendField(Blockly.Msg['SENSOR_DATA_READY'] || 'SENSOR_DATA_READY');
+        valueInput.appendField(Blockly.Msg[target] || target);
+        // valueInput.setAlign(Blockly.ALIGN_RIGHT);
+        if (param.type) {
+            valueInput.setCheck(param.type);
+        } else {
+            valueInput.setCheck('Number');
+        }
+        valueInput.appendField(Blockly.Msg['SENSOR_UNIT_' + param.unit.toUpperCase()] || param.unit.toUpperCase());
+        // remaining params
         for (var i = 1; i < sensor.params.length; i++) {
-            this.appendValueInput(sensor.params[i].name.toUpperCase())
-                .appendField(Blockly.Msg[sensor.params[i].name.toUpperCase()] || sensor.params[i].name.toUpperCase())
-                .appendField( Blockly.Msg['SENSOR_UNIT_' + sensor.params[i].unit.toUpperCase()] || sensor.params[i].unit.toUpperCase())
-                .setAlign(Blockly.ALIGN_RIGHT).setCheck('Number');
+            param = sensor.params[i];
+            target = param.target.toUpperCase();
+            valueInput.appendField(Blockly.Msg[target] || target);
+            // valueInput.setAlign(Blockly.ALIGN_RIGHT);
+            if (param.type) {
+                valueInput.setCheck(param.type);
+            } else {
+                valueInput.setCheck('Number');
+            }
+            valueInput.appendField( Blockly.Msg['SENSOR_UNIT_' + param.unit.toUpperCase()] || sensor.params[i].unit.toUpperCase())
         }
         
-        var thisBlock = this;
+        var tooltip = 'SENSOR_' + sensorName + '_TOOLTIP';
         this.setTooltip(function() {
-            return Blockly.Msg['SENSOR_' + sensor.title + '_GETSAMPLE_TOOLTIP_' + thisBlock.workspace.device.toUpperCase()]
-                    || Blockly.Msg['SENSOR_' + sensor.title + '_GETSAMPLE_TOOLTIP']
-                    || Blockly.checkMsgKey('SENSOR_' + sensor.title + '_GETSAMPLE_TOOLTIP');
+            return Blockly.Msg[tooltip + '_' + thisBlock.workspace.device.toUpperCase()]
+                    || Blockly.Msg[tooltip]
+                    || Blockly.checkMsgKey(tooltip);
         });
         this.onchange = function() {
             if (!this.workspace || Blockly.Block.dragMode_ == 2) {
                 return;
             }
             for (var i = 0; i < sensor.params.length; i++) {
-                var blockVar = this.getInputTargetBlock(sensor.params[i].name
-                        .toUpperCase());
+                var blockVar = this.getInputTargetBlock(sensor.params[i].target.toUpperCase());
                 if (blockVar && blockVar.type !== 'variables_get') {
                     blockVar.unplug();
                     blockVar.bumpNeighbours_();
                 }
             }
-
         }
     }
 };

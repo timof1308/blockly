@@ -273,6 +273,7 @@ Blockly.Msg.SENSOR_IS_PRESSED = 'pressed?';
 Blockly.Msg.SENSOR_IS_TOUCHED = 'touched?';
 Blockly.Msg.SENSOR_IS_TILTED = 'tilted?';
 Blockly.Msg.SENSOR_PARTICLE = 'SDS011 particle sensor';
+Blockly.Msg.SENSOR_LSM9DS1_ACCELERATION_TOOLTIP = 'if available, return list of x,y,z acceleration values';
 Blockly.Msg.PARTICLE_TOOLTIP = 'Represents SDS011 particle sensor.';
 Blockly.Msg.SENSOR_PARTICLE_PM25_GETSAMPLE_TOOLTIP = 'Reads the current value of PM2.5 from the particle sensor.';
 Blockly.Msg.SENSOR_PARTICLE_PM10_GETSAMPLE_TOOLTIP = 'Reads the current value of PM10 from the particle sensor.';
@@ -792,7 +793,14 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_1_EDISON = 'Connect your Edison via the EdComm c
 Blockly.Msg.POPUP_DOWNLOAD_STEP_2_EDISON = 'click on »Play« to play your program to Edison and';
 Blockly.Msg.POPUP_DOWNLOAD_STEP_3_EDISON = 'wait until Edison beeps, then unplug.';
 Blockly.Msg.POPUP_DOWNLOAD_STEP_4_EDISON = 'Press the triangle button to start your program on your Edison<br><span style="font-size: 14px;">Having trouble? Turn up the volume and check that all sound enhancements are turned off</span>';
-
+//
+// Names for nano33ble sensor blocks
+// =================================
+//
+Blockly.Msg.LIST_XYZ = 'if yes, update the list of x,y,z values'
+Blockly.Msg.LIST_RGB = 'if yes, update the list of r,g,b values'
+Blockly.Msg.VARIABLE_VALUE = 'if yes, update the variable'
+//
 // Names for the nao blocks
 /// NAO names
 Blockly.Msg.NAO_TAI_CHI = 'tai chi';
@@ -1120,6 +1128,8 @@ Blockly.Msg.SENSOR_UNIT_LUX = 'lx';
 Blockly.Msg.SENSOR_UNIT_IRRADIANCE = 'μW/cm²';
 Blockly.Msg.SENSOR_UNIT_PM = 'μg/m³';
 Blockly.Msg.SENSOR_UNIT_DEGREE_PER_SECOND = '°/s';
+Blockly.Msg.SENSOR_GAUSS = 'Gauss';
+Blockly.Msg.SENSOR_INDEX = '#';
 Blockly.Msg.SENSOR_PINTOUCH_BOB3 = 'arm';
 Blockly.Msg.SENSOR_SOUND_CALLIOPE = 'microphone';
 Blockly.Msg.MODE_VALUE = 'value';
@@ -1565,6 +1575,31 @@ Blockly.Msg.SENSOR_COLOURTCS3472_COLOUR_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_C
 Blockly.Msg.SENSOR_COLOURTCS3472_LIGHT_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_LIGHT_GETSAMPLE_TOOLTIP;
 Blockly.Msg.SENSOR_COLOURTCS3472_RGB_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_RGB_GETSAMPLE_TOOLTIP;
 Blockly.Msg.SENSOR_DATA_READY = 'ready?';
+
+Blockly.Msg.NN_SETUP = 'setup the neural network'
+Blockly.Msg.NN_SETUP_TOOLTIP = "define properties of a neural network, which can classify data"
+Blockly.Msg.NN_NUMBER_OF_CLASSES = '# classes'
+Blockly.Msg.NN_NUMBER_INPUT_NEURONS = '# input neurons'
+Blockly.Msg.NN_MAX_NUMBER_OF_NEURONS = 'max neurons'
+
+Blockly.Msg.NN_FEATURE_EXTRACTION = 'extract input features'
+Blockly.Msg.NN_FEATURE_EXTRACTION_TOOLTIP = 'extract input features from raw data assembled'
+Blockly.Msg.NN_RAW_COUNT = '# raw values'
+Blockly.Msg.NN_RAW_DATA = 'raw values'
+Blockly.Msg.NN_INPUT_FEATURES = 'input features'
+
+Blockly.Msg.NN_ADD_TRAININGS_DATA = 'add trainings data set'
+Blockly.Msg.NN_ADD_TRAININGS_DATA_TOOLTIP = 'add data from feature extraction to the list of trainings data sets for a class'
+Blockly.Msg.NN_CLASS_NUMBER = 'class #'
+Blockly.Msg.NN_FEATURE_COUNT = '# features'
+Blockly.Msg.NN_FEATURE_DATA = 'features'
+
+Blockly.Msg.NN_TRAIN = 'train'
+Blockly.Msg.NN_TRAIN_TOOLTIP = 'train the neural network with the trainings data assembled'
+
+Blockly.Msg.NN_CLASSIFY = 'classifiy'
+Blockly.Msg.NN_CLASSIFY_TOOLTIP = 'use the trained neural network and data from feature extraction to classify and return the probabiliy for each class'
+Blockly.Msg.NN_CLASS_PROBABILITIES = 'probabilities'
 
 Blockly.Msg.MIN_ANGLE = 'Minimum angle';
 Blockly.Msg.MAX_ANGLE = 'Maximum angle';
