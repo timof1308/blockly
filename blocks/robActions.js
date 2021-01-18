@@ -1497,31 +1497,6 @@ Blockly.Blocks['robActions_eval_expr'] = {
     }
 };
 
-Blockly.Blocks['robActions_nnstep'] = {
-	/**
-	 * Represents a step in a neural network
-	 * 
-	 * @constructs robActions_nnstep
-	 * @this.Blockly.Block
-	 * @param {String}
-	 * @returns immediately
-	 * @memberOf Block
-	 */
-	init : function() {
-		this.setColour("#646464");
-		this.appendDummyInput().appendField("nnStep");
-		this.appendValueInput("INPUT0").appendField("INPUT0");
-		this.appendValueInput("INPUT1").appendField("INPUT1");
-		this.appendValueInput("INPUT2").appendField("INPUT2");
-		this.appendValueInput("OUTPUT0").appendField("OUTPUT0");
-		this.appendValueInput("OUTPUT1").appendField("OUTPUT1");
-		this.appendValueInput("OUTPUT2").appendField("OUTPUT2");
-		this.setPreviousStatement(true);
-		this.setNextStatement(true);
-		this.setTooltip("Run a step in the configured neural network");
-	}
-}
-
 function getBlocklyMsg(key) {
     return Blockly.Msg[key] || key;
 }
@@ -1559,6 +1534,14 @@ function appendHeader(thisRef, key) {
     thisRef.setTooltip(getBlocklyMsg(key + "_TOOLTIP"));
 }
 
+Blockly.Blocks['robActions_nnstep'] = {
+        init : function() {
+            appendHeader(this, "nnStep");
+            appendFields(this,["NN_STEP_INPUT0","NN_STEP_INPUT1","NN_STEP_INPUT2","NN_STEP_OUTPUT0","NN_STEP_OUTPUT1","NN_STEP_OUTPUT2"]);
+            mustBeVariable(this, ["NN_STEP_OUTPUT0","NN_STEP_OUTPUT1","NN_STEP_OUTPUT2"])
+        }
+}
+
 Blockly.Blocks['robActions_aifes_setupneuralnet'] = {
 		init : function() {
 			appendHeader(this, "NN_SETUP");
@@ -1566,19 +1549,23 @@ Blockly.Blocks['robActions_aifes_setupneuralnet'] = {
 		}
 }
 
-Blockly.Blocks['robActions_aifes_featureextraction'] = {
+Blockly.Blocks['robActions_aifes_initrawdata'] = {
 		init : function() {
-			appendHeader(this, "NN_FEATURE_EXTRACTION");
-			appendFields(this,["NN_RAW_COUNT","NN_RAW_DATA","NN_INPUT_FEATURES"]);
-			mustBeVariable(this, ["NN_RAW_DATA", "NN_INPUT_FEATURES"])
+			appendHeader(this, "NN_INIT_RAW_DATA");
 		}
+}
+
+Blockly.Blocks['robActions_aifes_addrawdata'] = {
+        init : function() {
+            appendHeader(this, "NN_ADD_RAW_DATA");
+            appendFields(this,["NN_RAW_DATA"]);
+        }
 }
 
 Blockly.Blocks['robActions_aifes_addtrainingsdata'] = {
 		init : function() {
 			appendHeader(this, "NN_ADD_TRAININGS_DATA");
-			appendFields(this,["NN_CLASS_NUMBER","NN_FEATURE_COUNT","NN_FEATURE_DATA"]);
-			mustBeVariable(this, ["NN_FEATURE_DATA"])
+			appendFields(this,["NN_CLASS_NUMBER"]);
 		}
 }
 
@@ -1591,7 +1578,7 @@ Blockly.Blocks['robActions_aifes_train'] = {
 Blockly.Blocks['robActions_aifes_classify'] = {
 		init : function() {
 			appendHeader(this, "NN_CLASSIFY");
-			appendFields(this,["NN_FEATURE_COUNT","NN_FEATURE_DATA","NN_CLASS_PROBABILITIES"]);
-			mustBeVariable(this, ["NN_FEATURE_DATA", "NN_CLASS_PROBABILITIES"])
+			appendFields(this,["NN_CLASS_PROBABILITIES"]);
+			mustBeVariable(this, ["NN_CLASS_PROBABILITIES"])
 		}
 }

@@ -14,21 +14,27 @@ var integrated_sensor = {};
 integrated_sensor.lsm9ds1_acceleration = {};
 integrated_sensor.lsm9ds1_acceleration.arduino = {
     params: [
-        { "target": "LIST_XYZ", "unit": "MILLIG", "type": "Array_Number" }
+        { "target": "VARIABLE_X", "unit": "MILLIG" },
+        { "target": "VARIABLE_Y", "unit": "MILLIG" },
+        { "target": "VARIABLE_Z", "unit": "MILLIG" }
     ]
 };
 
 integrated_sensor.lsm9ds1_gyro = {};
 integrated_sensor.lsm9ds1_gyro.arduino = {
     params: [
-        { "target": "LIST_XYZ", "unit": "DEGREE_PER_SECOND", "type": "Array_Number" }
+        { "target": "VARIABLE_X", "unit": "MILLIG" },
+        { "target": "VARIABLE_Y", "unit": "MILLIG" },
+        { "target": "VARIABLE_Z", "unit": "MILLIG" }
     ]
 };
 
 integrated_sensor.lsm9ds1_magneticfield = {};
 integrated_sensor.lsm9ds1_magneticfield.arduino = {
     params: [
-        { "target": "LIST_XYZ", "unit": "GAUSS", "type": "Array_Number" }
+        { "target": "VARIABLE_X", "unit": "MILLIG" },
+        { "target": "VARIABLE_Y", "unit": "MILLIG" },
+        { "target": "VARIABLE_Z", "unit": "MILLIG" }
     ]
 };
 
@@ -49,7 +55,9 @@ integrated_sensor.apds9960_gesture.arduino = {
 integrated_sensor.apds9960_color = {};
 integrated_sensor.apds9960_color.arduino = {
     params: [
-        { "target": "LIST_RGB", "unit": "PERCENT", "type": "List_Number" }
+        { "target": "VARIABLE_R", "unit": "MILLIG" },
+        { "target": "VARIABLE_G", "unit": "MILLIG" },
+        { "target": "VARIABLE_B", "unit": "MILLIG" }
         ]
 };
 

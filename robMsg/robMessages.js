@@ -248,7 +248,7 @@ Blockly.Msg.SENSOR_IRSEEKER = 'HT infrared sensor';
 Blockly.Msg.SENSOR_ENCODER = 'encoder';
 Blockly.Msg.SENSOR_GYRO = 'gyroscope';
 Blockly.Msg.SENSOR_GYRO_WEDO = 'tilt sensor';
-Blockly.Msg.SENSOR_LSM9DS1 = 'LSM9DS1';
+Blockly.Msg.SENSOR_[9DS1 = '[9DS1';
 Blockly.Msg.SENSOR_APDS9960 = 'APDS9960';
 Blockly.Msg.SENSOR_LPS22HB = 'LPS22HB';
 Blockly.Msg.SENSOR_HTS221 = 'HTS221';
@@ -273,7 +273,6 @@ Blockly.Msg.SENSOR_IS_PRESSED = 'pressed?';
 Blockly.Msg.SENSOR_IS_TOUCHED = 'touched?';
 Blockly.Msg.SENSOR_IS_TILTED = 'tilted?';
 Blockly.Msg.SENSOR_PARTICLE = 'SDS011 particle sensor';
-Blockly.Msg.SENSOR_LSM9DS1_ACCELERATION_TOOLTIP = 'if available, return list of x,y,z acceleration values';
 Blockly.Msg.PARTICLE_TOOLTIP = 'Represents SDS011 particle sensor.';
 Blockly.Msg.SENSOR_PARTICLE_PM25_GETSAMPLE_TOOLTIP = 'Reads the current value of PM2.5 from the particle sensor.';
 Blockly.Msg.SENSOR_PARTICLE_PM10_GETSAMPLE_TOOLTIP = 'Reads the current value of PM10 from the particle sensor.';
@@ -797,9 +796,15 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_4_EDISON = 'Press the triangle button to start y
 // Names for nano33ble sensor blocks
 // =================================
 //
-Blockly.Msg.LIST_XYZ = 'if yes, update the list of x,y,z values'
-Blockly.Msg.LIST_RGB = 'if yes, update the list of r,g,b values'
-Blockly.Msg.VARIABLE_VALUE = 'if yes, update the variable'
+Blockly.Msg.VARIABLE_VALUE = 'if yes, store value [';
+Blockly.Msg.VARIABLE_X = 'if yes, store X [';
+Blockly.Msg.VARIABLE_Y = 'store Y [';
+Blockly.Msg.VARIABLE_Z = 'store Z [';
+Blockly.Msg.VARIABLE_R = 'if yes, store R [';
+Blockly.Msg.VARIABLE_G = 'store G [';
+Blockly.Msg.VARIABLE_B = 'store B [';
+Blockly.Msg.VARIABLE_TO = '] into';
+
 //
 // Names for the nao blocks
 /// NAO names
@@ -974,15 +979,15 @@ Blockly.Msg.MENU_SIM_STOP_TOOLTIP = 'Stop your program in the simulation.';
 Blockly.Msg.MENU_SIM_IMPORT_TOOLTIP = 'Upload your own simulation background image, it will be appended at the end of the background"s list.';
 Blockly.Msg.MENU_DEBUG_START_TOOLTIP = 'Enter Debugging Mode.';
 Blockly.Msg.MENU_DEBUG_STOP_TOOLTIP = 'Exit Debugging Mode.';
-Blockly.Msg.MENU_DEBUG_STEP_BREAKPOINT_TOOLTIP = 'Step forward to the next breakpoint in the program.'
-Blockly.Msg.MENU_DEBUG_STEP_OVER_TOOLTIP = 'Step Over to the next block in the program.'
-Blockly.Msg.MENU_DEBUG_STEP_INTO_TOOLTIP = 'Step Into to the next block in the program.'
+Blockly.Msg.MENU_DEBUG_STEP_BREAKPOINT_TOOLTIP = 'Step forward to the next breakpoint in the program.';
+Blockly.Msg.MENU_DEBUG_STEP_OVER_TOOLTIP = 'Step Over to the next block in the program.';
+Blockly.Msg.MENU_DEBUG_STEP_INTO_TOOLTIP = 'Step Into to the next block in the program.';
 Blockly.Msg.MENU_RIGHT_HELP_TOOLTIP = 'Open/close the help view.';
 Blockly.Msg.MENU_RIGHT_INFO_TOOLTIP = 'Open/close the program documentation view.';
 Blockly.Msg.MENU_RIGHT_SIM_TOOLTIP = 'Open/close the simulation view.';
 Blockly.Msg.MENU_RIGHT_CODE_TOOLTIP = 'Open/close the source code view.';
 Blockly.Msg.MENU_RIGHT_LEGAL_TOOLTIP = 'Open/close the legal information view.';
-Blockly.Msg.MENU_SIM_VARIABLES_TOOLTIP = 'Open/close the variable data view.'
+Blockly.Msg.MENU_SIM_VARIABLES_TOOLTIP = 'Open/close the variable data view.';
 Blockly.Msg.MENU_START_SIM = 'open/close simulation view';
 Blockly.Msg.MENU_SHOW_CODE = 'open/close source code view';
 Blockly.Msg.DISPLAY_PIXEL_TITLE = 'LED';
@@ -1128,8 +1133,8 @@ Blockly.Msg.SENSOR_UNIT_LUX = 'lx';
 Blockly.Msg.SENSOR_UNIT_IRRADIANCE = 'μW/cm²';
 Blockly.Msg.SENSOR_UNIT_PM = 'μg/m³';
 Blockly.Msg.SENSOR_UNIT_DEGREE_PER_SECOND = '°/s';
-Blockly.Msg.SENSOR_GAUSS = 'Gauss';
-Blockly.Msg.SENSOR_INDEX = '#';
+Blockly.Msg.SENSOR_UNIT_GAUSS = 'Gauss';
+Blockly.Msg.SENSOR_UNIT_INDEX = '#';
 Blockly.Msg.SENSOR_PINTOUCH_BOB3 = 'arm';
 Blockly.Msg.SENSOR_SOUND_CALLIOPE = 'microphone';
 Blockly.Msg.MODE_VALUE = 'value';
@@ -1576,30 +1581,38 @@ Blockly.Msg.SENSOR_COLOURTCS3472_LIGHT_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_LI
 Blockly.Msg.SENSOR_COLOURTCS3472_RGB_GETSAMPLE_TOOLTIP = Blockly.Msg.COLOUR_RGB_GETSAMPLE_TOOLTIP;
 Blockly.Msg.SENSOR_DATA_READY = 'ready?';
 
-Blockly.Msg.NN_SETUP = 'setup the neural network'
-Blockly.Msg.NN_SETUP_TOOLTIP = "define properties of a neural network, which can classify data"
-Blockly.Msg.NN_NUMBER_OF_CLASSES = '# classes'
-Blockly.Msg.NN_NUMBER_INPUT_NEURONS = '# input neurons'
-Blockly.Msg.NN_MAX_NUMBER_OF_NEURONS = 'max neurons'
+Blockly.Msg.NN_STEP = 'one step in the neural network';
+Blockly.Msg.NN_STEP_TOOLTIP = 'retrieve inputs, execute one step in the neural network, write the outputs into the variables';
+Blockly.Msg.NN_STEP_INPUT0 = 'input to neuron i0';
+Blockly.Msg.NN_STEP_INPUT1 = 'input to neuron i1';
+Blockly.Msg.NN_STEP_INPUT2 = 'input to neuron i2';
+Blockly.Msg.NN_STEP_OUTPUT0 = 'output of neuron o0';
+Blockly.Msg.NN_STEP_OUTPUT1 = 'output of neuron o1';
+Blockly.Msg.NN_STEP_OUTPUT2 = 'output of neuron o2';
 
-Blockly.Msg.NN_FEATURE_EXTRACTION = 'extract input features'
-Blockly.Msg.NN_FEATURE_EXTRACTION_TOOLTIP = 'extract input features from raw data assembled'
-Blockly.Msg.NN_RAW_COUNT = '# raw values'
-Blockly.Msg.NN_RAW_DATA = 'raw values'
-Blockly.Msg.NN_INPUT_FEATURES = 'input features'
+Blockly.Msg.NN_SETUP = 'setup the neural network';
+Blockly.Msg.NN_SETUP_TOOLTIP = 'define properties of a neural network, which can classify data';
+Blockly.Msg.NN_NUMBER_OF_CLASSES = '# classes';
+Blockly.Msg.NN_NUMBER_INPUT_NEURONS = '# input neurons';
+Blockly.Msg.NN_MAX_NUMBER_OF_NEURONS = 'max neurons';
 
-Blockly.Msg.NN_ADD_TRAININGS_DATA = 'add trainings data set'
-Blockly.Msg.NN_ADD_TRAININGS_DATA_TOOLTIP = 'add data from feature extraction to the list of trainings data sets for a class'
-Blockly.Msg.NN_CLASS_NUMBER = 'class #'
-Blockly.Msg.NN_FEATURE_COUNT = '# features'
-Blockly.Msg.NN_FEATURE_DATA = 'features'
+Blockly.Msg.NN_INIT_RAW_DATA = 'initialize raw data';
+Blockly.Msg.NN_INIT_RAW_DATA_TOOLTIP = 'clear raw data memory. Then add raw data multiple times, extract the input features from it and add that to the trainings data';
 
-Blockly.Msg.NN_TRAIN = 'train'
-Blockly.Msg.NN_TRAIN_TOOLTIP = 'train the neural network with the trainings data assembled'
+Blockly.Msg.NN_ADD_RAW_DATA = 'add raw data for later feature extraction';
+Blockly.Msg.NN_ADD_RAW_DATA_TOOLTIP = 'add raw data (multiple times). Then extract the input features from it and add that to the trainings data';
+Blockly.Msg.NN_RAW_DATA = 'raw value';
 
-Blockly.Msg.NN_CLASSIFY = 'classifiy'
-Blockly.Msg.NN_CLASSIFY_TOOLTIP = 'use the trained neural network and data from feature extraction to classify and return the probabiliy for each class'
-Blockly.Msg.NN_CLASS_PROBABILITIES = 'probabilities'
+Blockly.Msg.NN_ADD_TRAININGS_DATA = 'add to trainings data';
+Blockly.Msg.NN_ADD_TRAININGS_DATA_TOOLTIP = 'take raw data, execute feature extraction and add the data from feature extraction to the collection of training data for a class';
+Blockly.Msg.NN_CLASS_NUMBER = 'class #';
+
+Blockly.Msg.NN_TRAIN = 'train';
+Blockly.Msg.NN_TRAIN_TOOLTIP = 'train the neural network with the trainings data assembled';
+
+Blockly.Msg.NN_CLASSIFY = 'classifiy';
+Blockly.Msg.NN_CLASSIFY_TOOLTIP = 'use the trained neural network and data from feature extraction to classify and return the probabiliy for each class';
+Blockly.Msg.NN_CLASS_PROBABILITIES = 'probabilities';
 
 Blockly.Msg.MIN_ANGLE = 'Minimum angle';
 Blockly.Msg.MAX_ANGLE = 'Maximum angle';
