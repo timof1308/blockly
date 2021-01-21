@@ -1340,7 +1340,7 @@
 	"ORA_GROUP_ERROR_NAME_INVALID": "Der Name der Gruppe ist ungültig. Bitte verwende keine Sonderzeichen und gebe mindestens ein Zeichen an.",
 	"ORA_GROUP_ERROR_MISSING_RIGHTS_TO_BE_GROUP_OWNER": "Um eine Gruppe erstellen zu können muss eine valide E-Mail-Adresse mit deinem Benutzerkonto verknüpft sein.",
 	"ORA_GROUP_GET_ONE_ERROR": "Beim laden der Gruppe kam es zu einem Fehler. Bitte lade das Menü neu und versuche es dann erneut. Wenn der Fehler bestehen bleibt, schreibe bitte unserem Support.",
-	"ORA_GROUP_GET_ONE_ERROR_NOT_FOUND": "Es konnte keine Benutzergruppe mit dem angegebenen Namen für den Eigentümer gefunden werden.",
+	"ORA_GROUP_GET_ONE_ERROR_NOT_FOUND": "Die Benutzergruppe mit dem angegebenen Namen existiert nicht.",
 	"ORA_GROUP_GET_ALL_ERROR": "Beim laden der Liste der Gruppen ist es zu einem Fehler gekommen. Bitte lade das Menü neu und versuche es dann erneut. Wenn der Fehler bestehen bleibt, schreibe bitte unserem Support.",
 	"ORA_GROUP_CREATE_ERROR": "Beim erstellen der Gruppe ist es zu einem Fehler gekommen. Bitte lade das Menü neu und versuche es dann erneut. Wenn der Fehler bestehen bleibt, schreibe bitte unserem Support.",
 	"ORA_GROUP_CREATE_ERROR_GROUP_LIMIT_REACHED": "Du hast dein Gruppenlimit erreicht. Du kannst du mehr als 100 Gruppen haben.",
