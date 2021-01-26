@@ -555,6 +555,7 @@ confBlocks.led.arduino = {
     standardPins : [ 'LED_BUILTIN' ],
     fixedPorts : [ [ 'GND', 'GND' ] ]
 };
+confBlocks.led.nano33ble = confBlocks.led.arduino;
 confBlocks.led.festobionic = {
     title : 'LED',
     ports : [ [ 'input', 'INPUT' ] ],
@@ -784,25 +785,25 @@ confBlocks.gyro.sensebox = {
 };
 
 confBlocks.lsm9ds1 = {}
-confBlocks.lsm9ds1.arduino = {
+confBlocks.lsm9ds1.nano33ble = {
     title : 'LSM9DS1',
     sensor : true,
     inbuilt : true
 };
 confBlocks.apds9960 = {}
-confBlocks.apds9960.arduino = {
+confBlocks.apds9960.nano33ble = {
 		title : 'APDS9960',
 		sensor : true,
 		inbuilt : true
 };
 confBlocks.lps22hb = {}
-confBlocks.lps22hb.arduino = {
+confBlocks.lps22hb.nano33ble = {
 		title : 'LPS22HB',
 		sensor : true,
 		inbuilt : true
 };
 confBlocks.hts221 = {}
-confBlocks.hts221.arduino = {
+confBlocks.hts221.nano33ble = {
 		title : 'HTS221',
 		sensor : true,
 		inbuilt : true
@@ -1022,6 +1023,14 @@ confBlocks.environmental.sensebox = {
     },
     sensor : true
 };
+
+// all arduino conf blocks are inherited by nano33ble
+for ( var confBlock in confBlocks) {
+    var confObj = confBlocks[confBlock];
+    if (confObj.hasOwnProperty('arduino')) {
+        confObj['nano33ble'] = confObj['arduino'];
+    }
+}
 
 function initConfBlocks() {
     for ( var confBlock in confBlocks) {

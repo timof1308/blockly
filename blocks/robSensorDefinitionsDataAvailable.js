@@ -12,7 +12,7 @@ goog.require('Blockly.Blocks');
 var integrated_sensor = {};
 
 integrated_sensor.lsm9ds1_acceleration = {};
-integrated_sensor.lsm9ds1_acceleration.arduino = {
+integrated_sensor.lsm9ds1_acceleration.nano33ble = {
     params: [
         { "target": "VARIABLE_X", "unit": "MILLIG" },
         { "target": "VARIABLE_Y", "unit": "MILLIG" },
@@ -21,7 +21,7 @@ integrated_sensor.lsm9ds1_acceleration.arduino = {
 };
 
 integrated_sensor.lsm9ds1_gyro = {};
-integrated_sensor.lsm9ds1_gyro.arduino = {
+integrated_sensor.lsm9ds1_gyro.nano33ble = {
     params: [
         { "target": "VARIABLE_X", "unit": "MILLIG" },
         { "target": "VARIABLE_Y", "unit": "MILLIG" },
@@ -30,7 +30,7 @@ integrated_sensor.lsm9ds1_gyro.arduino = {
 };
 
 integrated_sensor.lsm9ds1_magneticfield = {};
-integrated_sensor.lsm9ds1_magneticfield.arduino = {
+integrated_sensor.lsm9ds1_magneticfield.nano33ble = {
     params: [
         { "target": "VARIABLE_X", "unit": "MILLIG" },
         { "target": "VARIABLE_Y", "unit": "MILLIG" },
@@ -39,21 +39,21 @@ integrated_sensor.lsm9ds1_magneticfield.arduino = {
 };
 
 integrated_sensor.apds9960_distance = {};
-integrated_sensor.apds9960_distance.arduino = {
+integrated_sensor.apds9960_distance.nano33ble = {
     params: [
         { "target": "VARIABLE_VALUE", "unit": "CM" }
     ]
 };
 
 integrated_sensor.apds9960_gesture = {};
-integrated_sensor.apds9960_gesture.arduino = {
+integrated_sensor.apds9960_gesture.nano33ble = {
     params: [
         { "target": "VARIABLE_VALUE", "unit": "INDEX" }
         ]
 };
 
 integrated_sensor.apds9960_color = {};
-integrated_sensor.apds9960_color.arduino = {
+integrated_sensor.apds9960_color.nano33ble = {
     params: [
         { "target": "VARIABLE_R", "unit": "MILLIG" },
         { "target": "VARIABLE_G", "unit": "MILLIG" },
@@ -62,28 +62,28 @@ integrated_sensor.apds9960_color.arduino = {
 };
 
 integrated_sensor.lps22hb_pressure = {};
-integrated_sensor.lps22hb_pressure.arduino = {
+integrated_sensor.lps22hb_pressure.nano33ble = {
     params: [
         { "target": "VARIABLE_VALUE", "unit": "PASCAL" }
         ]
 };
 
 integrated_sensor.hts221_temperature = {};
-integrated_sensor.hts221_temperature.arduino = {
+integrated_sensor.hts221_temperature.nano33ble = {
     params: [
         { "target": "VARIABLE_VALUE", "unit": "DEGREE" }
         ]
 };
 
 integrated_sensor.hts221_humidity = {};
-integrated_sensor.hts221_humidity.arduino = {
+integrated_sensor.hts221_humidity.nano33ble = {
     params: [
         { "target": "VARIABLE_VALUE", "unit": "PERCENT" }
         ]
 };
 
 var integrated_sensorAll = [];
-integrated_sensorAll.arduino = [];
+integrated_sensorAll.nano33ble = [];
 
 function init_integrated_sensor() {
     for (var sensor in integrated_sensor) {

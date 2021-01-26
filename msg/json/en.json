@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2021-01-21 11:08:30.055244",
+		"lastupdated": "2021-02-02 17:21:21.153341",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -546,6 +546,7 @@
 	"SENSOR_ENCODER": "encoder",
 	"SENSOR_GYRO": "gyroscope",
 	"SENSOR_GYRO_WEDO": "tilt sensor",
+	"SENSOR_LSM9DS1": "LSM9DS1",
 	"SENSOR_APDS9960": "APDS9960",
 	"SENSOR_LPS22HB": "LPS22HB",
 	"SENSOR_HTS221": "HTS221",

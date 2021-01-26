@@ -1452,6 +1452,23 @@ sensors.environmental.sensebox = {
     ports : 'CONFIGURATION'
 };
 
+sensors.out.nano33ble           = sensors.out.arduino;
+sensors.key.nano33ble           = sensors.key.arduino;
+sensors.timer.nano33ble         = sensors.timer.arduino;
+sensors.temperature.nano33ble   = sensors.temperature.arduino;
+sensors.ultrasonic.nano33ble    = sensors.ultrasonic.arduino;
+sensors.light.nano33ble         = sensors.light.arduino;
+sensors.moisture.nano33ble      = sensors.moisture.arduino;
+sensors.potentiometer.nano33ble = sensors.potentiometer.arduino;
+sensors.infrared.nano33ble      = sensors.infrared.arduino;
+sensors.humidity.nano33ble      = sensors.humidity.arduino;
+sensors.motion.nano33ble        = sensors.motion.arduino;
+sensors.pulse.nano33ble         = sensors.pulse.arduino;
+sensors.drop.nano33ble          = sensors.drop.arduino;
+sensors.rfid.nano33ble          = sensors.rfid.arduino;
+sensors.gyro.nano33ble          = sensors.gyro.arduino;
+sensors.accelerometer.nano33ble = sensors.accelerometer.arduino;
+
 var sensorsAll = [];
 sensorsAll.botnroll = [ sensors.infrared.botnroll, sensors.light.botnroll, sensors.compass.botnroll, sensors.ultrasonic.botnroll, sensors.colour.botnroll,
         sensors.key.botnroll ];
@@ -1478,7 +1495,11 @@ sensorsAll.wedo = [ sensors.key.wedo, sensors.gyro.wedo, sensors.infrared.wedo, 
 sensorsAll.sensebox = [ sensors.key.sensebox, sensors.light.sensebox, sensors.potentiometer.sensebox, sensors.sound.sensebox, sensors.ultrasonic.sensebox,
 sensors.humidity.sensebox, sensors.temperature.sensebox, sensors.lightveml.sensebox, sensors.accelerometer.sensebox, sensors.particle.sensebox, sensors.gps.sensebox,
         sensors.timer.sensebox, sensors.environmental.sensebox ];
-sensorsAll.edison = [ sensors.key.edison, sensors.infrared.edison, sensors.irseeker.edison, sensors.light.edison, sensors.sound.edison ];        
+sensorsAll.edison = [ sensors.key.edison, sensors.infrared.edison, sensors.irseeker.edison, sensors.light.edison, sensors.sound.edison ];
+sensorsAll.nano33ble = [ sensors.out.nano33ble, sensors.key.nano33ble, sensors.timer.nano33ble, sensors.temperature.nano33ble, sensors.ultrasonic.nano33ble,
+    sensors.light.nano33ble, sensors.moisture.nano33ble, sensors.potentiometer.nano33ble, sensors.infrared.nano33ble, sensors.humidity.nano33ble,
+    sensors.motion.nano33ble, sensors.pulse.nano33ble, sensors.drop.nano33ble, sensors.rfid.nano33ble, sensors.gyro.nano33ble,
+    sensors.accelerometer.arduino ];
 
 function initSensors() {
     for ( var sensor in sensors) {
