@@ -1622,6 +1622,8 @@ Blockly.Msg.MIN_PULSE_WIDTH = 'Minimum pulse width';
 Blockly.Msg.MAX_PULSE_WIDTH = 'Maximum pulse width';
 Blockly.Msg.FRAME_WIDTH = 'Frame width';
 Blockly.Msg.LIGHT_LDR = 'Light (LDR)';
-
-Blockly.Msg.SLOT_BACK = 'back'
-Blockly.Msg.SENSOR_POSITION = 'sensor position'
+Blockly.Msg.SLOT_BACK = 'back';
+Blockly.Msg.SENSOR_POSITION = 'sensor position';
+Blockly.Msg.ALIGNMENT_DOWN = 'down';
+Blockly.Msg.ALIGNMENT_HORIZONTAL = 'horizontal';
+Blockly.Msg.SENSOR_ALIGNMENT = 'sensor alignment';

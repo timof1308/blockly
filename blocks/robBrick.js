@@ -395,7 +395,11 @@ Blockly.Blocks['robBrick_colour'] = {
                 [ Blockly.Msg.SLOT_LEFT, 'LEFT' ], 
                 [ Blockly.Msg.SLOT_RIGHT, 'RIGHT' ], 
                 [ Blockly.Msg.SLOT_BACK, 'BACK' ] ]);
+            var sensorAlignment = new Blockly.FieldDropdown([ 
+                [ Blockly.Msg.ALIGNMENT_DOWN, 'DOWN' ], 
+                [ Blockly.Msg.ALIGNMENT_HORIZONTAL, 'HORIZONTAL' ] ]);
             this.appendDummyInput().appendField(Blockly.Msg.SENSOR_POSITION).appendField(sensorPosition, 'SENSOR_POSITION').setAlign(Blockly.ALIGN_RIGHT);
+            this.appendDummyInput().appendField(Blockly.Msg.SENSOR_ALIGNMENT).appendField(sensorAlignment, 'SENSOR_ALIGNMENT').setAlign(Blockly.ALIGN_RIGHT);
         }
         this.setOutput(true, 'Sensor');
         this.setTooltip(Blockly.Msg.COLOUR_TOOLTIP);
