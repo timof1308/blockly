@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2021-03-03 16:45:35.632061",
+		"lastupdated": "2021-02-05 20:10:28.520004",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -430,7 +430,7 @@
 	"BATTERY_GETSAMPLE_TOOLTIP": "Gets the current voltage from the battery.",
 	"ULTRASONIC_TOOLTIP": "Represents an ultrasonic sensor.",
 	"COLOUR_TOOLTIP": "Represents a colour sensor.",
-	"TOOLTIP_SIMULATION_ONLY": "Setting the alignment or position of this sensor only takes effect in the simulation. This option is not relevant when compiling the source code.",
+	"COLOUR_TOOLTIP_SIMULATION_ONLY": "Setting the alignment or position of the colour sensor only takes effect in the simulation. This option is not relevant when compiling the source code.",
 	"HTCOLOUR_TOOLTIP": "Represents a HiTechnic NXT Color Sensor V2.",
 	"INFRARED_TOOLTIP": "Represents an infrared sensor.",
 	"IRSEEKER_TOOLTIP": "Represents a HiTechnic NXT IRSeeker V2 sensor.",
