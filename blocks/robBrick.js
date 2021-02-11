@@ -388,6 +388,7 @@ Blockly.Blocks['robBrick_colour'] = {
      */
     init : function() {
         this.setColour(Blockly.CAT_SENSOR_RGB);
+        this.setTooltip(Blockly.Msg.COLOUR_TOOLTIP);
         this.appendDummyInput().appendField(Blockly.Msg.SENSOR_COLOUR);
         if (this.workspace.device !== 'botnroll') { // disable dropdown selection for only Bot'n Roll
             var sensorPosition = new Blockly.FieldDropdown([ 
@@ -400,9 +401,9 @@ Blockly.Blocks['robBrick_colour'] = {
                 [ Blockly.Msg.ALIGNMENT_HORIZONTAL, 'HORIZONTAL' ] ]);
             this.appendDummyInput().appendField(Blockly.Msg.SENSOR_POSITION).appendField(sensorPosition, 'SENSOR_POSITION').setAlign(Blockly.ALIGN_RIGHT);
             this.appendDummyInput().appendField(Blockly.Msg.SENSOR_ALIGNMENT).appendField(sensorAlignment, 'SENSOR_ALIGNMENT').setAlign(Blockly.ALIGN_RIGHT);
+            this.setTooltip(Blockly.Msg.COLOUR_TOOLTIP + " " + Blockly.Msg.COLOUR_TOOLTIP_SIMULATION_ONLY);
         }
         this.setOutput(true, 'Sensor');
-        this.setTooltip(Blockly.Msg.COLOUR_TOOLTIP);
     }
 };
 
