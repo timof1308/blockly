@@ -1439,6 +1439,6 @@
 	"ALIGNMENT_DOWN" : "unten",
 	"ALIGNMENT_HORIZONTAL" : "horizontal",
 	"SENSOR_ALIGNMENT" : "Ausrichtung des Sensors",
-	"COLOUR_TOOLTIP_SIMULATION_ONLY": "Das Einstellen der Ausrichtung oder Position des Farbsensors wirkt sich nur in der Simulation aus. Beim Kompilieren des Quellcodes ist diese Option nicht von Bedeutung."
+	"TOOLTIP_SIMULATION_ONLY": "Das Einstellen der Ausrichtung oder Position des Sensors wirkt sich nur in der Simulation aus. Beim Kompilieren des Quellcodes ist diese Option nicht von Bedeutung."
 }
 
