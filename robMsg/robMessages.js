@@ -129,7 +129,7 @@ Blockly.Msg.BATTERY_GETSAMPLE_TOOLTIP = 'Gets the current voltage from the batte
 /// Rob Brick tooltips
 Blockly.Msg.ULTRASONIC_TOOLTIP = 'Represents an ultrasonic sensor.';
 Blockly.Msg.COLOUR_TOOLTIP = 'Represents a colour sensor.';
-Blockly.Msg.COLOUR_TOOLTIP_SIMULATION_ONLY = 'Setting the alignment or position of the colour sensor only takes effect in the simulation. This option is not relevant when compiling the source code.';
+Blockly.Msg.TOOLTIP_SIMULATION_ONLY = 'Setting the alignment or position of this sensor only takes effect in the simulation. This option is not relevant when compiling the source code.';
 Blockly.Msg.HTCOLOUR_TOOLTIP = 'Represents a HiTechnic NXT Color Sensor V2.';
 Blockly.Msg.INFRARED_TOOLTIP = 'Represents an infrared sensor.';
 Blockly.Msg.IRSEEKER_TOOLTIP = 'Represents a HiTechnic NXT IRSeeker V2 sensor.';
