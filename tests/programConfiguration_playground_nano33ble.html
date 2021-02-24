@@ -226,6 +226,24 @@ h1 {
                     </value>
                 </block>
                 <block type="robActions_display_clear_i2c"></block>
+                <block type="robActions_display_text_oledssd1306i2ci2c">
+                    <value name="OUT">
+                        <block type="text">
+                            <field name="TEXT">Hallo</field>
+                        </block>
+                    </value>
+                    <value name="ROW">
+                        <block type="math_number">
+                            <field name="NUM">1</field>
+                        </block>
+                    </value>
+                    <value name="COL">
+                        <block type="math_number">
+                            <field name="NUM">0</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="robActions_display_clear_oledssd1306i2ci2c"></block>
             </category>
             <category name="TOOLBOX_SOUND" svg="true">
                 <block type="robActions_play_tone">
@@ -498,6 +516,10 @@ h1 {
             <block type="robConf_apds9960"></block>
             <block type="robConf_lps22hb"></block>
             <block type="robConf_hts221"></block>
+        </category>
+        <category name="TOOLBOX_ACTION" svg="true">
+            <block type="robConf_lcdi2c"></block>
+            <block type="robConf_oledssd1306i2c"></block>
         </category>
     </toolbox_set>
 

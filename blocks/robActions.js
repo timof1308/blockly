@@ -590,20 +590,6 @@ Blockly.Blocks['robActions_display_picture_new'] = {
 };
 
 Blockly.Blocks['robActions_display_text'] = {
-    /**
-     * Display a text on the screen.
-     * 
-     * @constructs robActions_display_text
-     * @this.Blockly.Block
-     * @param {String}
-     *            OUT Text to show
-     * @param {Number}
-     *            COL Position on screen
-     * @param {Number}
-     *            ROW Position on screen
-     * @returns immediately
-     * @memberof Block
-     */
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
         if (this.workspace.device == 'arduino') {
@@ -632,51 +618,7 @@ Blockly.Blocks['robActions_display_text'] = {
     }
 };
 
-Blockly.Blocks['robActions_display_text_i2c'] = {
-    /**
-     * Display a text on the screen.
-     * 
-     * @constructs robActions_display_text_i2c
-     * @this.Blockly.Block
-     * @param {String}
-     *            OUT Text to show
-     * @param {Number}
-     *            COL Position on screen
-     * @param {Number}
-     *            ROW Position on screen
-     * @returns immediately
-     * @memberof Block
-     */
-    init : function() {
-        this.setColour(Blockly.CAT_ACTION_RGB);
-        var dropDownPorts = getConfigPorts('lcdi2c');
-        this.dependConfig = {
-            'type' : 'lcdi2c',
-            'dropDown' : dropDownPorts
-        };
-        if (this.workspace.device === 'sensebox') {
-            this.appendDummyInput().appendField(Blockly.Msg.ACTION_LCDI2C_SENSEBOX, 'ACTORTITEL').appendField(dropDownPorts, 'ACTORPORT');
-        } else {
-            this.appendDummyInput().appendField(Blockly.Msg.ACTION_LCDI2C, 'ACTORTITEL').appendField(dropDownPorts, 'ACTORPORT');
-        }
-        this.appendValueInput('OUT').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_SHOW + ' ' + Blockly.Msg.DISPLAY_TEXT);
-        this.appendValueInput('COL').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_COL);
-        this.appendValueInput('ROW').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_ROW);
-        this.setPreviousStatement(true);
-        this.setNextStatement(true);
-        this.setTooltip(Blockly.Msg.DISPLAY_TEXT_TOOLTIP);
-    }
-};
-
 Blockly.Blocks['robActions_display_clear'] = {
-    /**
-     * Clear the display.
-     * 
-     * @constructs robActions_display_clear
-     * @this.Blockly.Block
-     * @returns immediately
-     * @memberof Block
-     */
     init : function() {
         // this.setHelpUrl(Blockly.Msg.DISPLAY_CLEAR_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
@@ -693,21 +635,33 @@ Blockly.Blocks['robActions_display_clear'] = {
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.DISPLAY_CLEAR_TOOLTIP);
-        // this.setHelp(new Blockly.Help(Blockly.Msg.DISPLAY_CLEAR_HELP));
     }
 };
 
+Blockly.Blocks['robActions_display_text_i2c'] = {
+        init : function() {
+            this.setColour(Blockly.CAT_ACTION_RGB);
+            var dropDownPorts = getConfigPorts('lcdi2c');
+            this.dependConfig = {
+                    'type' : 'lcdi2c',
+                    'dropDown' : dropDownPorts
+            };
+            if (this.workspace.device === 'sensebox') {
+                this.appendDummyInput().appendField(Blockly.Msg.ACTION_LCDI2C_SENSEBOX, 'ACTORTITEL').appendField(dropDownPorts, 'ACTORPORT');
+            } else {
+                this.appendDummyInput().appendField(Blockly.Msg.ACTION_LCDI2C, 'ACTORTITEL').appendField(dropDownPorts, 'ACTORPORT');
+            }
+            this.appendValueInput('OUT').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_SHOW + ' ' + Blockly.Msg.DISPLAY_TEXT);
+            this.appendValueInput('COL').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_COL);
+            this.appendValueInput('ROW').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_ROW);
+            this.setPreviousStatement(true);
+            this.setNextStatement(true);
+            this.setTooltip(Blockly.Msg.DISPLAY_TEXT_TOOLTIP);
+        }
+};
+
 Blockly.Blocks['robActions_display_clear_i2c'] = {
-    /**
-     * Clear the display.
-     * 
-     * @constructs robActions_display_clear
-     * @this.Blockly.Block
-     * @returns immediately
-     * @memberof Block
-     */
     init : function() {
-        // this.setHelpUrl(Blockly.Msg.DISPLAY_CLEAR_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
         if (this.workspace.device === 'arduino' || this.workspace.device === 'sensebox') {
             var dropDownPorts = getConfigPorts('lcdi2c');
@@ -726,9 +680,41 @@ Blockly.Blocks['robActions_display_clear_i2c'] = {
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.DISPLAY_CLEAR_TOOLTIP);
-        // this.setHelp(new Blockly.Help(Blockly.Msg.DISPLAY_CLEAR_HELP));
     }
 };
+
+Blockly.Blocks['robActions_display_text_oledssd1306i2ci2c'] = {
+        init : function() {
+            this.setColour(Blockly.CAT_ACTION_RGB);
+            var dropDownPorts = getConfigPorts('oledssd1306i2c');
+            this.dependConfig = {
+                'type' : 'oledssd1306i2c',
+                'dropDown' : dropDownPorts
+            };
+            this.appendDummyInput().appendField(Blockly.Msg.ACTION_OLEDSSD1306I2C, 'ACTORTITEL').appendField(dropDownPorts, 'ACTORPORT');
+            this.appendValueInput('OUT').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_SHOW + ' ' + Blockly.Msg.DISPLAY_TEXT);
+            this.appendValueInput('COL').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_COL);
+            this.appendValueInput('ROW').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_ROW);
+            this.setPreviousStatement(true);
+            this.setNextStatement(true);
+            this.setTooltip(Blockly.Msg.DISPLAY_TEXT_TOOLTIP);
+        }
+    };
+
+    Blockly.Blocks['robActions_display_clear_oledssd1306i2ci2c'] = {
+            init : function() {
+                this.setColour(Blockly.CAT_ACTION_RGB);
+                var dropDownPorts = getConfigPorts('oledssd1306i2c');
+                this.dependConfig = {
+                        'type' : 'oledssd1306i2c',
+                        'dropDown' : dropDownPorts
+                };
+                this.appendDummyInput().appendField(Blockly.Msg.CLEAR).appendField(Blockly.Msg.ACTION_OLEDSSD1306I2C, 'ACTORTITEL').setAlign(Blockly.ALIGN_RIGHT).appendField(dropDownPorts, 'ACTORPORT');
+                this.setPreviousStatement(true);
+                this.setNextStatement(true);
+                this.setTooltip(Blockly.Msg.DISPLAY_CLEAR_TOOLTIP);
+            }
+        };
 
 Blockly.Blocks['robActions_play_tone'] = {
     /**

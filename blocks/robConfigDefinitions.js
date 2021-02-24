@@ -521,14 +521,21 @@ confBlocks.lcd.arduino = {
     fixedPorts : [ [ 'VSS', 'GND' ], [ 'VDD', '5V' ], [ 'V0', 'Vp' ], [ 'RW', 'GND' ] ]
 };
 
-confBlocks.lcdi2c = {};
-confBlocks.lcdi2c.arduino = {
-    title : 'LCDI2C',
+confBlocks.oledssd1306i2c = {};
+confBlocks.oledssd1306i2c.arduino = {
+    title : 'OLEDSSD1306I2C',
     sensor : false,
-    inputs : [ [ 'ADDRESS', '0x27' ] ],
+    inputs : [ [ 'ADDRESS', '0x3D' ] ],
     fixedPorts : [ [ 'GND', 'GND' ], [ 'VCC', '5V' ], [ 'SDA', 'A4' ], [ 'SCL', 'A5' ] ]
 };
 
+confBlocks.lcdi2c = {};
+confBlocks.lcdi2c.arduino = {
+	title : 'LCDI2C',
+	sensor : false,
+	inputs : [ [ 'ADDRESS', '0x27' ] ],
+	fixedPorts : [ [ 'GND', 'GND' ], [ 'VCC', '5V' ], [ 'SDA', 'A4' ], [ 'SCL', 'A5' ] ]
+};
 confBlocks.lcdi2c.sensebox = {
     title : 'LCDI2C',
     ports : [ [ 'I2C', 'I2C' ] ],
@@ -555,7 +562,6 @@ confBlocks.led.arduino = {
     standardPins : [ 'LED_BUILTIN' ],
     fixedPorts : [ [ 'GND', 'GND' ] ]
 };
-confBlocks.led.nano33ble = confBlocks.led.arduino;
 confBlocks.led.festobionic = {
     title : 'LED',
     ports : [ [ 'input', 'INPUT' ] ],
