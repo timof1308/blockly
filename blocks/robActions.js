@@ -683,7 +683,7 @@ Blockly.Blocks['robActions_display_clear_i2c'] = {
     }
 };
 
-Blockly.Blocks['robActions_display_text_oledssd1306i2ci2c'] = {
+Blockly.Blocks['robActions_display_text_oledssd1306i2c'] = {
         init : function() {
             this.setColour(Blockly.CAT_ACTION_RGB);
             var dropDownPorts = getConfigPorts('oledssd1306i2c');
@@ -701,7 +701,7 @@ Blockly.Blocks['robActions_display_text_oledssd1306i2ci2c'] = {
         }
     };
 
-    Blockly.Blocks['robActions_display_clear_oledssd1306i2ci2c'] = {
+    Blockly.Blocks['robActions_display_clear_oledssd1306i2c'] = {
             init : function() {
                 this.setColour(Blockly.CAT_ACTION_RGB);
                 var dropDownPorts = getConfigPorts('oledssd1306i2c');
