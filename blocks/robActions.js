@@ -241,7 +241,7 @@ Blockly.Blocks['robActions_motor_on_for'] = {
             this.setTooltip(Blockly.Msg.MOTOR_ON_FOR_TOOLTIP_MS);
         } else {
             var motorPort = new Blockly.FieldDropdown(ports);
-            if (this.workspace.device === 'arduino') {
+            if (this.workspace.device === 'arduino' || this.workspace.device === 'nano33ble') {
                 motorPort = getConfigPorts('stepmotor');
                 this.dependConfig = {
                     'type' : 'stepmotor',
@@ -258,7 +258,7 @@ Blockly.Blocks['robActions_motor_on_for'] = {
             } else {
                 this.appendValueInput('VALUE').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.FOR).appendField(motorRotation, 'MOTORROTATION').setCheck('Number');
             }
-            if (this.workspace.device != 'arduino') {
+            if (this.workspace.device != 'arduino' || this.workspace.device === 'nano33ble') {
                 this.setTooltip(Blockly.Msg.MOTOR_ON_FOR_TOOLTIP);
             } else {
                 this.setTooltip(Blockly.Msg.MOTOR_ON_FOR_TOOLTIP_RPM);
@@ -290,13 +290,13 @@ Blockly.Blocks['robActions_motor_on_for_ardu'] = {
      */
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        if (this.workspace.device == 'arduino' || this.workspace.device == 'festobionic') {
+        if (this.workspace.device == 'arduino' || this.workspace.device === 'nano33ble' || this.workspace.device == 'festobionic') {
             var dropDownPorts = getConfigPorts('servo');
             this.dependConfig = {
                 'type' : 'servo',
                 'dropDown' : dropDownPorts
             };
-            if (this.workspace.device == 'arduino') {
+            if (this.workspace.device == 'arduino' || this.workspace.device === 'nano33ble') {
                 this.appendValueInput('POWER').appendField(Blockly.Msg.SET + " " + Blockly.Msg.ACTION_SERVO_ARDUINO).appendField(dropDownPorts, 'MOTORPORT').appendField(Blockly.Msg.TO
                     + ' °').setCheck('Number');
             } else {
@@ -592,7 +592,7 @@ Blockly.Blocks['robActions_display_picture_new'] = {
 Blockly.Blocks['robActions_display_text'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        if (this.workspace.device == 'arduino') {
+        if (this.workspace.device == 'arduino' || this.workspace.device === 'nano33ble') {
             var dropDownPorts = getConfigPorts('lcd');
             this.dependConfig = {
                 'type' : 'lcd',
@@ -622,7 +622,7 @@ Blockly.Blocks['robActions_display_clear'] = {
     init : function() {
         // this.setHelpUrl(Blockly.Msg.DISPLAY_CLEAR_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
-        if (this.workspace.device == 'arduino') {
+        if (this.workspace.device == 'arduino' || this.workspace.device === 'nano33ble') {
             var dropDownPorts = getConfigPorts('lcd');
             this.dependConfig = {
                 'type' : 'lcd',
@@ -663,7 +663,7 @@ Blockly.Blocks['robActions_display_text_i2c'] = {
 Blockly.Blocks['robActions_display_clear_i2c'] = {
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        if (this.workspace.device === 'arduino' || this.workspace.device === 'sensebox') {
+        if (this.workspace.device === 'arduino' || this.workspace.device === 'nano33ble' || this.workspace.device === 'sensebox') {
             var dropDownPorts = getConfigPorts('lcdi2c');
             this.dependConfig = {
                 'type' : 'lcdi2c',
@@ -733,7 +733,7 @@ Blockly.Blocks['robActions_play_tone'] = {
     init : function() {
         // this.setHelpUrl(Blockly.Msg.PLAY_TONE_HELPURL);
         this.setColour(Blockly.CAT_ACTION_RGB);
-        if (this.workspace.device === 'arduino' || this.workspace.device === 'sensebox') {
+        if (this.workspace.device === 'arduino' || this.workspace.device === 'nano33ble' || this.workspace.device === 'sensebox') {
             var dropDownPorts = getConfigPorts('buzzer');
             this.dependConfig = {
                 'type' : 'buzzer',
@@ -870,7 +870,7 @@ Blockly.Blocks['robActions_brickLight_on'] = {
         var dropdownColor = new Blockly.FieldDropdown([ [ Blockly.Msg.BRICKLIGHT_GREEN, 'GREEN' ], [ Blockly.Msg.BRICKLIGHT_ORANGE, 'ORANGE' ],
                 [ Blockly.Msg.BRICKLIGHT_RED, 'RED' ] ]);
         var dropdownLightState;
-        if (this.workspace.device === 'botnroll' || this.workspace.device === 'arduino' || this.workspace.device === 'calliope'
+        if (this.workspace.device === 'botnroll' || this.workspace.device === 'arduino' || this.workspace.device === 'nano33ble' || this.workspace.device === 'calliope'
                 || this.workspace.device === 'sensebox' || this.workspace.device === 'festobionic') {
             dropdownLightState = new Blockly.FieldDropdown([ [ Blockly.Msg.BRICKLIGHT_ON, 'ON' ], [ Blockly.Msg.OFF, 'OFF' ] ]);
         } else {
@@ -878,7 +878,7 @@ Blockly.Blocks['robActions_brickLight_on'] = {
                     [ Blockly.Msg.BRICKLIGHT_DOUBLE_FLASH, 'DOUBLE_FLASH' ] ]);
             this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.BRICKLIGHT_COLOR).appendField(dropdownColor, 'SWITCH_COLOR');
         }
-        if (this.workspace.device === 'arduino' || this.workspace.device === 'calliope' || this.workspace.device === 'sensebox' || this.workspace.device === 'festobionic') {
+        if (this.workspace.device === 'arduino' || this.workspace.device === 'nano33ble' || this.workspace.device === 'calliope' || this.workspace.device === 'sensebox' || this.workspace.device === 'festobionic') {
             var dropDownPorts;
             dropDownPorts = getConfigPorts('led');
             this.dependConfig = {
@@ -930,7 +930,7 @@ Blockly.Blocks['robActions_led_on'] = {
             portList.push([ Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT'),
                     (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
         }
-        if (this.workspace.device === 'arduino' || this.workspace.device === 'sensebox') {
+        if (this.workspace.device === 'arduino' || this.workspace.device === 'nano33ble' || this.workspace.device === 'sensebox') {
             var ports = getConfigPorts('rgbled');
             this.dependConfig = {
                 'type' : 'rgbled',
@@ -992,7 +992,7 @@ Blockly.Blocks['robActions_led_off'] = {
             portList.push([ Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT'),
                     (Blockly.Msg.CONFIGURATION_NO_PORT || Blockly.checkMsgKey('CONFIGURATION_NO_PORT')).toUpperCase() ]);
         }
-        if (this.workspace.device === 'arduino' || this.workspace.device === 'sensebox') {
+        if (this.workspace.device === 'arduino' || this.workspace.device === 'nano33ble' || this.workspace.device === 'sensebox') {
             var ports = getConfigPorts('rgbled');
             this.dependConfig = {
                 'type' : 'rgbled',
@@ -1104,7 +1104,7 @@ Blockly.Blocks['robActions_set_relay'] = {
             'type' : 'relay',
             'dropDown' : dropDownPorts
         };
-        if (this.workspace.device == 'arduino') {
+        if (this.workspace.device == 'arduino' || this.workspace.device === 'nano33ble') {
             this.appendDummyInput().appendField(Blockly.Msg.SET_RELAY_ARDUINO).appendField(dropDownPorts, 'ACTORPORT').appendField(relayState, 'RELAYSTATE');
         } else {
             this.appendDummyInput().appendField(Blockly.Msg.SET_RELAY).appendField(dropDownPorts, 'ACTORPORT').appendField(relayState, 'RELAYSTATE');
